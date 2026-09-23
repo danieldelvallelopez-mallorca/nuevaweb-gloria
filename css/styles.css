@@ -415,3 +415,24 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.0
 .mm-langs a{font-family:var(--sans);font-size:.74rem;letter-spacing:.12em;color:rgba(243,237,226,.72);padding:8px 11px}
 .mm-langs a[aria-current="true"]{color:var(--teal);font-weight:600}
 @media (min-width:901px){ .mobile-menu{display:none!important} }
+
+/* =====================================================================
+   CABAU — bloque sin caja + afiliación discreta abajo
+   ===================================================================== */
+.cabau{border:none!important;border-radius:0!important;border-top:1px solid var(--line-light)!important;
+  padding:clamp(30px,4vw,50px) 0 6px!important;grid-template-columns:1fr auto!important;gap:40px!important;margin:44px 0 0!important}
+.cabau .cc-logo{display:none}
+.cabau-affil{display:flex;align-items:center;justify-content:center;gap:14px;
+  border-top:1px solid var(--line-light);padding:28px 0 4px;margin-top:26px}
+.cabau-affil .pa{font-family:var(--sans);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(243,237,226,.5)}
+.cabau-affil img{width:104px;height:auto;opacity:.9;display:block}
+.footer .footer-bottom{border-top:none;padding-top:16px}
+@media (max-width:900px){
+  .cabau{grid-template-columns:1fr!important;text-align:center;gap:22px!important}
+  .cabau-affil{flex-direction:column;gap:10px}
+}
+
+/* cenefa de baldosas hidráulicas (gráfico complementario del manual, con moderación) */
+.tile-band{max-width:880px;margin:0 auto;padding:40px 24px 4px;opacity:.5}
+.tile-band img{width:100%;height:auto;display:block}
+@media (max-width:900px){ .tile-band{padding-top:28px;opacity:.42} }
