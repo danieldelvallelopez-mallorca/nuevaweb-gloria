@@ -31,7 +31,11 @@
     menu.appendChild(links);
 
     var book = document.createElement("a");
-    book.className = "btn btn-ghost-light mm-book"; book.href = "index.html#book";
+    book.className = "btn btn-ghost-light mm-book";
+    var wired = document.querySelector("a[data-book]");
+    var wiredHref = wired ? wired.getAttribute("href") : "";
+    if(wiredHref && wiredHref.indexOf("http") === 0){ book.href = wiredHref; book.target = "_blank"; book.rel = "noopener"; }
+    else { book.href = "index.html#book"; }
     book.textContent = "Book";
     book.setAttribute("data-book","");
     menu.appendChild(book);
