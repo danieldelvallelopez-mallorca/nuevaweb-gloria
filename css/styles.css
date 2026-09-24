@@ -543,3 +543,84 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .two-col>.imgframe[style*="height:100%"]{aspect-ratio:auto!important;height:auto!important;align-self:stretch;min-height:420px;width:100%}
 }
 @media (max-width:600px){ .booking-bar .field:has(select){flex-basis:100%} }  /* "2 Adults · 0 Children" sin cortar */
+
+/* =====================================================================
+   FOOTER COMPACTO (mismo contenido, ~mitad de altura). El logo Cabau Hotels crece.
+   ===================================================================== */
+.tile-band{max-width:560px;padding:22px 24px 0}
+.cabau{padding:20px 0 16px!important;margin:18px 0 0!important;gap:28px!important;align-items:center!important}
+.cabau .eyebrow{margin-bottom:4px}
+.cabau h3{font-size:1.35rem;margin:0 0 2px}
+.cabau p.muted{font-size:.9rem;margin:0}
+.cabau .btn{padding:11px 20px;font-size:.58rem}
+.footer-cols{grid-template-columns:1.15fr 1fr 1fr 1.35fr;gap:28px;padding:22px 0 12px;border-top:1px solid var(--line-light)}
+.footer-cols h4{margin:0 0 10px}
+.footer-cols ul{gap:4px;font-size:.92rem}
+.foot-logo{width:112px;margin-bottom:0}
+.footer-cols .flogo .line{margin:10px 0 8px;width:34px}
+.footer-cols .flogo .serif-lead{font-size:1rem!important;margin:0 0 2px!important}
+.footer-cols .flogo p.muted{font-size:.82rem!important;line-height:1.45;margin:0}
+.footer-cols .contact-row{margin-bottom:6px;font-size:.88rem;gap:10px;line-height:1.45}
+.footer-cols .contact-row+h4{margin-top:14px!important}
+.footer-cols h4[style]{margin-top:14px!important}
+.cabau-affil{padding:14px 0 0;margin-top:6px;gap:16px}
+.cabau-affil img{width:150px;opacity:1}
+.footer .footer-bottom{padding:10px 0 16px;font-size:.58rem}
+.footer-bottom .links{gap:18px}
+@media (max-width:900px){
+  .cabau{gap:14px!important}
+  .footer-cols{grid-template-columns:1fr 1fr;gap:20px 24px}
+  .footer-cols .flogo{grid-column:1/-1;display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:center}
+  .footer-cols .flogo .foot-logo{grid-row:span 3;width:90px}
+  .footer-cols .flogo .line{display:none}
+  .cabau-affil{flex-direction:row}
+  .cabau-affil img{width:140px}
+}
+@media (max-width:560px){ .footer-cols{grid-template-columns:1fr 1fr} .footer-cols>div:last-child{grid-column:1/-1} }
+/* compacto II: logo junto a su texto, contacto a 2 columnas, Cabau Circle en una línea */
+@media (min-width:901px){
+  .cabau>div:first-child h3{display:inline;margin-right:14px}
+  .cabau>div:first-child p.muted{display:inline}
+  .cabau{padding:16px 0 12px!important;margin-top:14px!important}
+  .footer-cols{grid-template-columns:1.5fr .9fr .9fr 2fr;padding:18px 0 10px;align-items:start}
+  .footer-cols .flogo{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:center}
+  .footer-cols .flogo .foot-logo{grid-row:span 3;width:92px}
+  .footer-cols .flogo .line{display:none}
+  .footer-cols ul{grid-template-columns:1fr 1fr;column-gap:18px}
+  #contact{display:grid;grid-template-columns:1fr 1fr;column-gap:22px;grid-template-areas:"h h" "a p" "e s" "e i"}
+  #contact>:nth-child(1){grid-area:h}
+  #contact>:nth-child(2){grid-area:a}
+  #contact>:nth-child(3){grid-area:p}
+  #contact>:nth-child(4){grid-area:e}
+  #contact>:nth-child(5){grid-area:s;margin:4px 0 4px!important}
+  #contact>:nth-child(6){grid-area:i}
+}
+/* compacto III: anchos a medida del contenido (ES/EN/DE) */
+.tile-band{max-width:340px;padding:18px 24px 0}
+@media (min-width:901px){
+  .cabau .eyebrow{display:block}
+  .footer-cols{grid-template-columns:minmax(0,230fr) minmax(0,330fr) minmax(0,170fr) minmax(0,440fr);gap:24px}
+  .footer-cols ul{font-size:.86rem;gap:3px}
+  .footer-cols ul li{white-space:nowrap}
+  .footer-cols>div:nth-child(3) ul{grid-template-columns:1fr}
+  .footer-cols>div:nth-child(3) ul li{white-space:normal}
+  #contact{column-gap:18px}
+  #contact .contact-row{font-size:.82rem;white-space:nowrap}
+  #contact .contact-row span{overflow-wrap:normal}
+}
+@media (min-width:901px){ .footer-cols{grid-template-columns:minmax(0,310fr) minmax(0,285fr) minmax(0,160fr) minmax(0,425fr);gap:22px} .footer-cols .flogo .foot-logo{width:84px} }
+@media (max-width:900px){
+  .tile-band{max-width:210px;padding:14px 16px 0}
+  .cabau{text-align:left!important;padding:14px 0 10px!important;margin-top:10px!important;gap:10px!important}
+  .cabau h3{font-size:1.2rem}
+  .cabau p.muted{font-size:.84rem}
+  .cabau .btn{justify-self:start}
+  .footer-cols{padding:14px 0 8px;gap:14px 20px}
+  .footer-cols ul{grid-template-columns:1fr 1fr;column-gap:14px;font-size:.88rem;gap:2px}
+  .footer-cols>div:nth-child(2),.footer-cols>div:nth-child(3){grid-column:1/-1}
+  .footer-cols .contact-row{font-size:.84rem;margin-bottom:4px}
+  .footer-cols h4{margin:0 0 6px}
+  .cabau-affil{padding-top:10px;margin-top:4px}
+  .footer .footer-bottom{padding:8px 0 10px;gap:6px}
+  .footer-bottom .links{gap:6px 14px}
+}
