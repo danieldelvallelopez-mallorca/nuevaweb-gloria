@@ -9,7 +9,8 @@
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <meta name="theme-color" content="#5F4B3C">
-<link rel="preload" as="image" href="img/hero-poster.jpg?v=2" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-poster.jpg?v=3" fetchpriority="high" media="(min-width: 900px), (orientation: landscape)">
+<link rel="preload" as="image" href="img/hero-poster-v.jpg?v=3" fetchpriority="high" media="(max-width: 899px) and (orientation: portrait)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Karma:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap">
@@ -46,7 +47,7 @@
 
 <!-- ================= 01 · HERO ================= -->
 <section class="hero">
-  <video class="bg hero-video" data-hero-video muted loop playsinline autoplay preload="none" poster="img/hero-poster.jpg?v=2" aria-hidden="true"></video>
+  <video class="bg hero-video" data-hero-video muted loop playsinline autoplay preload="none" poster="img/hero-poster.jpg?v=3" aria-hidden="true"></video>
   <div class="hero-in">
     <h1>A house<br>with a story.</h1>
     <p class="sub">An intimate five-star house in the heart of Palma.</p>
@@ -274,6 +275,6 @@
 <script src="js/i18n-data.js?v=4"></script>
 <script src="js/i18n.js?v=4"></script>
 <script src="js/consent.js?v=4"></script>
-<script src="js/site.js?v=6"></script>
+<script src="js/site.js?v=7"></script>
 </body>
 </html>
