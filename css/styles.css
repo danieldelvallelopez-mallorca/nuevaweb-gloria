@@ -542,3 +542,4 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 @media (min-width:901px){
   .two-col>.imgframe[style*="height:100%"]{aspect-ratio:auto!important;height:auto!important;align-self:stretch;min-height:420px;width:100%}
 }
+@media (max-width:600px){ .booking-bar .field:has(select){flex-basis:100%} }  /* "2 Adults · 0 Children" sin cortar */
