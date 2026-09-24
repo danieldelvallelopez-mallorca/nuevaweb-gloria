@@ -9,6 +9,7 @@
   var KEY = "gloria_lang";
   var data = window.I18N_DATA || {};
   var snap = [];
+  var snapAttr = [];
 
   /* ---- menú móvil (se construye ANTES del snapshot para que se traduzca) ---- */
   function buildMobileMenu(){
@@ -32,10 +33,7 @@
 
     var book = document.createElement("a");
     book.className = "btn btn-ghost-light mm-book";
-    var wired = document.querySelector("a[data-book]");
-    var wiredHref = wired ? wired.getAttribute("href") : "";
-    if(wiredHref && wiredHref.indexOf("http") === 0){ book.href = wiredHref; book.target = "_blank"; book.rel = "noopener"; }
-    else { book.href = "index.html#book"; }
+    book.href = "index.html#book";          // site.js lo cablea al motor de reservas
     book.textContent = "Book";
     book.setAttribute("data-book","");
     menu.appendChild(book);
@@ -51,9 +49,14 @@
 
     header.appendChild(menu);
 
-    function openMenu(){ menu.classList.add("open"); menu.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
-    function closeMenu(){ menu.classList.remove("open"); menu.setAttribute("aria-hidden","true"); document.body.style.overflow=""; }
     var toggle = header.querySelector(".nav-toggle");
+    menu.id = "mobile-menu";
+    if(toggle){ toggle.setAttribute("aria-controls","mobile-menu"); toggle.setAttribute("aria-expanded","false"); }
+    function openMenu(){ menu.classList.add("open"); menu.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
+      if(toggle) toggle.setAttribute("aria-expanded","true"); close.focus(); }
+    function closeMenu(){ if(!menu.classList.contains("open")) return; menu.classList.remove("open"); menu.setAttribute("aria-hidden","true"); document.body.style.overflow="";
+      if(toggle){ toggle.setAttribute("aria-expanded","false"); toggle.focus(); } }
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") closeMenu(); });
     if(toggle) toggle.addEventListener("click", function(e){ e.stopPropagation(); menu.classList.contains("open") ? closeMenu() : openMenu(); });
     close.addEventListener("click", closeMenu);
     links.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
@@ -74,6 +77,13 @@
       }
     });
     var n; while((n = walker.nextNode())) snap.push({node:n, en:n.nodeValue});
+    // placeholders y claves estables (en inglés) para la analítica
+    document.querySelectorAll("[placeholder]").forEach(function(el){
+      if(!el.closest("[data-noi18n]")) snapAttr.push({el:el, attr:"placeholder", en:el.getAttribute("placeholder")});
+    });
+    document.querySelectorAll(".eyebrow").forEach(function(el){
+      if(!el.hasAttribute("data-key")) el.setAttribute("data-key", el.textContent.trim());
+    });
   }
 
   function apply(lang){
@@ -84,6 +94,10 @@
       var t = dict[core];
       it.node.nodeValue = t ? en.replace(core, t) : en;
     });
+    snapAttr.forEach(function(it){
+      var t = lang === "en" ? null : dict[it.en.trim()];
+      it.el.setAttribute(it.attr, t || it.en);
+    });
     document.documentElement.lang = lang;
     try{ localStorage.setItem(KEY, lang); }catch(e){}
     var lbl = document.getElementById("langLabel");
@@ -91,6 +105,7 @@
     document.querySelectorAll(".lang-menu a, .mm-langs a").forEach(function(a){
       a.setAttribute("aria-current", a.getAttribute("data-lang")===lang ? "true" : "false");
     });
+    try{ document.dispatchEvent(new CustomEvent("gloria:lang", {detail:lang})); }catch(e){}
   }
 
   function buildSwitcher(){

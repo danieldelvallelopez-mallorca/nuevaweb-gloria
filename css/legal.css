@@ -1,0 +1,148 @@
+/* =====================================================================
+   GLÒRIA DE SANT JAUME — páginas legales (privacidad, aviso legal, cookies)
+   Maquetación editorial de lectura. Depende de los tokens de styles.css.
+   ===================================================================== */
+
+/* ---------- idioma: se muestra un solo artículo ---------- */
+html[lang="es"] .legal-doc[data-legal-lang="en"]{display:none}
+html:not([lang="es"]) .legal-doc[data-legal-lang="es"]{display:none}
+
+/* ---------- lienzo ---------- */
+.legal-page{
+  background:var(--cream);
+  padding:clamp(40px,6vw,72px) var(--gutter) clamp(72px,9vw,120px);
+  overflow-x:hidden;
+}
+.legal-wrap{max-width:72ch;margin:0 auto}
+.legal-doc{
+  font-family:var(--body);font-size:1.02rem;line-height:1.75;color:var(--ink);
+  overflow-wrap:break-word;
+}
+
+/* ---------- cabecera del documento ---------- */
+.legal-doc .eyebrow{display:inline-block;margin-bottom:18px}
+.legal-doc h1{
+  font-family:var(--serif);font-size:clamp(2.4rem,5.6vw,3.8rem);line-height:1.02;
+  letter-spacing:-.015em;text-wrap:balance;margin:0 0 20px;color:var(--brown-2);
+}
+.legal-updated{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin:0 0 34px;padding-bottom:28px;border-bottom:1px solid var(--line);
+}
+.legal-intro{font-size:1.12rem;color:var(--muted);margin:0 0 30px}
+
+/* ---------- aviso de plantilla ---------- */
+.legal-note{
+  font-family:var(--sans);font-size:.78rem;line-height:1.65;color:var(--muted);
+  background:var(--paper);border:1px solid var(--line);border-left:2px solid var(--teal);
+  padding:14px 18px;margin:0 0 36px;
+}
+.legal-note strong{color:var(--ink);font-weight:600;letter-spacing:.04em}
+
+/* ---------- índice ---------- */
+.legal-toc{
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:22px 0 20px;margin:0 0 52px;
+}
+.legal-toc .toc-title{
+  font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--turq-deep);margin:0 0 12px;
+}
+.legal-toc ol{list-style:none;margin:0;padding:0;counter-reset:toc;
+  display:grid;grid-template-columns:1fr 1fr;gap:4px 32px}
+.legal-toc li{counter-increment:toc}
+.legal-toc a{
+  display:flex;gap:12px;align-items:baseline;padding:5px 0;
+  font-family:var(--serif);font-size:1rem;line-height:1.4;color:var(--ink);
+  transition:color .2s;
+}
+.legal-toc a::before{
+  content:counter(toc,decimal-leading-zero);font-family:var(--sans);font-size:.62rem;
+  letter-spacing:.12em;color:var(--turq-deep);flex:0 0 auto;
+}
+.legal-toc a:hover,.legal-toc a:focus-visible{color:var(--turq-deep)}
+
+/* ---------- secciones ---------- */
+.legal-doc section{counter-increment:legal;scroll-margin-top:120px;margin:0 0 48px}
+.legal-doc{counter-reset:legal}
+.legal-doc h2{
+  font-family:var(--serif);font-size:clamp(1.5rem,3vw,1.95rem);line-height:1.15;
+  color:var(--brown-2);margin:0 0 16px;text-wrap:balance;
+}
+.legal-doc h2::before{
+  content:counter(legal,decimal-leading-zero);display:block;margin-bottom:10px;
+  font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.28em;color:var(--turq-deep);
+}
+.legal-doc h3{
+  font-family:var(--sans);font-size:.74rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink);margin:26px 0 8px;
+}
+.legal-doc p{margin:0 0 1em}
+.legal-doc ul,.legal-doc ol.legal-list{margin:0 0 1.1em;padding-left:1.2em}
+.legal-doc li{margin:0 0 .45em}
+.legal-doc li::marker{color:var(--turq-deep)}
+.legal-doc strong{font-weight:600}
+.legal-doc section a:not(.btn),.legal-intro a,.legal-note a{
+  color:var(--turq-deep);text-decoration:underline;text-decoration-thickness:1px;
+  text-underline-offset:3px;transition:color .2s;
+}
+.legal-doc section a:not(.btn):hover{color:var(--brown)}
+
+/* ficha de datos (titular) */
+.legal-facts{margin:0 0 1.2em;border-top:1px solid var(--line)}
+.legal-facts div{display:grid;grid-template-columns:minmax(120px,34%) 1fr;gap:16px;
+  padding:10px 0;border-bottom:1px solid var(--line)}
+.legal-facts dt{font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);padding-top:4px}
+.legal-facts dd{margin:0}
+
+/* ---------- tablas ---------- */
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 1.4em;
+  border:1px solid var(--line);background:var(--paper)}
+.legal-doc table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.5;min-width:560px}
+.legal-doc th,.legal-doc td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+.legal-doc th{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted);background:var(--cream-2)}
+.legal-doc tr:last-child td{border-bottom:none}
+.legal-doc td code{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:.84em;
+  background:rgba(157,212,202,.22);padding:1px 5px;border-radius:2px;white-space:nowrap}
+.legal-doc tr.group td{font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--turq-deep);background:var(--cream)}
+
+/* ---------- marcador de dato pendiente ----------
+   .ph en styles.css es un marco de foto: se anula aquí para <mark>. */
+mark.ph{
+  display:inline;position:static;overflow:visible;
+  background:rgba(157,212,202,.38);color:var(--brown-2);
+  font-family:var(--sans);font-size:.8em;font-weight:600;letter-spacing:.04em;
+  padding:1px 6px;border-radius:2px;box-decoration-break:clone;-webkit-box-decoration-break:clone;
+}
+mark.ph::after{content:none;display:none}
+
+/* ---------- CTA de cookies ---------- */
+.legal-cta{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin:18px 0 1.2em}
+.legal-cta .btn{font-family:var(--sans)}
+.legal-cta .btn:focus-visible{outline:2px solid var(--turq-deep);outline-offset:3px}
+
+/* ---------- cierre ---------- */
+.legal-end{margin-top:56px;padding-top:24px;border-top:1px solid var(--line);
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.06em;color:var(--muted)}
+
+/* El .mobile-menu off-canvas (fixed + translateX(100%)) genera scroll horizontal:
+   se recorta en estas páginas. Arreglo global recomendado en styles.css. */
+body.legal-body{overflow-x:clip}
+
+/* ---------- header sin hero: estado sólido legible ---------- */
+.legal-body .site-header{background:rgba(243,237,226,.94);color:var(--ink);border-bottom:1px solid var(--line)}
+
+/* ---------- responsive ---------- */
+@media (max-width:900px){
+  .legal-page{padding-top:36px}
+  .legal-toc ol{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .legal-page{padding-inline:16px}
+  .legal-doc{font-size:.98rem}
+  .legal-facts div{grid-template-columns:1fr;gap:2px}
+  .legal-cta .btn{width:100%;justify-content:center}
+}
