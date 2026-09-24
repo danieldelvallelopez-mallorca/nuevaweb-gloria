@@ -215,7 +215,7 @@
     var slow = /(^|-)2g$/.test(conn.effectiveType || "");
     // en móvil el vídeo 16:9 se recorta en vertical: 1080p da la nitidez necesaria; 4K solo en pantallas grandes
     var size = slow ? 720 : (px >= 2600 && window.innerWidth >= 900) ? 2160 : 1080;
-    v.src = "video/hero-" + size + ".mp4";
+    v.src = "video/hero-" + size + ".mp4?v=2";
     v.muted = true;
     var play = function(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); };
     v.addEventListener("canplay", play, {once:true});
