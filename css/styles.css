@@ -534,3 +534,6 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 }
 .hero{min-height:88svh}
 .page-hero{min-height:80svh}
+/* tarjetas de categoría: el enlace "Discover" siempre alineado abajo */
+.cat-grid .cat{display:flex;flex-direction:column}
+.cat-grid .cat .link-arrow{margin-top:auto;align-self:flex-start}
