@@ -537,3 +537,8 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 /* tarjetas de categoría: el enlace "Discover" siempre alineado abajo */
 .cat-grid .cat{display:flex;flex-direction:column}
 .cat-grid .cat .link-arrow{margin-top:auto;align-self:flex-start}
+/* fotos a toda la altura en bloques de 2 columnas: nunca más anchas que su columna (no tapan el texto) */
+.two-col>*{min-width:0}
+@media (min-width:901px){
+  .two-col>.imgframe[style*="height:100%"]{aspect-ratio:auto!important;height:auto!important;align-self:stretch;min-height:420px;width:100%}
+}
