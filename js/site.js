@@ -204,8 +204,30 @@
     });
   }
 
+  /* ---------- vídeo del hero: resolución según pantalla, pausa fuera de vista ---------- */
+  function initHeroVideo(){
+    var v = document.querySelector("video[data-hero-video]");
+    if(!v) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var conn = navigator.connection || {};
+    if(reduce || conn.saveData) return;                    // se queda el póster fijo
+    var px = Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1);
+    var slow = /(^|-)2g$/.test(conn.effectiveType || "");
+    // en móvil el vídeo 16:9 se recorta en vertical: 1080p da la nitidez necesaria; 4K solo en pantallas grandes
+    var size = slow ? 720 : (px >= 2600 && window.innerWidth >= 900) ? 2160 : 1080;
+    v.src = "video/hero-" + size + ".mp4";
+    v.muted = true;
+    var play = function(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); };
+    v.addEventListener("canplay", play, {once:true});
+    play();
+    if("IntersectionObserver" in window){
+      new IntersectionObserver(function(en){ en[0].isIntersecting ? play() : v.pause(); }).observe(v);
+    }
+  }
+
   function init(){
     initHeader();
+    initHeroVideo();
     wireLinks();
     initBookingForms();
     initStickyBook();
