@@ -35,9 +35,7 @@ $body = json_decode($raw, true) ?: [];
 
 /* ---------- almacenamiento privado (fuera de la web): memoria corta y mensajes ya atendidos ---------- */
 function data_dir(): string {
-    $d = dirname(__DIR__, 2) . '/gloria-data';
-    if (!is_dir($d)) @mkdir($d, 0700, true);
-    return $d;
+    return gloria_data_dir();
 }
 function seen(string $id): bool {                // evita responder dos veces al mismo mensaje
     $f = data_dir() . '/seen.txt';
@@ -49,8 +47,23 @@ function seen(string $id): bool {                // evita responder dos veces al
 function history_load(string $user): array {     // últimos 10 turnos, caducan a las 24 h
     $f = data_dir() . '/c-' . hash('sha256', $user) . '.json';
     $h = json_decode(@file_get_contents($f) ?: '[]', true) ?: [];
-    return (time() - ($h['t'] ?? 0) > 86400) ? [] : ($h['m'] ?? []);
+    if (time() - ($h['t'] ?? 0) > 86400) { @unlink($f); return []; }
+    return $h['m'] ?? [];
 }
+
+/* Las conversaciones de 24 h se borran de verdad: antes solo se ignoraban y
+   los mensajes de los huéspedes se quedaban en el servidor para siempre (RGPD). */
+function history_purge(): void {
+    if (mt_rand(1, 50) !== 1) return;              // barrido ocasional, sin cron
+    foreach (glob(data_dir() . '/c-*.json') ?: [] as $f) {
+        if (@filemtime($f) < time() - 86400) @unlink($f);
+    }
+    foreach (glob(data_dir() . '/ia-*.count') ?: [] as $f) {
+        if (@filemtime($f) < time() - 7 * 86400) @unlink($f);
+    }
+}
+history_purge();
+
 function history_save(string $user, array $m): void {
     @file_put_contents(data_dir() . '/c-' . hash('sha256', $user) . '.json', json_encode(['t' => time(), 'm' => array_slice($m, -10)], JSON_UNESCAPED_UNICODE), LOCK_EX);
 }
