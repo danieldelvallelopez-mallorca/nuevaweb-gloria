@@ -223,7 +223,7 @@
       v.src = "video/hero-v-" + (slow ? 720 : 1080) + ".mp4?v=9";
     }else{
       var size = slow ? 720 : (px >= 2600 && window.innerWidth >= 900) ? 2160 : 1080;
-      v.src = "video/hero-" + size + ".mp4?v=3";
+      v.src = "video/hero-" + size + ".mp4?v=4";
     }
     v.muted = true;
     var play = function(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); };
