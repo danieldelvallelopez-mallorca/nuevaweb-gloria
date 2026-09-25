@@ -159,6 +159,7 @@
       if(a.hasAttribute("data-book")) return track("book_click", {click_location:loc, link_text:label});
       if(a.hasAttribute("data-elpatio-reserve")) return track("elpatio_reserve_click", {click_location:loc});
       if(a.hasAttribute("data-elpatio") || href.indexOf("elpatiodegloria") > -1) return track("elpatio_click", {click_location:loc});
+      if(a.hasAttribute("data-partner")) return track("partner_click", {partner:a.getAttribute("data-partner"), click_location:loc});
       if(a.getAttribute("data-track") === "google_reviews") return track("reviews_click", {platform:"google", click_location:loc});
       if(href.indexOf("tel:") === 0) return track("phone_click", {click_location:loc, phone:href.slice(4)});
       if(href.indexOf("mailto:") === 0) return track("email_click", {click_location:loc});

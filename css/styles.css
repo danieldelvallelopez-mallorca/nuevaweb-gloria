@@ -630,3 +630,18 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   padding-right:20px;text-overflow:ellipsis}
 .band .booking-bar .field select.v{
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23F3EDE2' stroke-width='1.2'/%3E%3C/svg%3E") no-repeat right 2px center/10px 6px}
+
+/* ---------- Shopping in Palma · boutiques aliadas ---------- */
+.shop-head{max-width:640px;margin:0 auto clamp(36px,5vw,64px);text-align:center}
+.shop-head .muted{margin-inline:auto}
+.shop-feature{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,7vw,110px);align-items:center;max-width:1040px;margin:0 auto}
+.shop-media{position:relative;padding:0 12% 12% 0}
+.shop-media .main{aspect-ratio:4/5}
+.shop-media .detail{position:absolute;right:0;bottom:0;width:46%;aspect-ratio:1;outline:10px solid var(--cream-2);box-shadow:0 24px 50px -28px rgba(43,33,24,.55)}
+.shop-text h3{font-size:clamp(1.9rem,3vw,2.6rem);margin:.15em 0 .45em;letter-spacing:.01em}
+.shop-meta{font-family:var(--sans);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--turq-deep);margin:18px 0 6px}
+.shop-credit{font-family:var(--sans);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);opacity:.75;margin-top:26px}
+@media (max-width:900px){
+  .shop-feature{grid-template-columns:1fr;gap:34px}
+  .shop-media{padding:0 14% 16% 0}
+}
