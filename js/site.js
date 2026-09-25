@@ -300,8 +300,16 @@
     });
   }
 
+  /* web2: flecha fina en los botones que no la llevan ya en el texto */
+  function initArrows(){
+    document.querySelectorAll(".btn").forEach(function(b){
+      if(!/→\s*$/.test(b.textContent) && !b.closest(".booking-bar, .cc-root, .gc") && !b.hasAttribute("data-video")) b.classList.add("has-arrow");
+    });
+  }
+
   function init(){
     initNames();
+    initArrows();
     initVideoLinks();
     initMusicDates();
     document.addEventListener("gloria:lang", initMusicDates);

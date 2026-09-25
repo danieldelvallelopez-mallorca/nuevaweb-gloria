@@ -1,0 +1,129 @@
+/* =====================================================================
+   GLÒRIA · web2 — capa de estilo "editorial cinematográfico"
+   (según las referencias de Daniel, 26-09-2026). Se carga DESPUÉS de
+   styles.css y concierge.css: cambia tokens, tipografía y acabados,
+   no la estructura ni los textos.
+   Paleta: marfil · piedra · espresso · nogal · verde botella · bronce.
+   Tipos: Cormorant Garamond (titulares, fino y de alto contraste) +
+          Jost (cuerpo y etiquetas, ligero y geométrico).
+   ===================================================================== */
+:root{
+  --cream:     #EFE9E0;   /* marfil: fondo principal */
+  --cream-2:   #E6DED2;   /* piedra clara: sección alterna */
+  --paper:     #F6F2EB;   /* papel: tarjetas */
+  --ink:       #1E1A16;   /* casi negro cálido: titulares y botones */
+  --muted:     #5D544B;   /* cuerpo */
+  --brown:     #1F1B17;   /* botones oscuros (antes marrón) */
+  --brown-2:   #2A231C;   /* espresso: bandas oscuras y pie */
+  --olive:     #2F3B33;   /* verde botella: reservar */
+  --teal:      #C9B08A;   /* acento sobre oscuro: bronce claro (sustituye al turquesa) */
+  --turq-deep: #8A6D4B;   /* acento sobre claro: bronce / nogal */
+  --line:      rgba(30,26,22,.14);
+  --line-light:rgba(239,233,224,.18);
+
+  --serif: "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --body:  "Jost", "Helvetica Neue", Arial, sans-serif;
+  --sans:  "Jost", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---------- base ---------- */
+body{font-family:var(--body);font-weight:300;font-size:16.5px;line-height:1.7;color:var(--ink);background:var(--cream)}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;letter-spacing:-.012em;color:inherit}
+h1{font-weight:400}
+.section{padding-block:clamp(64px,8.5vw,120px)}
+.section h2{font-size:clamp(2.4rem,4.8vw,3.7rem);line-height:1.02;margin:.3em 0 .45em}
+.section p,.muted{color:var(--muted)}
+.section p{font-size:1rem;max-width:48ch}
+.serif-lead{font-family:var(--serif);font-weight:400}
+p strong,b{font-weight:500}
+
+/* etiquetas: pequeñas, espaciadas, en bronce y numeradas por sección (02 · …) */
+.eyebrow{font-family:var(--sans);font-size:.66rem;font-weight:500;letter-spacing:.24em;color:var(--turq-deep)}
+body{counter-reset:sec}
+body > section:not(.hero):not(.page-hero):not(.exp-hero):not(.mp){counter-increment:sec}
+body > section:not(.mp) .wrap > .eyebrow::before,
+body > section:not(.mp) .wrap > div > .eyebrow:first-child::before,
+body > section:not(.mp) .two-col > div > .eyebrow:first-child::before{content:counter(sec, decimal-leading-zero) " · ";opacity:.75}
+
+/* hilos finos entre secciones claras, como en las referencias */
+body > section.section + section.section:not(.mp):not(.closing):not(.band):not(.shop){border-top:1px solid var(--line)}
+
+/* ---------- botones ---------- */
+.btn{font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.2em;padding:16px 28px;border-radius:0}
+.btn.has-arrow::after{content:"→";font-size:1rem;letter-spacing:0;transition:transform .2s}
+.btn.has-arrow:hover::after{transform:translateX(3px)}
+.btn-dark{background:var(--ink);color:var(--cream)}
+.btn-dark:hover{background:#000}
+.btn-olive,[data-elpatio-reserve].btn-dark,.btn[data-elpatio-reserve]:not(.btn-light):not(.btn-ghost-light){background:var(--olive);color:#F2EDE4;border-color:var(--olive)}
+.btn-ghost{border-color:rgba(30,26,22,.55);color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--cream)}
+.btn-ghost-light{border-color:rgba(239,233,224,.55)}
+.link-arrow{font-family:var(--sans);font-size:.68rem;font-weight:500;letter-spacing:.2em;border-bottom-color:rgba(30,26,22,.35)}
+
+/* ---------- cabecera ---------- */
+.site-header .main-nav a{font-family:var(--sans);font-weight:400;letter-spacing:.14em;font-size:.68rem}
+.site-header:not(.on-hero){background:rgba(239,233,224,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.site-header .header-right .btn{padding:11px 18px}
+.site-header:not(.on-hero) .header-right .btn{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+
+/* ---------- héroes: más cine (negro cálido, texto fino) ---------- */
+.hero::before{background:linear-gradient(90deg,rgba(18,13,9,.62),rgba(18,13,9,.2) 55%,rgba(18,13,9,.35)),linear-gradient(180deg,rgba(18,13,9,.35),transparent 30%,transparent 65%,rgba(18,13,9,.55))}
+.page-hero::before{background:linear-gradient(90deg,rgba(18,13,9,.72),rgba(18,13,9,.28) 55%,rgba(18,13,9,.4))}
+.hero h1,.page-hero h1{font-weight:400;letter-spacing:-.02em;line-height:.98}
+.page-hero h1{font-size:clamp(3rem,6.4vw,5.4rem)}
+.hero .sub,.page-hero .sub,.page-hero p{font-family:var(--body);font-weight:300}
+
+/* ---------- barra de reservas ---------- */
+.booking-bar{border-radius:0;box-shadow:0 24px 50px -30px rgba(18,13,9,.55)}
+.booking-bar label,.booking-bar .lbl{font-family:var(--sans);letter-spacing:.18em;font-weight:500}
+.booking-bar button,.booking-bar .btn{background:var(--ink);color:var(--cream)}
+
+/* ---------- imágenes: esquinas vivas, sin marcos ---------- */
+.imgframe{border-radius:0}
+.music-media::after{border-color:rgba(30,26,22,.18)}
+
+/* ---------- bandas oscuras y pie: espresso ---------- */
+.band,.benefits{background:var(--brown-2)}
+.quote-band{background:var(--cream-2);color:var(--ink)}
+.footer{background:#1C1713;color:#D9D0C3}
+.footer a{color:#E9E2D6}
+.footer .eyebrow,.footer h4{color:var(--teal)}
+.mp{background:#1F1A15}
+.mp::before{background:radial-gradient(ellipse at 50% -10%,rgba(201,176,138,.16),transparent 60%)}
+.mp-month-name{color:var(--teal);font-weight:400}
+.mp-cell.is-special{background:rgba(201,176,138,.10);box-shadow:inset 0 2px 0 var(--teal)}
+.mp-card.is-today::after,.mp-cell.is-today::after{background:var(--teal);color:#1F1A15}
+.mp .btn-light{background:#F2EDE4;color:#1F1A15}
+.mp .btn-light:hover{background:var(--teal)}
+
+/* ---------- tarjetas y cuadrículas: aire y pies finos ---------- */
+.photo-cards .pc h3,.cat-grid h3,.cat h3{font-family:var(--serif);font-weight:400;font-size:1.55rem}
+.photo-cards .pc p,.cat-grid p{font-size:.92rem}
+.reviews blockquote,.reviews q{font-family:var(--serif);font-style:italic;font-size:1.25rem}
+
+/* ---------- aviso de cookies y concierge en la nueva paleta ---------- */
+.cc-card::before{background:var(--turq-deep)}
+.cc-eyebrow{color:var(--turq-deep)}
+.gc-launch{border-color:rgba(201,176,138,.6);box-shadow:0 14px 34px -12px rgba(18,13,9,.65),0 0 0 4px rgba(239,233,224,.9)}
+.gc-head{background:#1F1A15}
+.gc-head::after{background:var(--teal)}
+.gc-link.is-primary,.gc-btn{background:var(--ink)}
+
+/* ---------- móvil ---------- */
+@media (max-width:700px){
+  body{font-size:16px}
+  .section h2{font-size:clamp(2.2rem,9vw,2.8rem)}
+  .page-hero h1{font-size:clamp(2.6rem,11vw,3.4rem)}
+}
+
+/* ajustes de lectura */
+:root{--muted:#4F4740}
+.section p{font-size:1.06rem}
+.music-text h2{font-size:clamp(2.3rem,3.6vw,3.1rem)}
+.music-text .muted{max-width:42ch}
+.mp p.mp-month-name{font-family:var(--serif);font-style:italic;font-size:clamp(4.2rem,11vw,9rem);line-height:.9;color:var(--teal);max-width:none;margin:.12em 0 .08em}
+.mp p.mp-lead{color:rgba(239,233,224,.8);font-size:1.12rem;max-width:46ch}
+.mp .mp-sub,.mp .mp-note{color:rgba(239,233,224,.62)}
+.wellness-split .pane p,.band p,.benefits p,.closing p{color:inherit}
+
+.mp p.mp-note{font-size:.6rem;letter-spacing:.18em}
