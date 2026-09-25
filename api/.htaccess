@@ -1,0 +1,5 @@
+# Solo los endpoints PHP son públicos; documentación y plantillas, no.
+<FilesMatch "\.(md|example|txt)$">
+  Require all denied
+</FilesMatch>
+Options -Indexes
