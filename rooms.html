@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Karma:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="css/styles.css?v=39">
+<link rel="stylesheet" href="css/styles.css?v=41">
 <link rel="stylesheet" href="css/concierge.css?v=2">
 </head>
 <body>
@@ -38,17 +38,18 @@
 </header>
 
 <!-- ================= HERO ================= -->
-<section class="page-hero center">
-  <img fetchpriority="high" class="bg" src="img/rooms-hero.jpg?v=46bb6611" alt="A room at Glòria de Sant Jaume">
+<section class="page-hero center rm-hero">
+  <img fetchpriority="high" class="bg" src="img/rooms-hero.jpg?v=f7999ccd" alt="A room at Glòria de Sant Jaume">
   <div class="hero-in">
     <span class="eyebrow" style="color:rgba(243,237,226,.85)">Rooms &amp; Suites</span>
     <h1>More than a stay,<br>a place to belong.</h1>
     <p class="sub">Fourteen rooms. Fourteen individual stories.</p>
+    <a class="rm-down" href="#rooms-intro" aria-label="Scroll down"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></a>
   </div>
 </section>
 
 <!-- ================= THE ROOMS ================= -->
-<section class="section">
+<section class="section rm-intro" id="rooms-intro">
   <div class="wrap two-col">
     <div>
       <span class="eyebrow">The Rooms</span>
@@ -56,15 +57,15 @@
       <p class="muted">No two rooms at Glòria are quite the same. The architecture of the house gives each space its own character, while individually selected antique furniture, original works by Mallorcan artists and carefully chosen materials make every room feel distinctly its own.</p>
       <p class="muted">Contemporary comfort is woven naturally into each space, without taking away from the character of the house.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;height:100%">
-      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-char-1.jpg?v=d9be60b7" alt="Room with balcony"></div>
-      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-char-2.jpg?v=06d06179" alt="Antique furniture detail"></div>
+    <div class="rm-pair">
+      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-char-1.jpg?v=1ea29064" alt="Room with balcony"></div>
+      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-char-2.jpg?v=a979535e" alt="Antique furniture detail"></div>
     </div>
   </div>
 </section>
 
 <!-- ================= FIND YOUR ROOM ================= -->
-<section class="section" style="background:var(--cream-2)">
+<section class="section rm-find" style="background:var(--cream-2)">
   <div class="wrap">
     <div style="display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:16px">
       <div>
@@ -75,9 +76,9 @@
       <a class="link-arrow" href="#" data-book>View all rooms →</a>
     </div>
     <div class="cat-grid cat-grid-3">
-      <div class="cat"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-cat-superior.jpg?v=7c22666b" alt="Superior Room"></div><h3>Superior Room</h3><p>A refined setting with enhanced space and comfort.</p><a class="link-arrow" href="#" data-book>Discover →</a></div>
-      <div class="cat"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-cat-junior.jpg?v=e354ff15" alt="Junior Suite"></div><h3>Junior Suite</h3><p>A room with a lounge area, to settle in and feel at home.</p><a class="link-arrow" href="#" data-book>Discover →</a></div>
-      <div class="cat"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-cat-duplex.jpg?v=e9501c18" alt="Duplex Suite"></div><h3>Duplex Suite</h3><p>A unique two-level suite, with an unmistakable character.</p><a class="link-arrow" href="#" data-book>Discover →</a></div>
+      <div class="cat"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-cat-superior.jpg?v=bd0b67d7" alt="Superior Room"></div><h3>Superior Room</h3><p>A refined setting with enhanced space and comfort.</p><a class="link-arrow" href="#" data-book>Discover →</a></div>
+      <div class="cat"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-cat-junior.jpg?v=ffb60422" alt="Junior Suite"></div><h3>Junior Suite</h3><p>A room with a lounge area, to settle in and feel at home.</p><a class="link-arrow" href="#" data-book>Discover →</a></div>
+      <div class="cat"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-cat-duplex.jpg?v=edfbcc4e" alt="Duplex Suite"></div><h3>Duplex Suite</h3><p>A unique two-level suite, with an unmistakable character.</p><a class="link-arrow" href="#" data-book>Discover →</a></div>
     </div>
   </div>
 </section>
@@ -90,21 +91,21 @@
       <h2>Beams, tiles and light.</h2>
     </div>
     <div class="rg-grid">
-      <figure class="rg-item rg-1"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-1.jpg?v=2bdbf2c9" alt="Superior Junior Suite bathroom with freestanding bath and marés stone"></div></figure>
-      <figure class="rg-item rg-2"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-2.jpg?v=bc4210ce" alt="A room with Mallorcan wooden beams"></div></figure>
-      <figure class="rg-item rg-3"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-3.jpg?v=b2937756" alt="Duplex Suite bedroom under the beams"></div></figure>
-      <figure class="rg-item rg-4"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-4.jpg?v=5e3756cd" alt="Superior Junior Suite with hydraulic tiles"></div></figure>
-      <figure class="rg-item rg-5"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-5.jpg?v=03386a7f" alt="Duplex Suite living room and staircase"></div></figure>
-      <figure class="rg-item rg-6"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-6.jpg?v=d8049653" alt="A bright room with original windows"></div></figure>
-      <figure class="rg-item rg-7"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-7.jpg?v=e0a248db" alt="Reading corner with stone wall"></div></figure>
-      <figure class="rg-item rg-8"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-8.jpg?v=8f3ec74e" alt="Fireplace corner in the Duplex Suite"></div></figure>
-      <figure class="rg-item rg-9"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-9.jpg?v=117a30ab" alt="Bedside detail"></div></figure>
+      <figure class="rg-item rg-1"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-1.jpg?v=c86c78cf" alt="Superior Junior Suite bathroom with freestanding bath and marés stone"></div></figure>
+      <figure class="rg-item rg-2"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-2.jpg?v=80e39a4b" alt="A room with Mallorcan wooden beams"></div></figure>
+      <figure class="rg-item rg-3"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-3.jpg?v=7ce0671b" alt="Duplex Suite bedroom under the beams"></div></figure>
+      <figure class="rg-item rg-4"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-4.jpg?v=4d10f58a" alt="Superior Junior Suite with hydraulic tiles"></div></figure>
+      <figure class="rg-item rg-5"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-5.jpg?v=e098408f" alt="Duplex Suite living room and staircase"></div></figure>
+      <figure class="rg-item rg-6"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-6.jpg?v=928f922f" alt="A bright room with original windows"></div></figure>
+      <figure class="rg-item rg-7"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-7.jpg?v=b5f97676" alt="Reading corner with stone wall"></div></figure>
+      <figure class="rg-item rg-8"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-8.jpg?v=36244995" alt="Fireplace corner in the Duplex Suite"></div></figure>
+      <figure class="rg-item rg-9"><div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-gallery-9.jpg?v=89d691e2" alt="Bedside detail"></div></figure>
     </div>
   </div>
 </section>
 
 <!-- ================= YOUR STAY ================= -->
-<section class="section">
+<section class="section rm-stay">
   <div class="wrap two-col">
     <div>
       <span class="eyebrow">Your Stay</span>
@@ -113,18 +114,18 @@
       <div class="stack-cta"><a class="link-arrow" href="experiences.html">Discover the experience →</a></div>
     </div>
     <div class="compose-3">
-      <div class="imgframe big"><img loading="lazy" decoding="async" src="img/rooms-stay-breakfast.jpg?v=21137f3d" alt="Breakfast at El Patio"></div>
-      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-stay-spa.jpg?v=0aecdde2" alt="Wellness beneath the house"></div>
-      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-stay-piano.jpg?v=955d3263" alt="Piano at El Patio"></div>
+      <div class="imgframe big"><img loading="lazy" decoding="async" src="img/rooms-stay-breakfast.jpg?v=2259c295" alt="Breakfast at El Patio"></div>
+      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-stay-spa.jpg?v=81c826f6" alt="Wellness beneath the house"></div>
+      <div class="imgframe"><img loading="lazy" decoding="async" src="img/rooms-stay-piano.jpg?v=d7ffdefb" alt="Piano at El Patio"></div>
     </div>
   </div>
 </section>
 
 <!-- ================= STAY AT GLÒRIA (booking) ================= -->
-<section class="section" id="book" style="background:var(--cream-2);text-align:center">
+<section class="section rm-book" id="book" style="text-align:center">
   <div class="wrap">
     <span class="eyebrow">Stay at Glòria</span>
-    <h2 style="margin-inline:auto;max-width:20ch">Make the house your own for a few days.</h2>
+    <h2>Make the house your own for a few days.</h2>
     <form class="booking-bar" data-booking-form style="margin-top:8px">
       <label class="field"><span class="k">Check-in</span><input class="v" type="date" name="arrival" required></label>
       <label class="field"><span class="k">Check-out</span><input class="v" type="date" name="departure" required></label>
