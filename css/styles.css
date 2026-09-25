@@ -663,3 +663,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .music-grid{grid-template-columns:1fr;gap:44px}
   .music-media{max-width:440px;margin-inline:auto;width:calc(100% - 18px)}
 }
+/* Home · hero en móvil vertical: formato 4:5 del vídeo (puerta completa, centrada) */
+@media (max-width:899px) and (orientation:portrait){
+  .hero{min-height:0;aspect-ratio:4/5;max-height:88svh}
+}
