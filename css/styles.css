@@ -336,9 +336,9 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.0
   background:linear-gradient(180deg,rgba(30,22,16,.42),rgba(30,22,16,.12) 42%,rgba(30,22,16,.66))}
 .wellness-split .pane{overflow:hidden;isolation:isolate}
 .wellness-split .pane.dark-pane::before{content:"";position:absolute;inset:0;z-index:0;
-  background:linear-gradient(90deg,rgba(22,16,10,.62),rgba(22,16,10,.2))}
+  background:linear-gradient(90deg,rgba(22,16,10,.7) 0%,rgba(22,16,10,.5) 45%,rgba(22,16,10,.12) 80%)}
 .wellness-split .pane.light-pane::before{content:"";position:absolute;inset:0;z-index:0;
-  background:linear-gradient(90deg,rgba(243,237,226,.82),rgba(243,237,226,.25))}
+  background:linear-gradient(90deg,rgba(243,237,226,.94) 0%,rgba(243,237,226,.86) 42%,rgba(243,237,226,.2) 78%)}
 .wellness-split .pane .inner{position:relative;z-index:1}
 .closing::before{content:"";position:absolute;inset:0;z-index:0;
   background:linear-gradient(90deg,rgba(22,16,10,.1),rgba(22,16,10,.62))}
@@ -768,3 +768,5 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .footer li{margin:0}
 }
 .contact-row .wa-ico{vertical-align:-3px}
+
+@media (max-width:900px){ .wellness-split .pane.light-pane::before{background:linear-gradient(180deg,rgba(243,237,226,.92),rgba(243,237,226,.7))} .wellness-split .pane.dark-pane::before{background:rgba(22,16,10,.55)} }
