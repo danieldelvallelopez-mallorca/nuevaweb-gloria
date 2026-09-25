@@ -1184,3 +1184,36 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .music-cover.cover-dark::before{background:linear-gradient(90deg,rgba(20,14,9,.88) 0%,rgba(20,14,9,.7) 50%,rgba(20,14,9,.78) 100%)!important}
 .pair-sec .btn{white-space:nowrap}
 @media (min-width:901px){ .two-col.pair > div{align-items:stretch} .two-col.pair > div > .imgframe{height:auto!important} .pair-sec .two-col.pair > div + div{padding-left:0} }
+
+/* =====================================================================
+   Wellness · réplica del mockup de Lara (26-09) — sin las 3 tarjetas de tratamientos
+   ===================================================================== */
+.wl-hero{min-height:clamp(440px,34vw,560px)!important;position:relative}
+.wl-hero h1{font-size:clamp(2.8rem,5vw,4.2rem);line-height:1.02}
+.wl-hero .exp-play{margin-top:8px}
+.wl-scroll{position:absolute;right:clamp(20px,4vw,56px);bottom:clamp(18px,2.4vw,32px);font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cream);display:flex;flex-direction:column;align-items:center;gap:10px}
+.wl-scroll::before{content:"";width:1px;height:44px;background:rgba(243,237,226,.6)}
+@media (min-width:901px){
+  .wl-beneath > .wrap.two-col{grid-template-columns:1.12fr 1fr}
+  .wl-treat > .wrap.two-col{grid-template-columns:1fr 1.02fr}
+  .wl-above > .wrap.two-col{grid-template-columns:1.45fr 1fr}
+  .wl-take > .wrap.two-col{grid-template-columns:1fr 1.15fr}
+  .wl-beneath .imgframe,.wl-treat .imgframe,.wl-above .imgframe{min-height:clamp(380px,32vw,520px)!important}
+  .wl-take .imgframe{min-height:clamp(300px,25vw,420px)!important}
+  .wl-beneath > .wrap.two-col > div:not(.imgframe),.wl-above > .wrap.two-col > div:not(.imgframe),
+  .wl-treat > .wrap.two-col > div:not(.imgframe),.wl-take > .wrap.two-col > div:not(.imgframe){padding-block:clamp(36px,3.5vw,56px)!important}
+}
+.wl-treat,.wl-take,.wl-beneath,.wl-above{background:var(--cream)!important}
+.wl-beneath h2,.wl-treat h2,.wl-above h2,.wl-take h2{font-size:clamp(2rem,3.2vw,2.8rem)}
+.wl-feats{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:18px clamp(20px,2.6vw,38px)}
+.wl-feats li{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;max-width:78px}
+.wl-feats svg{color:var(--ink);opacity:.8}
+.wl-feats span{font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;line-height:1.5;color:var(--ink)}
+.wl-quote{font-style:italic;font-size:clamp(1.1rem,1.5vw,1.3rem)!important;margin:.9em 0 1.6em!important;padding-bottom:18px;border-bottom:1px solid var(--line);max-width:28ch}
+/* banda de la frase: una línea grande, como el mockup */
+.quote-band{padding:clamp(20px,2.4vw,34px) var(--gutter)!important;display:flex;align-items:center;justify-content:center;gap:18px}
+.quote-band p{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.3rem)!important;line-height:1.2;margin:0!important;white-space:normal;text-align:center}
+.quote-band .orn-tile{margin:0!important;width:26px!important;flex:none}
+@media (max-width:900px){ .quote-band{flex-direction:column} .wl-feats li{max-width:64px} }
+.wl-feats svg{width:34px;height:34px;opacity:.9}
+.wl-feats span{font-size:.58rem}
