@@ -62,7 +62,7 @@ function action_link(string $action, string $site): string {
         'music'  => "\n\n" . $site . '/el-patio.html#music',
         'spa'    => "\n\n" . $site . '/docs/spa-menu-2026.pdf',
         'where'  => "\n\nhttps://maps.google.com/?q=Hotel+Gl%C3%B2ria+de+Sant+Jaume+Palma",
-        'human'  => "\n\n+34 971 92 18 91 · reservas@gloriasantjaume.com",
+        'human'  => "\n\nTel. +34 971 92 18 91 · reservas@gloriasantjaume.com",
     ];
     return $links[$action] ?? '';
 }

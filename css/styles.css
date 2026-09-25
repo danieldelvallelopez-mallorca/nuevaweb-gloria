@@ -767,3 +767,4 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .footer a{display:inline-block;padding-block:6px}
   .footer li{margin:0}
 }
+.contact-row .wa-ico{vertical-align:-3px}

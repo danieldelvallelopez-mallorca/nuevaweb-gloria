@@ -9,7 +9,7 @@
 (function(){
   var CONFIG = {
     aiEndpoint: "",                 // p. ej. "api/concierge.php" cuando el servidor tenga la clave de IA
-    whatsapp: "",                   // número en formato internacional sin "+", p. ej. "34600000000" (lo da IT / Meta)
+    whatsapp: "34620518344",        // WhatsApp del hotel / El Patio (+34 620 51 83 44), el mismo de elpatiodegloria.com
     phoneRooms: "+34971921891", phoneRoomsLabel: "+34 971 92 18 91",
     phoneHotel: "+34971717997", phoneHotelLabel: "+34 971 71 79 97",
     email: "reservas@gloriasantjaume.com",
@@ -33,7 +33,7 @@
       spaText:"Beneath the house, a heated pool in the old cistern, sauna and steam bath. Upstairs, the rooftop pool above Palma. Spa by Eric: massages, facials and complete rituals.",
       spaMenu:"Spa menu (PDF) →", wellness:"Discover Wellness →",
       whereText:"We are at Carrer Sant Jaume, 18, in the old town of Palma — a short walk from the Cathedral, the Born and Jaume III.", maps:"Open in Google Maps →",
-      humanText:"Our team will be delighted to help you personally.", call:"Call", write:"Email", whatsapp:"WhatsApp",
+      humanText:"Our team will be delighted to help you personally.", call:"Call", write:"Email", waText:"Hello, I am writing from the Glòria website.", whatsapp:"WhatsApp",
       fallback:"I can help you book a room, reserve dinner at El Patio, the spa or how to find us. Or speak with our team directly:",
       placeholder:"Write your question…", send:"Send", thinking:"…", error:"I could not answer that just now. Our team will help you:"},
     es:{title:"Concierge de Glòria", sub:"Hotel Glòria de Sant Jaume · Palma", open:"Abrir el concierge", close:"Cerrar",
@@ -50,7 +50,7 @@
       spaText:"Bajo la casa, una piscina climatizada en el antiguo aljibe, sauna y baño de vapor. Arriba, la piscina en la azotea sobre Palma. Spa by Eric: masajes, faciales y rituales completos.",
       spaMenu:"Carta del spa (PDF) →", wellness:"Descubrir Wellness →",
       whereText:"Estamos en Carrer Sant Jaume, 18, en el casco antiguo de Palma, a pocos minutos a pie de la Catedral, el Born y Jaume III.", maps:"Abrir en Google Maps →",
-      humanText:"Nuestro equipo estará encantado de atenderle personalmente.", call:"Llamar", write:"Email", whatsapp:"WhatsApp",
+      humanText:"Nuestro equipo estará encantado de atenderle personalmente.", call:"Llamar", write:"Email", waText:"Hola, les escribo desde la web de Glòria.", whatsapp:"WhatsApp",
       fallback:"Puedo ayudarle a reservar habitación, mesa en El Patio, el spa o cómo llegar. O hable directamente con nuestro equipo:",
       placeholder:"Escriba su pregunta…", send:"Enviar", thinking:"…", error:"Ahora mismo no he podido responder. Nuestro equipo le ayudará:"},
     de:{title:"Glòria Concierge", sub:"Hotel Glòria de Sant Jaume · Palma", open:"Concierge öffnen", close:"Schließen",
@@ -67,7 +67,7 @@
       spaText:"Unter dem Haus ein beheiztes Becken in der alten Zisterne, Sauna und Dampfbad. Oben der Rooftop-Pool über Palma. Spa by Eric: Massagen, Gesichtsbehandlungen und Rituale.",
       spaMenu:"Spa-Karte (PDF) →", wellness:"Wellness entdecken →",
       whereText:"Sie finden uns in der Carrer Sant Jaume, 18, in der Altstadt von Palma – wenige Gehminuten von Kathedrale, Born und Jaume III.", maps:"In Google Maps öffnen →",
-      humanText:"Unser Team hilft Ihnen gern persönlich.", call:"Anrufen", write:"E-Mail", whatsapp:"WhatsApp",
+      humanText:"Unser Team hilft Ihnen gern persönlich.", call:"Anrufen", write:"E-Mail", waText:"Hallo, ich schreibe Ihnen von der Glòria-Website.", whatsapp:"WhatsApp",
       fallback:"Ich helfe Ihnen gern bei Zimmer, Tisch im El Patio, Spa oder Anreise. Oder sprechen Sie direkt mit unserem Team:",
       placeholder:"Ihre Frage…", send:"Senden", thinking:"…", error:"Das konnte ich gerade nicht beantworten. Unser Team hilft Ihnen:"},
     fr:{title:"Concierge Glòria", sub:"Hotel Glòria de Sant Jaume · Palma", open:"Ouvrir le concierge", close:"Fermer",
@@ -84,7 +84,7 @@
       spaText:"Sous la maison, une piscine chauffée dans l'ancienne citerne, sauna et hammam. En haut, la piscine sur le toit au-dessus de Palma. Spa by Eric : massages, soins du visage et rituels.",
       spaMenu:"Carte du spa (PDF) →", wellness:"Découvrir Wellness →",
       whereText:"Nous sommes Carrer Sant Jaume, 18, dans la vieille ville de Palma, à quelques pas de la Cathédrale, du Born et de Jaume III.", maps:"Ouvrir dans Google Maps →",
-      humanText:"Notre équipe sera ravie de vous aider personnellement.", call:"Appeler", write:"E-mail", whatsapp:"WhatsApp",
+      humanText:"Notre équipe sera ravie de vous aider personnellement.", call:"Appeler", write:"E-mail", waText:"Bonjour, je vous écris depuis le site de Glòria.", whatsapp:"WhatsApp",
       fallback:"Je peux vous aider pour une chambre, une table à El Patio, le spa ou l'accès. Ou parlez directement à notre équipe :",
       placeholder:"Votre question…", send:"Envoyer", thinking:"…", error:"Je n'ai pas pu répondre pour l'instant. Notre équipe vous aidera :"},
     sv:{title:"Glòria Concierge", sub:"Hotel Glòria de Sant Jaume · Palma", open:"Öppna concierge", close:"Stäng",
@@ -101,7 +101,7 @@
       spaText:"Under huset en uppvärmd pool i den gamla cisternen, bastu och ångbad. Uppe takpoolen över Palma. Spa by Eric: massage, ansiktsbehandlingar och ritualer.",
       spaMenu:"Spameny (PDF) →", wellness:"Upptäck Wellness →",
       whereText:"Vi finns på Carrer Sant Jaume, 18, i Palmas gamla stad – några minuters promenad från katedralen, Born och Jaume III.", maps:"Öppna i Google Maps →",
-      humanText:"Vårt team hjälper dig gärna personligen.", call:"Ring", write:"E-post", whatsapp:"WhatsApp",
+      humanText:"Vårt team hjälper dig gärna personligen.", call:"Ring", write:"E-post", waText:"Hej, jag skriver från Glòrias webbplats.", whatsapp:"WhatsApp",
       fallback:"Jag kan hjälpa till med rum, bord på El Patio, spa eller vägbeskrivning. Eller prata direkt med vårt team:",
       placeholder:"Skriv din fråga…", send:"Skicka", thinking:"…", error:"Jag kunde inte svara just nu. Vårt team hjälper dig:"}
   };
@@ -261,7 +261,7 @@
       me(fmtDate(parseIso(a.value)) + " → " + fmtDate(parseIso(d.value)));
       bot(t("roomReady", {n:nights, g:guestsText(ad, ch)}));
       track("concierge_room_search", {nights:nights, adults:ad, children:ch, lead_time_days:Math.round((parseIso(a.value) - today()) / 86400000)});
-      links([{label:t("seeRooms"), href:url, primary:true, ev:"book_click"}, {label:t("catalogue"), href:"rooms.html", ev:"rooms_page"}]);
+      links([{label:t("seeRooms"), href:url, primary:true, ev:"book_click"}, {label:t("catalogue"), href:"rooms.html", ev:"rooms_page"}, waLink(false)]);
     });
     list.appendChild(f); scroll();
   }
@@ -285,7 +285,7 @@
       bot(t("dinnerReady", {d:fmtDate(day), p:p.value + " " + t("people").toLowerCase()}) + (a ? " " + t("playing", {a:a}) : ""));
       track("concierge_dinner_intent", {people:+p.value, lead_time_days:Math.round((day - today()) / 86400000)});
       var reserve = (window.gloriaLinks && window.gloriaLinks.elpatioReserve) || "https://elpatiodegloria.com/reservas.html";
-      links([{label:t("reserve"), href:reserve, primary:true, ev:"dinner_click"}, {label:t("orCall", {ph:CONFIG.phoneRoomsLabel}), href:"tel:" + CONFIG.phoneRooms, ev:"phone_click"}]);
+      links([{label:t("reserve"), href:reserve, primary:true, ev:"dinner_click"}, waLink(false), {label:t("orCall", {ph:CONFIG.phoneRoomsLabel}), href:"tel:" + CONFIG.phoneRooms, ev:"phone_click"}]);
     });
     list.appendChild(f); scroll();
   }
@@ -301,9 +301,10 @@
   function flowWhere(){ bot(t("whereText")); links([{label:t("maps"), href:CONFIG.mapsUrl, primary:true, ev:"maps_click"}]); }
   function contactLinks(){
     var l = [{label:t("call") + " · " + CONFIG.phoneRoomsLabel, href:"tel:" + CONFIG.phoneRooms, ev:"phone_click"}, {label:t("write") + " · " + CONFIG.email, href:"mailto:" + CONFIG.email, ev:"email_click"}];
-    if(CONFIG.whatsapp) l.unshift({label:t("whatsapp"), href:"https://wa.me/" + CONFIG.whatsapp, primary:true, ev:"whatsapp_click"});
+    if(CONFIG.whatsapp) l.unshift(waLink(true));
     links(l);
   }
+  function waLink(primary){ return {label:t("whatsapp") + " · +34 620 51 83 44", href:"https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(t("waText")), primary:primary, ev:"whatsapp_click"}; }
   function flowHuman(){ bot(t("humanText")); contactLinks(); }
   function flowFallback(){ bot(t("fallback")); contactLinks(); chips(); }
 
