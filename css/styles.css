@@ -1001,4 +1001,39 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 #collection .pc{background:var(--paper);padding-bottom:22px}
 #collection .pc .imgframe{aspect-ratio:3/2}
 #collection .pc > :not(.imgframe){padding-inline:18px}
-#collection .pc .link-arrow{display:inline-flex;justify-content:center;border:1px solid var(--ink);padding:11px 16px;margin:14px 18px 0;width:calc(100% - 36px)}
+
+/* ---------- Experiencias: estructura exacta del mockup ---------- */
+.exp-hero{min-height:clamp(440px,38vw,600px)!important;align-items:center}
+.exp-hero .strip{display:grid!important;grid-template-columns:1.25fr 1.05fr 1fr .75fr .85fr 1fr}
+.exp-hero .strip .col{position:relative;overflow:hidden}
+.exp-hero .strip .col .imgframe{position:absolute;inset:0;height:100%}
+.exp-hero .strip .col + .col{border-left:1px solid rgba(20,14,9,.35)}
+.exp-hero .strip .cap{position:absolute;left:0;right:0;bottom:clamp(24px,3vw,40px);text-align:center;z-index:2;
+  font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;line-height:1.7;color:var(--cream)}
+.exp-hero .strip .col:not(:first-child)::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(18,13,9,.72) 0%,rgba(18,13,9,.12) 38%,transparent 60%);z-index:1}
+.exp-hero::before{background:linear-gradient(90deg,rgba(22,16,10,.8) 0%,rgba(22,16,10,.62) 28%,rgba(22,16,10,.2) 48%,rgba(22,16,10,0) 62%)!important}
+.exp-hero .hero-in{max-width:var(--wrap);margin:0 auto;width:100%}
+.exp-hero .hero-in > *{max-width:460px}
+.exp-play{display:inline-flex;align-items:center;gap:14px;font-family:var(--sans);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--cream)}
+.exp-play .ring{width:44px;height:44px;border:1px solid rgba(243,237,226,.7);border-radius:50%;display:inline-flex;align-items:center;justify-content:center}
+@media (max-width:900px){
+  .exp-hero .strip{grid-template-columns:repeat(3,1fr);grid-template-rows:1fr 1fr}
+  .exp-hero .strip .col:first-child{display:none}
+  .exp-hero .strip .cap{bottom:14px;font-size:.52rem}
+  .exp-hero .hero-in{position:relative;z-index:3}
+  .exp-hero::before{background:rgba(22,16,10,.55)!important}
+}
+/* tarjetas */
+#collection .photo-cards{gap:clamp(14px,1.6vw,22px)}
+#collection .pc{background:var(--paper);padding-bottom:22px;display:flex;flex-direction:column}
+#collection .pc .imgframe{aspect-ratio:3/2;margin-bottom:18px}
+#collection .pc > :not(.imgframe){padding-inline:clamp(16px,1.6vw,22px)}
+#collection .pc h3{font-size:clamp(1.3rem,1.7vw,1.6rem);margin:.15em 0 .45em}
+#collection .pc p{font-size:.92rem;min-height:4.2em}
+#collection .fam-icons{display:flex;flex-wrap:wrap;gap:10px 22px;align-items:center;margin:14px 0 18px!important;font-size:.52rem!important;letter-spacing:.14em;color:var(--ink)!important}
+#collection .fam-icons span{display:inline-flex;align-items:center;gap:10px}
+#collection .fam-icons svg{color:var(--muted);flex:none}
+#collection .price{margin:auto 0 14px!important;font-size:.64rem!important}
+#collection .exp-book{justify-content:center;margin:0 clamp(16px,1.6vw,22px);padding:14px 10px;border:1px solid var(--ink);color:var(--ink);font-size:.62rem}
+#collection .exp-book:hover{background:var(--ink);color:var(--cream)}
+@media (min-width:1100px){ #collection .photo-cards{margin-inline:clamp(-80px,-4vw,-24px)} }
