@@ -1108,3 +1108,79 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .hx-grid.g3 .imgframe{aspect-ratio:auto!important;height:clamp(150px,13vw,200px)}
 .hx-closing .hx-aside{align-self:flex-start;margin-top:clamp(10px,2vw,30px)}
 @media (max-width:900px){ .hist-grid{height:auto} .hist-grid .hg-big{aspect-ratio:16/9!important} .hist-grid .hg-mid .imgframe{height:auto;aspect-ratio:4/3!important} .hist-grid .hg-tall{aspect-ratio:3/4} }
+
+/* =====================================================================
+   El Patio · réplica del mockup de Lara (26-09)
+   ===================================================================== */
+.btn-green{background:#2F3B33;color:#F2EDE4;border-color:#2F3B33}
+.btn-green:hover{background:#243029;border-color:#243029}
+/* hero: texto a la izquierda sobre oscuro, foto a la derecha */
+.px-hero{min-height:clamp(440px,34vw,560px)!important}
+.px-hero::before{background:linear-gradient(90deg,rgba(20,14,9,.92) 0%,rgba(20,14,9,.8) 30%,rgba(20,14,9,.25) 55%,rgba(20,14,9,.1) 100%)!important}
+.px-hero h1{font-size:clamp(2.8rem,5vw,4.2rem);line-height:1.02}
+.px-hero .sub{max-width:44ch;font-size:.98rem}
+.px-hero .px-sub2{font-size:.86rem;opacity:.85;margin-top:-4px}
+.px-hero .eyebrow{color:rgba(243,237,226,.85)}
+/* filas de texto + fotos */
+.px-row,.px-bar{max-width:var(--wrap);margin:0 auto;padding:clamp(22px,2.2vw,32px) var(--gutter);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:clamp(28px,3.5vw,56px);align-items:center}
+.px-text h2{font-size:clamp(1.9rem,3vw,2.6rem);line-height:1.05;margin:.3em 0 .45em}
+.px-text p{font-size:.95rem;line-height:1.6;color:var(--ink);opacity:.85;max-width:52ch;margin:0 0 12px}
+.px-text .serif-lead{font-style:italic;opacity:.8;font-size:.95rem!important;margin:6px 0 18px!important}
+.px-text .link-arrow{border-bottom:1px solid var(--ink);margin-top:6px}
+.px-tri{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.px-tri .imgframe{aspect-ratio:1.32/1}
+.px-tri .cap{font-family:var(--sans);font-size:.56rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin:10px 0 3px}
+.px-tri .ct{font-family:var(--serif);font-size:1rem}
+/* comida: foto grande a sangre a la izquierda, texto, dos fotos a la derecha */
+.px-food{display:grid;grid-template-columns:1.12fr 1.1fr .95fr;gap:clamp(24px,3vw,44px);align-items:center;background:var(--cream);padding-right:var(--gutter)}
+.px-food-big{aspect-ratio:auto;height:100%;min-height:clamp(300px,26vw,420px)}
+.px-food .px-text{padding-block:clamp(28px,3vw,44px)}
+.px-food-small{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.px-food-small .imgframe{aspect-ratio:.64/1}
+/* barra: tres fotos (dos estrechas + una ancha) hasta el borde derecho */
+.px-bar{grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);padding-right:0;max-width:none;padding-left:max(var(--gutter),calc((100vw - var(--wrap))/2 + var(--gutter)))}
+.px-bar-imgs{display:grid;grid-template-columns:1fr .95fr 1.9fr;gap:6px}
+.px-bar-imgs .imgframe{aspect-ratio:auto;height:clamp(240px,20vw,330px)}
+.px-bar .px-text{padding-block:clamp(22px,2.4vw,36px)}
+/* música: línea vertical entre texto y semana (mockup) */
+.music-cover .mp-week{border-left:1px solid rgba(243,237,226,.28);padding-left:clamp(24px,3vw,44px);align-self:center}
+.music-cover .cover-text h2{white-space:nowrap}
+@media (max-width:1100px){ .music-cover .cover-text h2{white-space:normal} }
+/* el calendario grande solo aparece al pulsar "See the full programme" */
+.mp-collapsible:not(:target){display:none}
+/* desayuno / privados */
+.pair-sec .btn{padding:12px 18px;font-size:.6rem}
+/* cierre centrado */
+.px-closing{min-height:clamp(320px,26vw,440px)!important;margin-top:0!important;padding-top:0!important;text-align:center}
+.px-closing::before{background:rgba(20,14,9,.55)!important}
+.px-closing .hero-in{display:flex;flex-direction:column;align-items:center}
+.px-closing .eyebrow{color:rgba(243,237,226,.85)}
+.px-closing h2{color:var(--cream);font-size:clamp(2rem,3.6vw,2.8rem);margin:.3em 0 .35em}
+.px-closing .sub{max-width:44ch;margin-inline:auto}
+.px-closing .stack-cta{justify-content:center}
+@media (max-width:900px){
+  .px-row,.px-bar{grid-template-columns:1fr;padding-inline:var(--gutter)}
+  .px-tri{grid-template-columns:1fr 1fr}
+  .px-food{grid-template-columns:1fr;padding:0 var(--gutter) 32px}
+  .px-food-big{margin-inline:calc(-1*var(--gutter));min-height:260px}
+  .px-bar-imgs{grid-template-columns:1fr 1fr}
+  .px-bar-imgs .imgframe:last-child{grid-column:1/-1}
+  .music-cover .mp-week{border-left:none;padding-left:0}
+}
+.px-m2e{grid-template-columns:minmax(0,.78fr) minmax(0,1.3fr)}
+.px-tri .imgframe{aspect-ratio:1.3/1}
+.music-cover{min-height:clamp(340px,24vw,420px)!important}
+.music-cover > .wrap{padding-block:clamp(40px,4vw,60px)!important}
+.music-cover .cover-text h2{font-size:clamp(1.9rem,2.9vw,2.6rem)!important}
+.music-cover .cover-grid{align-items:center!important;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)!important}
+@media (min-width:901px){
+  .two-col.pair > div{grid-template-columns:1.05fr 1fr;padding:0 clamp(18px,2vw,32px) 0 0}
+  .two-col.pair > div > .imgframe{min-height:clamp(260px,21vw,340px)!important;align-self:stretch}
+  .two-col.pair > div > .eyebrow{margin-top:clamp(20px,2vw,32px)}
+  .two-col.pair > div > .stack-cta{flex-wrap:nowrap;gap:10px;margin-bottom:clamp(20px,2vw,32px)}
+  .two-col.pair h2{font-size:clamp(1.5rem,2.2vw,2rem)!important}
+  .two-col.pair p{font-size:.84rem}
+}
+.music-cover.cover-dark::before{background:linear-gradient(90deg,rgba(20,14,9,.88) 0%,rgba(20,14,9,.7) 50%,rgba(20,14,9,.78) 100%)!important}
+.pair-sec .btn{white-space:nowrap}
+@media (min-width:901px){ .two-col.pair > div{align-items:stretch} .two-col.pair > div > .imgframe{height:auto!important} .pair-sec .two-col.pair > div + div{padding-left:0} }
