@@ -3,6 +3,13 @@
   Header set X-Robots-Tag "noindex, nofollow, noarchive, nosnippet"
 </IfModule>
 
+# Dominio principal: web.hotelgloria.es (nuevaweb.hotelgloria.es redirige con 301)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTP_HOST} ^nuevaweb\.hotelgloria\.es$ [NC]
+  RewriteRule ^(.*)$ https://web.hotelgloria.es/$1 [R=301,L]
+</IfModule>
+
 # Página de inicio por defecto
 DirectoryIndex index.html
 
