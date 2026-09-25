@@ -770,3 +770,13 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .contact-row .wa-ico{vertical-align:-3px}
 
 @media (max-width:900px){ .wellness-split .pane.light-pane::before{background:linear-gradient(180deg,rgba(243,237,226,.92),rgba(243,237,226,.7))} .wellness-split .pane.dark-pane::before{background:rgba(22,16,10,.55)} }
+/* móvil: el texto del hero siempre legible sobre la foto */
+@media (max-width:700px){
+  .page-hero h1,.page-hero .sub,.page-hero p{text-shadow:0 1px 18px rgba(20,14,9,.55)}
+}
+@media (max-width:700px){ .page-hero::before{background:linear-gradient(180deg,rgba(28,20,13,.35),rgba(28,20,13,.45) 50%,rgba(28,20,13,.55))} }
+/* Wellness · tarjetas de tratamientos: el texto nunca queda sobre zona clara de la foto */
+#treatments .item .imgframe{position:relative}
+#treatments .item .imgframe::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,9,0) 35%,rgba(20,14,9,.72))}
+#treatments .item > div:last-child{z-index:1;text-shadow:0 1px 10px rgba(20,14,9,.5)}
+@media (max-width:700px){ .exp-hero::before{background:linear-gradient(180deg,rgba(25,18,12,.6),rgba(25,18,12,.72))!important} .exp-hero p,.exp-hero h1{text-shadow:0 1px 16px rgba(20,14,9,.5)} }
