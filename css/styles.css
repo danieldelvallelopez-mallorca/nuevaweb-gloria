@@ -755,3 +755,15 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 /* parejas foto + pie: misma altura de foto y textos alineados arriba */
 .two-col.pair{align-items:start}
 .two-col.pair .imgframe{aspect-ratio:16/10}
+
+/* ---------- vídeo en ventana ---------- */
+.vbox{position:fixed;inset:0;z-index:300;background:rgba(28,21,15,.92);display:flex;align-items:center;justify-content:center;padding:clamp(12px,4vw,48px)}
+.vbox video{max-width:100%;max-height:100%;height:min(88vh,1280px);aspect-ratio:9/16;background:#000;box-shadow:0 30px 80px -30px #000}
+.vbox-x{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:16px;background:none;border:0;color:var(--cream);font-size:2.2rem;line-height:1;cursor:pointer;padding:6px 12px}
+/* tablas legales: desplazamiento propio en móvil */
+.legal-body table,.legal table{display:block;overflow-x:auto;max-width:100%}
+/* móvil: zonas táctiles cómodas en el pie y el menú */
+@media (max-width:900px){
+  .footer a{display:inline-block;padding-block:6px}
+  .footer li{margin:0}
+}

@@ -1,4 +1,5 @@
 /* ---------- Glòria Concierge (asistente de reservas) ---------- */
+.gc [hidden]{display:none!important}
 .gc{--gc-size:62px;position:fixed;z-index:150;right:clamp(14px,2.4vw,28px);bottom:calc(clamp(14px,2.4vw,28px) + env(safe-area-inset-bottom,0px));font-family:var(--serif)}
 .gc-launch{width:var(--gc-size);height:var(--gc-size);border-radius:50%;padding:0;border:1px solid rgba(157,212,202,.55);background:var(--brown);cursor:pointer;overflow:hidden;
   box-shadow:0 14px 34px -12px rgba(43,33,24,.65),0 0 0 4px rgba(243,237,226,.9);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;position:relative;display:block}

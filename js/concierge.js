@@ -174,6 +174,10 @@
     nudge.addEventListener("click", function(){ toggle(); });
     x.addEventListener("click", toggle);
     document.addEventListener("keydown", function(e){ if(e.key === "Escape" && state.open) toggle(); });
+    document.addEventListener("click", function(e){                    // cualquier enlace data-concierge abre el asistente
+      var a = e.target.closest && e.target.closest("[data-concierge]");
+      if(!a) return; e.preventDefault(); if(!state.open) toggle();
+    });
     form.addEventListener("submit", function(e){ e.preventDefault(); var q = input.value.trim(); if(!q || state.busy) return; input.value = ""; ask(q); });
 
     try{ if(!sessionStorage.getItem("gc_nudged")) setTimeout(showNudge, 9000); }catch(e){ setTimeout(showNudge, 9000); }

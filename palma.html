@@ -12,8 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Karma:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="css/styles.css?v=22">
-<link rel="stylesheet" href="css/concierge.css?v=1">
+<link rel="stylesheet" href="css/styles.css?v=23">
+<link rel="stylesheet" href="css/concierge.css?v=2">
 </head>
 <body>
 
@@ -51,7 +51,7 @@
       <span class="eyebrow">The City, at Your Pace</span>
       <h2>48 hours in Palma.<br>A city worth taking<br>your time for.</h2>
       <p class="muted">Two days, countless ways to discover Palma. Wander through the old town, explore its art and architecture, stop for a long lunch and leave room for unexpected discoveries. Our guide brings together a thoughtful selection of places to enjoy the city without rushing through it.</p>
-      <div class="stack-cta"><a class="link-arrow" href="#">Discover 48 hours in Palma →</a></div>
+      <div class="stack-cta"><a class="link-arrow" href="#guide">Discover 48 hours in Palma →</a></div>
     </div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
       <div><div class="imgframe" style="aspect-ratio:3/4"><img loading="lazy" decoding="async" src="img/palma-48h-street.jpg?v=aa057c28" alt="The old town"></div><div class="cap" style="font-family:var(--sans);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px">Morning · The old town</div></div>
@@ -61,16 +61,16 @@
 </section>
 
 <!-- 03 GUIDES -->
-<section class="section" style="background:var(--cream-2)">
+<section class="section" id="guide" style="background:var(--cream-2)">
   <div class="wrap">
     <span class="eyebrow">Explore Palma</span>
     <h2>Find your own Palma.</h2>
     <p class="muted" style="max-width:70ch">There is more than one way to discover the city. Follow its art and architecture, explore local flavours, take a walk through the historic streets or simply enjoy a morning without a plan. Our guides invite you to experience Palma at your own pace.</p>
     <div class="photo-cards cols-4">
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-art.jpg?v=de4fca46" alt="Art & Galleries"></div><span class="eyebrow">01 · Art &amp; Culture</span><h3>Art &amp; Galleries</h3><p>Discover Palma through its art, architecture and creative spaces.</p><a class="link-arrow" href="#">Explore the guide →</a></div>
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-flavours.jpg?v=0960d7d9" alt="Mallorcan Flavours"></div><span class="eyebrow">02 · Food &amp; Culture</span><h3>Mallorcan Flavours</h3><p>A taste of the island, from traditional favourites to places worth discovering.</p><a class="link-arrow" href="#">Explore the guide →</a></div>
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-walk.jpg?v=c366c91d" alt="A Walk from Glòria"></div><span class="eyebrow">03 · On Foot</span><h3>A Walk from Glòria</h3><p>Step outside the house and let the streets of Palma lead the way.</p><a class="link-arrow" href="#">Explore the guide →</a></div>
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-morning.jpg?v=99c9863b" alt="A Morning in Palma"></div><span class="eyebrow">04 · Slow Mornings</span><h3>A Morning in Palma</h3><p>Coffee, quiet streets and the pleasure of starting the day slowly.</p><a class="link-arrow" href="#">Explore the guide →</a></div>
+      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-art.jpg?v=de4fca46" alt="Art & Galleries"></div><span class="eyebrow">01 · Art &amp; Culture</span><h3>Art &amp; Galleries</h3><p>Discover Palma through its art, architecture and creative spaces.</p></div>
+      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-flavours.jpg?v=0960d7d9" alt="Mallorcan Flavours"></div><span class="eyebrow">02 · Food &amp; Culture</span><h3>Mallorcan Flavours</h3><p>A taste of the island, from traditional favourites to places worth discovering.</p></div>
+      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-walk.jpg?v=c366c91d" alt="A Walk from Glòria"></div><span class="eyebrow">03 · On Foot</span><h3>A Walk from Glòria</h3><p>Step outside the house and let the streets of Palma lead the way.</p></div>
+      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/palma-guide-morning.jpg?v=99c9863b" alt="A Morning in Palma"></div><span class="eyebrow">04 · Slow Mornings</span><h3>A Morning in Palma</h3><p>Coffee, quiet streets and the pleasure of starting the day slowly.</p></div>
     </div>
   </div>
 </section>
@@ -148,7 +148,7 @@
         <li><a href="el-patio.html">Restaurant</a></li><li><a href="wellness.html">Wellness</a></li>
         <li><a href="experiences.html">Experiences</a></li><li><a href="palma.html">Palma</a></li></ul></div>
       <div><h4>Here to help</h4><ul>
-        <li><a href="#contact">Contact</a></li><li><a href="#">Frequently Asked Questions</a></li>
+        <li><a href="#contact">Contact</a></li><li><a href="#faq" data-concierge>Frequently Asked Questions</a></li>
         <li><a href="index.html#book" data-book>Book Your Stay</a></li></ul></div>
       <div id="contact"><h4>Contact</h4>
         <div class="contact-row"><span>📍</span><span>Carrer Sant Jaume, 18<br>07012 Palma de Mallorca</span></div>
@@ -170,7 +170,7 @@
 <script src="js/i18n-data.js?v=10"></script>
 <script src="js/i18n.js?v=4"></script>
 <script src="js/consent.js?v=4"></script>
-<script src="js/site.js?v=16"></script>
-<script src="js/concierge.js?v=1" defer></script>
+<script src="js/site.js?v=17"></script>
+<script src="js/concierge.js?v=2" defer></script>
 </body>
 </html>

@@ -280,8 +280,29 @@
     });
   }
 
+  /* ---------- vídeo en ventana (a[data-video]) ---------- */
+  function initVideoLinks(){
+    document.addEventListener("click", function(e){
+      var a = e.target.closest && e.target.closest("a[data-video]");
+      if(!a) return;
+      e.preventDefault();
+      var box = document.createElement("div"); box.className = "vbox"; box.setAttribute("role", "dialog"); box.setAttribute("aria-modal", "true");
+      var v = document.createElement("video"); v.src = a.getAttribute("href"); v.controls = true; v.autoplay = true; v.muted = true; v.playsInline = true; v.loop = true;
+      var x = document.createElement("button"); x.type = "button"; x.className = "vbox-x"; x.setAttribute("aria-label", "Close"); x.textContent = "×";
+      box.appendChild(v); box.appendChild(x); document.body.appendChild(box);
+      document.documentElement.style.overflow = "hidden";
+      function close(){ v.pause(); box.remove(); document.documentElement.style.overflow = ""; document.removeEventListener("keydown", esc); a.focus(); }
+      function esc(ev){ if(ev.key === "Escape") close(); }
+      box.addEventListener("click", function(ev){ if(ev.target === box) close(); });
+      x.addEventListener("click", close);
+      document.addEventListener("keydown", esc);
+      x.focus();
+    });
+  }
+
   function init(){
     initNames();
+    initVideoLinks();
     initMusicDates();
     document.addEventListener("gloria:lang", initMusicDates);
     initHeader();
