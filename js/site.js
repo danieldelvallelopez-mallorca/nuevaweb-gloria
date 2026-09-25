@@ -233,7 +233,42 @@
     }
   }
 
+  /* ---------- modo revisión: ?nombres pone nombre a cada sección y foto (HERO 1, 02 · MUSIC, FOTO 3…) ---------- */
+  function initNames(){
+    var on = /[?&#]nombres\b/.test(location.search + location.hash);
+    try{
+      if(/[?&]nombres=0/.test(location.search)) sessionStorage.removeItem("gloriaNames");
+      else if(on) sessionStorage.setItem("gloriaNames", "1");
+      on = sessionStorage.getItem("gloriaNames") === "1";
+    }catch(e){}
+    if(!on) return;
+    var page = (location.pathname.split("/").pop() || "index.html").replace(".html", "").toUpperCase();
+    var css = ".nm-tag{position:absolute;z-index:60;left:8px;top:8px;background:#E6007E;color:#fff;font:600 12px/1.2 Montserrat,Arial,sans-serif;padding:4px 7px;letter-spacing:.04em;pointer-events:none}" +
+              ".nm-sec{position:relative;outline:2px dashed #E6007E;outline-offset:-2px}.nm-tag.sec{top:auto;bottom:auto;left:auto;right:8px;top:8px;background:#111}";
+    var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
+    function tag(host, text, cls){
+      if(getComputedStyle(host).position === "static") host.style.position = "relative";
+      var t = document.createElement("span"); t.className = "nm-tag " + (cls || ""); t.textContent = text; host.appendChild(t);
+    }
+    var n = 0, hero = 0, foto = 0;
+    document.querySelectorAll("main > section, body > section, .hero, .page-hero, .wellness-split, .footer").forEach(function(s){
+      if(s.dataset.nm) return; s.dataset.nm = 1;
+      var isHero = s.matches(".hero, .page-hero");
+      var eb = s.querySelector(".eyebrow") || s.querySelector("h2");
+      var name = isHero ? "HERO" : s.matches(".footer") ? "FOOTER" : ("0" + (++n)).slice(-2) + " · " + (eb ? (eb.getAttribute("data-key") || eb.textContent).trim().toUpperCase() : "SECCIÓN");
+      s.classList.add("nm-sec");
+      tag(s, page + " · " + name, "sec");
+      if(s.matches(".footer")) return;
+      s.querySelectorAll("img, video").forEach(function(im){
+        var box = im.closest(".imgframe") || im.parentElement;
+        var file = (im.currentSrc || im.getAttribute("src") || im.getAttribute("poster") || "").split("/").pop().split("?")[0];
+        tag(box, (isHero ? "HERO " + (++hero) : "FOTO " + (++foto)) + " · " + file);
+      });
+    });
+  }
+
   function init(){
+    initNames();
     initHeader();
     initHeroVideo();
     wireLinks();

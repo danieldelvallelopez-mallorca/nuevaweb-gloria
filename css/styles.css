@@ -651,9 +651,9 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 @media (max-width:560px){ .house-grid-2 .imgframe{aspect-ratio:4/5} }
 
 /* ---------- Home · Music at Glòria (editorial, B/N) ---------- */
-.music-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(40px,7vw,120px);align-items:center;max-width:1080px;margin:0 auto}
+.music-grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(40px,7vw,120px);align-items:center;max-width:1080px;margin:0 auto}
 .music-media{margin:0;position:relative;isolation:isolate}
-.music-media .imgframe{aspect-ratio:5/7;background:#2b2724}
+.music-media .imgframe{aspect-ratio:4/3;background:#2b2724}
 .music-media img{filter:contrast(1.04)}
 .music-media::after{content:"";position:absolute;inset:18px -18px -18px 18px;border:1px solid var(--line);z-index:-1}
 .music-text h2{margin-bottom:.3em}
@@ -661,7 +661,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .music-text .muted{max-width:40ch}
 @media (max-width:900px){
   .music-grid{grid-template-columns:1fr;gap:44px}
-  .music-media{max-width:440px;margin-inline:auto;width:calc(100% - 18px)}
+  .music-media{width:calc(100% - 18px)}
 }
 /* Home · hero en móvil vertical: formato 4:5 del vídeo (puerta completa, centrada) */
 @media (max-width:899px) and (orientation:portrait){
