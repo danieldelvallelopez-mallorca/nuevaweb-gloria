@@ -11,6 +11,44 @@ function gloria_secrets(): array {
     return is_array($cfg) ? $cfg : [];
 }
 
+/** Carpeta privada fuera de public_html (la misma que usa el webhook de Meta). */
+function gloria_data_dir(): string {
+    $d = dirname(__DIR__, 3) . '/gloria-data';
+    if (!is_dir($d)) @mkdir($d, 0700, true);
+    return $d;
+}
+
+/** IP de quien llama. La web no va detrás de Cloudflare (Hostinger/LiteSpeed):
+    CF-Connecting-IP la puede escribir cualquiera y con ella se saltaba el límite
+    por IP. Solo se usa si IT la activa en gloria-secrets.php al poner Cloudflare. */
+function gloria_client_ip(): string {
+    $cfg = gloria_secrets();
+    if (!empty($cfg['confiar_cf_connecting_ip']) && !empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+        return (string)$_SERVER['HTTP_CF_CONNECTING_IP'];
+    }
+    return (string)($_SERVER['REMOTE_ADDR'] ?? '0');
+}
+
+/** Tope de llamadas a la IA por día, sumando web, WhatsApp, Instagram y Messenger.
+    El límite por IP no para a quien cambia de IP; esto pone techo al gasto.
+    Al llegar al tope, el concierge vuelve a las respuestas guiadas hasta mañana. */
+function gloria_daily_budget_ok(): bool {
+    $cfg = gloria_secrets();
+    $max = (int)($cfg['limite_diario_ia'] ?? 800);
+    $f = gloria_data_dir() . '/ia-' . date('Y-m-d') . '.count';
+    $h = @fopen($f, 'c+');
+    if (!$h) return true;                       // sin contador no se bloquea al huésped
+    flock($h, LOCK_EX);
+    $n = (int)stream_get_contents($h) + 1;
+    ftruncate($h, 0);
+    rewind($h);
+    fwrite($h, (string)$n);
+    flock($h, LOCK_UN);
+    fclose($h);
+    if ($n === $max + 1) error_log("gloria concierge: tope diario de IA alcanzado ($max); respuestas guiadas hasta mañana");
+    return $n <= $max;
+}
+
 function gloria_music_tonight(string $date): string {
     $js = @file_get_contents(dirname(__DIR__, 2) . '/js/music-data.js');
     if (!$js || !preg_match('/GLORIA_MUSIC\s*=\s*(\{.*\});/s', $js, $m)) return '';
@@ -52,6 +90,7 @@ TXT;
 function gloria_ask(array $messages, string $lang, string $today, string $channel): ?array {
     $cfg = gloria_secrets();
     if (empty($cfg['anthropic_api_key'])) return null;
+    if (!gloria_daily_budget_ok()) return null;
     $payload = [
         'model' => $cfg['anthropic_model'] ?? 'claude-haiku-4-5-20251001',
         'max_tokens' => 400,
