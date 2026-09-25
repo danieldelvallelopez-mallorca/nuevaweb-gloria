@@ -780,3 +780,93 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 #treatments .item .imgframe::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,9,0) 35%,rgba(20,14,9,.72))}
 #treatments .item > div:last-child{z-index:1;text-shadow:0 1px 10px rgba(20,14,9,.5)}
 @media (max-width:700px){ .exp-hero::before{background:linear-gradient(180deg,rgba(25,18,12,.6),rgba(25,18,12,.72))!important} .exp-hero p,.exp-hero h1{text-shadow:0 1px 16px rgba(20,14,9,.5)} }
+
+/* =====================================================================
+   Revisión de Lara (25-09): fotos grandes como en el mockup
+   · media pantalla de foto que llega al borde (sin "cuadraditos")
+   · secciones de foto entera con el texto encima (Habitaciones, Música)
+   ===================================================================== */
+:root{--bleed:calc(-1 * ((100vw - min(100vw, var(--wrap))) / 2 + var(--gutter)))}
+
+/* texto + foto: la foto ocupa su mitad hasta el borde de la pantalla y todo el alto de la sección */
+@media (min-width:901px){
+  .section:has(> .wrap.two-col > .imgframe){padding-block:0}
+  .section > .wrap.two-col:has(> .imgframe){align-items:stretch;gap:clamp(48px,6vw,110px)}
+  .section > .wrap.two-col:has(> .imgframe) > div:not(.imgframe){align-self:center;padding-block:clamp(72px,8vw,128px)}
+  .section > .wrap.two-col > .imgframe{aspect-ratio:auto!important;height:auto!important;min-height:clamp(480px,46vw,760px)}
+  /* como en el mockup, las fotos alternan: en .text-right la foto (primer hijo) va a la izquierda */
+  .section > .wrap.two-col.text-right{direction:ltr}
+  .section > .wrap.two-col > .imgframe:last-child{margin-right:var(--bleed)}
+  .section > .wrap.two-col > .imgframe:first-child{margin-left:var(--bleed)}
+  .section > .wrap.two-col > .imgframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .section > .wrap.two-col > .imgframe{position:relative;width:auto!important;max-width:none!important;justify-self:stretch!important}
+  .section > .wrap.two-col > figure.captioned{margin-right:var(--bleed);align-self:stretch;display:flex;flex-direction:column}
+  .section > .wrap.two-col > figure.captioned .imgframe{flex:1;aspect-ratio:auto!important;max-width:none!important;min-height:clamp(480px,46vw,760px);position:relative}
+  .section > .wrap.two-col > figure.captioned .imgframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .section > .wrap.two-col > figure.captioned figcaption{padding:0 var(--gutter) 18px 0}
+}
+/* móvil: la foto de ancho completo, de borde a borde */
+@media (max-width:900px){
+  .section > .wrap.two-col > .imgframe,.section > .wrap.two-col > figure.captioned{margin-inline:calc(-1 * var(--gutter))}
+  .section > .wrap.two-col > .imgframe{aspect-ratio:4/5!important;height:auto!important}
+}
+
+/* foto entera con el texto encima */
+.cover{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(560px,62vw,820px);display:flex;align-items:center}
+.cover .cover-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.cover::before{content:"";position:absolute;inset:0;z-index:-1}
+.cover > .wrap{width:100%;padding-block:clamp(72px,8vw,120px)}
+.cover .cover-text{max-width:520px}
+.cover .cover-text h2{font-size:clamp(2rem,4.4vw,3.1rem);line-height:1.05;margin:.35em 0 .5em;text-wrap:balance}
+.cover-light::before{background:linear-gradient(90deg,rgba(243,237,226,.94) 0%,rgba(243,237,226,.82) 34%,rgba(243,237,226,.15) 62%,rgba(243,237,226,0) 80%)}
+.cover-dark{color:var(--cream)}
+.cover-dark::before{background:linear-gradient(90deg,rgba(24,17,11,.86) 0%,rgba(24,17,11,.62) 45%,rgba(24,17,11,.3) 75%),linear-gradient(0deg,rgba(24,17,11,.55),transparent 40%)}
+.cover-dark h2{color:var(--cream)}
+.cover-dark .eyebrow{color:var(--teal)}
+.cover-dark .muted,.cover-dark p{color:rgba(243,237,226,.84)}
+.cover-dark .music-rule{background:var(--teal)}
+.music-cover .cover-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(36px,6vw,96px);align-items:end}
+.mp-next{border-top:1px solid rgba(243,237,226,.28)}
+.mp-next-list{list-style:none;margin:0;padding:0}
+.mp-next-list li{display:grid;grid-template-columns:7.5em 1fr auto;gap:4px 18px;align-items:baseline;padding:16px 0;border-bottom:1px solid rgba(243,237,226,.2)}
+.mp-next-list li[hidden]{display:none}
+.mpn-date,.mpn-time{font-family:var(--sans);font-size:.64rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,237,226,.72)}
+.mpn-artist{font-family:var(--serif);font-size:1.12rem;color:var(--cream)}
+.mpn-sub{grid-column:2;font-size:.82rem;color:rgba(243,237,226,.6);margin-top:-4px}
+.mpn-sub:empty{display:none}
+.mpn-time{grid-column:3;grid-row:1}
+.mp-next .link-arrow{margin-top:18px;color:var(--cream);border-color:rgba(243,237,226,.35)}
+@media (max-width:900px){
+  .cover{min-height:0}
+  .cover-light::before{background:linear-gradient(180deg,rgba(243,237,226,.9),rgba(243,237,226,.78) 60%,rgba(243,237,226,.55))}
+  .music-cover .cover-grid{grid-template-columns:1fr}
+}
+
+/* Bajo / Sobre Glòria: dos franjas a lo ancho, una encima de otra (mockup) */
+.wellness-split{grid-template-columns:1fr!important}
+.wellness-split .pane{min-height:clamp(420px,40vw,600px)}
+.wellness-split .pane .inner{max-width:var(--wrap);width:100%;margin:0 auto;padding-inline:var(--gutter)}
+.wellness-split .pane .inner > *{max-width:460px}
+.wellness-split .pane.light-pane .inner{display:flex;flex-direction:column;align-items:flex-end;text-align:left}
+.wellness-split .pane.light-pane::before{background:linear-gradient(270deg,rgba(243,237,226,.94) 0%,rgba(243,237,226,.8) 32%,rgba(243,237,226,.1) 62%,rgba(243,237,226,0) 80%)}
+.wellness-split .pane.dark-pane::before{background:linear-gradient(90deg,rgba(22,16,10,.78) 0%,rgba(22,16,10,.5) 40%,rgba(22,16,10,.08) 75%)}
+
+/* Reserva directa: iconos de línea */
+.benefits .b .ico{display:flex;justify-content:center;color:var(--teal);margin-bottom:14px}
+
+/* Pie: los 6 enlaces de Explorar en una sola columna bajo el título */
+.footer-cols > div:nth-child(2) ul{grid-template-columns:1fr!important;display:grid}
+
+/* mosaicos de fotos (sin titular dentro) también llegan al borde */
+@media (min-width:901px){
+  .section > .wrap.two-col > div:last-child:has(.imgframe):not(:has(h2)):not(.imgframe){margin-right:var(--bleed)}
+  .section > .wrap.two-col > div:first-child:has(.imgframe):not(:has(h2)):not(.imgframe){margin-left:var(--bleed)}
+}
+/* La Casa: texto a la izquierda y la fila de fotos a la derecha hasta el borde (mockup) */
+@media (min-width:901px){
+  .side-row > .wrap{display:grid;grid-template-columns:minmax(250px,.85fr) 2.6fr;column-gap:clamp(40px,5vw,84px);align-items:start}
+  .side-row > .wrap > :not(.detail-row){grid-column:1}
+  .side-row > .wrap > .detail-row{grid-column:2;grid-row:1 / span 6;align-self:center;margin:0 var(--bleed) 0 0}
+  .side-row .detail-row.cols-5 .imgframe{aspect-ratio:3/4!important}
+  .side-row .detail-row.cols-4 .imgframe{aspect-ratio:3/4!important}
+}

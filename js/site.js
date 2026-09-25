@@ -300,6 +300,21 @@
     });
   }
 
+  /* ---------- Música en la home: muestra solo las 3 próximas noches ---------- */
+  function initNextMusic(){
+    var items = document.querySelectorAll(".mp-next-list li[data-date]");
+    if(!items.length) return;
+    var t = iso(today()), shown = 0, upcoming = [].filter.call(items, function(li){ return li.getAttribute("data-date") >= t; });
+    var list = upcoming.length ? upcoming : [].slice.call(items, -3);
+    items.forEach(function(li){ li.hidden = true; });
+    list.slice(0, 3).forEach(function(li){
+      li.hidden = false; shown++;
+      var d = parseIso(li.getAttribute("data-date")), el = li.querySelector(".mpn-date");
+      try{ el.textContent = d.toLocaleDateString(document.documentElement.lang || "en", {weekday:"short", day:"numeric", month:"short"}).replace(/\./g, ""); }catch(e){}
+    });
+    if(!shown) document.querySelector(".mp-next").hidden = true;
+  }
+
   /* web2: flecha fina en los botones que no la llevan ya en el texto */
   function initArrows(){
     document.querySelectorAll(".btn").forEach(function(b){
@@ -310,6 +325,8 @@
   function init(){
     initNames();
     initArrows();
+    initNextMusic();
+    document.addEventListener("gloria:lang", initNextMusic);
     initVideoLinks();
     initMusicDates();
     document.addEventListener("gloria:lang", initMusicDates);
