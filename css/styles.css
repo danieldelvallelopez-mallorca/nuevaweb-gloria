@@ -739,3 +739,6 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .rg-grid .rg-item{grid-area:auto}
   .rg-1{grid-column:span 2}
 }
+/* parejas foto + pie: misma altura de foto y textos alineados arriba */
+.two-col.pair{align-items:start}
+.two-col.pair .imgframe{aspect-ratio:16/10}
