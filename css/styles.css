@@ -668,59 +668,72 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .hero{min-height:0;aspect-ratio:4/5;max-height:88svh}
 }
 
-/* ---------- El Patio · programa musical mensual ---------- */
-.music-programme{background:var(--cream-2)}
-.mp-head{text-align:center;max-width:640px;margin:0 auto clamp(36px,5vw,60px)}
-.mp-head .muted{margin-inline:auto}
-.mp-block{max-width:1080px;margin:0 auto clamp(40px,5vw,64px)}
-.mp-title{font-family:var(--sans);font-size:.66rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--turq-deep);
-  margin:0 0 18px;padding-bottom:12px;border-bottom:1px solid var(--line)}
-.mp-day{display:block;font-family:var(--sans);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
-.mp-artist{display:block;font-family:var(--serif);font-size:1.25rem;line-height:1.25;color:var(--ink);margin-top:6px}
-.mp-sub{display:block;font-size:.88rem;color:var(--muted);margin-top:2px}
-.mp-rhythm{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0}
-.mp-rhythm li{padding:6px 18px 6px 0;border-right:1px solid var(--line)}
-.mp-rhythm li+li{padding-left:18px}
-.mp-rhythm li:last-child{border-right:none}
-.mp-note{font-family:var(--sans);font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:18px 0 0}
-.mp-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-.mp-card{background:var(--paper);border:1px solid var(--line);padding:22px 20px 20px;display:flex;gap:16px;align-items:flex-start;position:relative}
-.mp-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--turq-deep);opacity:.55}
-.mp-num{font-family:var(--serif);font-size:2.6rem;line-height:.9;color:var(--brown)}
-.mp-card h4{font-family:var(--serif);font-size:1.15rem;font-weight:400;margin:6px 0 2px;line-height:1.25}
-.mp-card .mp-sub{margin:0}
-.mp-tag{font-family:var(--sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--turq-deep);margin:10px 0 0}
-.mp-month summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center}
-.mp-month summary::-webkit-details-marker{display:none}
-.mp-month summary::after{content:"+";font-size:1.1rem;color:var(--turq-deep);transition:transform .2s}
-.mp-month[open] summary::after{transform:rotate(45deg)}
-.mp-grid-head,.mp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:1px}
-.mp-grid-head li{font-family:var(--sans);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);padding:8px 10px}
-.mp-grid{background:var(--line);border:1px solid var(--line)}
-.mp-cell,.mp-pad{background:var(--paper);min-height:104px;padding:10px 10px 12px}
-.mp-pad{background:var(--cream-2)}
-.mp-cell .mp-n{font-family:var(--serif);font-size:1.3rem;color:var(--brown);line-height:1}
+/* ---------- Programa musical del mes (El Patio + avance en home) · banda oscura ---------- */
+.mp{font-variant-numeric:lining-nums;background:var(--brown-2);color:var(--cream);position:relative;overflow:hidden}
+.mp::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% -10%,rgba(157,212,202,.14),transparent 60%);pointer-events:none}
+.mp .wrap{position:relative}
+.mp .eyebrow{color:var(--teal)}
+.mp h2{color:var(--cream)}
+.mp-head{text-align:center;max-width:680px;margin:0 auto clamp(40px,5vw,64px)}
+.mp-month-name{font-family:"Cormorant Garamond",var(--serif);font-style:italic;font-weight:500;font-size:clamp(4rem,11vw,8.5rem);line-height:.9;letter-spacing:-.02em;color:var(--teal);margin:.12em 0 .08em}
+.mp-lead{font-family:var(--serif);font-size:1.1rem;line-height:1.6;color:rgba(243,237,226,.78);max-width:46ch;margin:.8em auto 0}
+.mp-cards{list-style:none;margin:0 auto clamp(40px,5vw,60px);padding:0;max-width:1120px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:rgba(243,237,226,.14);border:1px solid rgba(243,237,226,.14)}
+.mp-card{background:var(--brown-2);padding:28px 24px 26px;display:flex;flex-direction:column;gap:4px;position:relative;transition:background .25s}
+.mp-card:hover{background:#4f3d2d}
+.mp-num{font-family:"Cormorant Garamond",var(--serif);font-size:3.6rem;line-height:.85;color:var(--teal);margin-bottom:10px}
+.mp-wd{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,237,226,.6)}
+.mp-artist{display:block;font-family:var(--serif);font-size:1.25rem;line-height:1.25;color:var(--cream)}
+.mp-sub{display:block;font-size:.86rem;color:rgba(243,237,226,.62)}
+.mp-tag{margin-top:auto;padding-top:14px;font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+.mp-card.is-today::after,.mp-cell.is-today::after{content:attr(data-tonight);position:absolute;top:14px;right:14px;font-family:var(--sans);font-size:.55rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;background:var(--teal);color:var(--brown-2);padding:3px 7px}
+.mp-card.is-past,.mp-cell.is-past{opacity:.42}
+.mp-cal{max-width:1120px;margin:0 auto}
+.mp-grid-head,.mp-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.mp-grid-head li{font-family:var(--sans);font-size:.58rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:rgba(243,237,226,.55);padding:0 12px 10px}
+.mp-grid{gap:1px;background:rgba(243,237,226,.12);border:1px solid rgba(243,237,226,.12)}
+.mp-cell,.mp-pad{background:var(--brown-2);min-height:112px;padding:12px 12px 14px;position:relative}
+.mp-pad{background:rgba(0,0,0,.08)}
+.mp-cell .mp-n{display:block;font-family:"Cormorant Garamond",var(--serif);font-size:1.6rem;line-height:1;color:rgba(243,237,226,.9)}
 .mp-cell .mp-wd{display:none}
-.mp-cell .mp-artist{font-size:.95rem;margin-top:8px}
+.mp-cell .mp-artist{font-size:.98rem;margin-top:10px}
 .mp-cell .mp-sub{font-size:.76rem}
-.mp-cell.is-off{background:var(--cream-2)}
-.mp-cell.is-off .mp-n{opacity:.45}
-.mp-cell.is-special{background:#fff;box-shadow:inset 0 -2px 0 var(--turq-deep)}
-.mp-cta{justify-content:center;margin-top:8px}
+.mp-cell.is-off{background:rgba(0,0,0,.1)}
+.mp-cell.is-off .mp-n{opacity:.35}
+.mp-cell.is-off .mp-sub{font-family:var(--sans);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;margin-top:10px;display:block;opacity:.7}
+.mp-cell.is-special{background:rgba(157,212,202,.1);box-shadow:inset 0 2px 0 var(--teal)}
+.mp-cell.is-special .mp-n{color:var(--teal)}
+.mp-cell.is-today{outline:1px solid var(--teal);outline-offset:-1px}
+.mp-foot{max-width:1120px;margin:22px auto 0;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px 32px}
+.mp-rhythm{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px 26px}
+.mp-rhythm li{display:flex;gap:10px;align-items:baseline}
+.mp-rhythm .mp-artist{font-size:.98rem}
+.mp-note{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(243,237,226,.55);margin:0}
+.mp-cta{justify-content:center;align-items:center;margin-top:clamp(34px,4vw,48px)}
+.mp .btn-light{background:var(--cream);color:var(--brown-2)}
+.mp .btn-light:hover{background:var(--teal)}
+.mp .link-arrow{color:var(--cream)}
+/* avance en la home */
+.mp-home-head{max-width:1120px;margin:0 auto clamp(30px,4vw,48px);display:flex;justify-content:space-between;align-items:flex-end;gap:20px 40px;flex-wrap:wrap}
+.mp-home-head .mp-month-name{margin-bottom:0}
+.mp-home-head .mp-lead{margin:0;text-align:right}
 @media (max-width:900px){
-  .mp-rhythm{grid-template-columns:1fr 1fr}
-  .mp-rhythm li,.mp-rhythm li+li{border-right:none;border-bottom:1px solid var(--line);padding:12px 0}
   .mp-cards{grid-template-columns:1fr 1fr}
   .mp-grid-head{display:none}
   .mp-grid{grid-template-columns:1fr;background:none;border:none;gap:0}
   .mp-pad,.mp-cell.is-off{display:none}
-  .mp-cell{min-height:0;display:grid;grid-template-columns:48px 44px 1fr;align-items:baseline;gap:0 10px;padding:12px 4px;border-bottom:1px solid var(--line);background:none}
-  .mp-cell.is-special{background:none;box-shadow:inset 2px 0 0 var(--turq-deep);padding-left:10px}
-  .mp-cell .mp-wd{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .mp-cell{min-height:0;display:grid;grid-template-columns:44px 48px 1fr;align-items:baseline;gap:0 10px;padding:14px 6px;border-bottom:1px solid rgba(243,237,226,.12);background:none}
+  .mp-cell.is-special{box-shadow:inset 2px 0 0 var(--teal);padding-left:12px}
+  .mp-cell .mp-wd{display:block}
   .mp-cell .mp-artist{margin-top:0}
   .mp-cell .mp-sub{grid-column:3}
+  .mp-cell.is-today::after{top:auto;bottom:14px}
+  .mp-home-head .mp-lead{text-align:left}
 }
-@media (max-width:480px){ .mp-cards{grid-template-columns:1fr} }
+@media (max-width:480px){ .mp-num{font-size:2.8rem} .mp-card{padding:22px 18px} }
+/* pie de foto discreto */
+.captioned{margin:0}
+.captioned figcaption{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+
 .shop-gallery{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vw,24px);max-width:1040px;margin:clamp(40px,6vw,80px) auto 0}
 .shop-gallery .imgframe{aspect-ratio:4/5}
 

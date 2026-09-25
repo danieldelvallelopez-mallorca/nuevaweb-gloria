@@ -267,8 +267,22 @@
     });
   }
 
+  /* ---------- programa musical: marca "esta noche" y atenúa las fechas pasadas ---------- */
+  var TONIGHT = {en:"Tonight", es:"Esta noche", de:"Heute Abend", fr:"Ce soir", sv:"I kväll"};
+  function initMusicDates(){
+    var t = iso(today()), label = TONIGHT[siteLang()] || TONIGHT.en;
+    document.querySelectorAll(".mp [data-date]").forEach(function(el){
+      var d = el.getAttribute("data-date");
+      el.classList.toggle("is-past", d < t);
+      el.classList.toggle("is-today", d === t);
+      if(d === t) el.setAttribute("data-tonight", label);
+    });
+  }
+
   function init(){
     initNames();
+    initMusicDates();
+    document.addEventListener("gloria:lang", initMusicDates);
     initHeader();
     initHeroVideo();
     wireLinks();
