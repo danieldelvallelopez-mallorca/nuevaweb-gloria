@@ -1217,3 +1217,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 @media (max-width:900px){ .quote-band{flex-direction:column} .wl-feats li{max-width:64px} }
 .wl-feats svg{width:34px;height:34px;opacity:.9}
 .wl-feats span{font-size:.58rem}
+.wl-hero{min-height:clamp(540px,44vw,700px)!important;align-items:center}
+.wl-hero .hero-in{padding-top:clamp(70px,6vw,100px)}
+.quote-band p{max-width:none!important;white-space:nowrap}
+@media (max-width:900px){ .quote-band p{white-space:normal} .wl-hero{min-height:88svh!important} }
