@@ -645,3 +645,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .shop-feature{grid-template-columns:1fr;gap:34px}
   .shop-media{padding:0 14% 16% 0}
 }
+/* Home · The House: 2 fotos grandes (sin la de la escalera) */
+.house-grid.house-grid-2{grid-template-columns:1fr 1fr;grid-template-rows:none;gap:14px}
+.house-grid-2 .imgframe{aspect-ratio:3/4}
+@media (max-width:560px){ .house-grid-2 .imgframe{aspect-ratio:4/5} }
