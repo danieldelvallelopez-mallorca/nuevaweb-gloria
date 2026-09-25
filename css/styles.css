@@ -1320,3 +1320,16 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   section.section.hm-patio > .wrap.two-col > .imgframe{aspect-ratio:.94/1!important;min-height:0!important;height:auto!important;margin-right:0!important}
 }
 .hm-music .cover-grid{max-width:var(--wrap)!important;margin-inline:auto!important;grid-template-columns:minmax(0,820px)!important}
+
+/* ---------- Pinceladas de marca: baldosas del manual (1880), pequeñas y superpuestas, sin ocupar espacio ---------- */
+.footer,.hm-palma,.hx-row,.rm-book,.pair-sec,.wl-take,.moment-sec,.shop{position:relative}
+.brand-orn{position:absolute;pointer-events:none;z-index:1;line-height:0;color:var(--turq-deep);opacity:.28}
+.brand-orn svg{width:100%;height:auto;display:block}
+.orn-foot{right:clamp(16px,6vw,110px);top:0;transform:translateY(-50%);width:clamp(120px,14vw,190px);color:var(--teal);opacity:.55}
+.orn-tr{top:clamp(10px,1.6vw,22px);right:clamp(10px,2vw,30px);width:clamp(60px,6vw,86px)}
+.orn-tl{top:clamp(10px,1.6vw,22px);left:clamp(10px,2vw,30px);width:clamp(60px,6vw,86px)}
+.orn-br{bottom:clamp(10px,1.6vw,22px);right:clamp(10px,2vw,30px);width:clamp(34px,3.4vw,48px)}
+.orn-dark{color:var(--teal);opacity:.4}
+.rm-book .brand-orn{width:clamp(80px,8vw,120px)}
+@media (max-width:700px){ .brand-orn:not(.orn-foot){width:44px;opacity:.22} .orn-foot{width:110px} }
+.orn-bl{bottom:clamp(10px,1.4vw,20px);left:var(--gutter);width:clamp(60px,6vw,86px)} @media (min-width:1400px){ .hx-row .orn-bl{left:calc((100vw - var(--wrap))/2 + var(--gutter))} }
