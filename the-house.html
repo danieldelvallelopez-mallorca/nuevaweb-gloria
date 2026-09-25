@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Karma:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="css/styles.css?v=28">
+<link rel="stylesheet" href="css/styles.css?v=30">
 <link rel="stylesheet" href="css/concierge.css?v=2">
 </head>
 <body>
@@ -47,19 +47,18 @@
 </section>
 
 <!-- 02 A LIVING HERITAGE -->
-<section class="section">
+<section class="section side-row-intro">
   <div class="wrap two-col">
     <div>
-      <span class="eyebrow">A Living Heritage</span>
+      <span class="eyebrow" data-num="02">A Living Heritage</span>
       <h2>History,<br>still alive.</h2>
       <p class="muted">The restoration of Glòria began with a simple idea: to preserve the character of the house rather than transform it. Original architectural elements were carefully restored wherever possible, while skilled artisans recreated details that time had made impossible to preserve.</p>
-      <p class="serif-lead" style="font-size:1.3rem;margin:.6em 0">Preserved, not reinvented.</p>
       <div class="stack-cta"><a class="link-arrow" href="#details">Discover more →</a></div>
     </div>
-    <div style="display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:12px;height:100%">
-      <div class="imgframe" style="grid-row:span 2"><img loading="lazy" decoding="async" src="img/house-detail-carving.jpg?v=b87a8fc8" alt="Carved stone detail"></div>
-      <div class="imgframe"><img loading="lazy" decoding="async" src="img/house-detail-tiles.jpg?v=052ebd8e" alt="Hydraulic tiles"></div>
-      <div class="imgframe"><img loading="lazy" decoding="async" src="img/house-detail-knocker.jpg?v=798c28c9" alt="Iron door knocker"></div>
+    <div class="hist-mosaic">
+      <div class="imgframe hm-big"><img loading="lazy" decoding="async" src="img/house-detail-carving.jpg?v=b87a8fc8" alt="Carved stone detail"></div>
+      <div class="hm-mid"><div class="imgframe"><img loading="lazy" decoding="async" src="img/house-detail-tiles.jpg?v=052ebd8e" alt="Hydraulic tiles"></div><p class="serif-lead hm-cap">Preserved, not reinvented.</p></div>
+      <div class="imgframe hm-tall"><img loading="lazy" decoding="async" src="img/house-detail-knocker.jpg?v=798c28c9" alt="Iron door knocker"></div>
     </div>
   </div>
 </section>
@@ -67,7 +66,7 @@
 <!-- 03 THE DETAILS -->
 <section class="section side-row" id="details" style="background:var(--cream-2)">
   <div class="wrap">
-    <span class="eyebrow">The Details of the House</span>
+    <span class="eyebrow" data-num="03">The Details of the House</span>
     <h2>Look closely.</h2>
     <p class="muted">Stone, wood, marble and original hydraulic tiles carry traces of the house through the centuries.</p>
     <div class="detail-row cols-5">
@@ -84,7 +83,7 @@
 <!-- 04 A HOUSE OF MANY SPACES -->
 <section class="section side-row">
   <div class="wrap">
-    <span class="eyebrow">A House of Many Spaces</span>
+    <span class="eyebrow" data-num="04">A House of Many Spaces</span>
     <h2>A house to be lived in.</h2>
     <p class="muted">From the patio at the heart of the house to the rooms above, the spaces beneath it and the rooftops overlooking Palma, each part has its own character and its own rhythm.</p>
     <div class="detail-row cols-4">
@@ -99,7 +98,7 @@
 <!-- 05 THROUGH TIME -->
 <section class="section side-row" style="background:var(--cream-2)">
   <div class="wrap">
-    <span class="eyebrow">The House Through Time</span>
+    <span class="eyebrow" data-num="05">The House Through Time</span>
     <h2>Four centuries. One house.</h2>
     <p class="muted">For more than four centuries, this house has been part of the life of Palma. Generations have passed through its rooms, while its architecture has evolved and preserved traces of every chapter.</p>
     <div class="detail-row cols-3">
@@ -114,7 +113,7 @@
 <section class="page-hero" style="min-height:60vh;margin-top:0;padding-top:0">
   <img loading="lazy" decoding="async" class="bg" src="img/house-closing.jpg?v=542b0881" alt="A room being lived in">
   <div class="hero-in">
-    <span class="eyebrow" style="color:rgba(243,237,226,.85)">The Story Continues</span>
+    <span class="eyebrow" data-num="06" style="color:rgba(243,237,226,.85)">The Story Continues</span>
     <h2 style="color:var(--cream);font-size:clamp(2.2rem,5vw,3.4rem)">Become part<br>of the story.</h2>
     <p class="sub" style="max-width:32ch">For a few days, this house becomes part of your own story too.</p>
     <div class="stack-cta"><a class="btn btn-ghost-light" href="rooms.html">Discover the rooms →</a></div>
@@ -158,7 +157,7 @@
 
 <a class="sticky-book btn btn-dark" href="index.html#book" data-book>Check availability</a>
 
-<script src="js/i18n-data.js?v=13"></script>
+<script src="js/i18n-data.js?v=14"></script>
 <script src="js/i18n.js?v=4"></script>
 <script src="js/consent.js?v=4"></script>
 <script src="js/site.js?v=21"></script>
