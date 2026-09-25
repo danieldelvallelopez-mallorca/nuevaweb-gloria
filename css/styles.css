@@ -870,3 +870,135 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .side-row .detail-row.cols-5 .imgframe{aspect-ratio:3/4!important}
   .side-row .detail-row.cols-4 .imgframe{aspect-ratio:3/4!important}
 }
+
+
+/* ---------- Detalles de marca: baldosas hidráulicas de la casa (1880), sueltas y pequeñas ---------- */
+.orn-tile{display:block;width:34px;margin:0 auto 18px;color:var(--teal);opacity:.85}
+.orn-tile .tile{width:100%;height:auto;display:block}
+.band .orn-tile{color:var(--teal)}
+.quote-band .orn-tile{color:var(--turq-deep);opacity:.6;width:28px;margin-bottom:14px}
+/* motivo del manual: línea · rombo · línea */
+.orn{display:flex;align-items:center;justify-content:center;width:96px;margin:6px auto 30px;color:var(--brown)}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:currentColor;opacity:.35}
+.orn::before{margin-right:7px}.orn::after{margin-left:7px}
+.orn b{display:block;width:7px;height:7px;transform:rotate(45deg);border:1px solid currentColor;background:var(--teal);opacity:.9;flex:none}
+
+/* =====================================================================
+   Ajuste punto por punto con los mockups de Lara (26-09)
+   ===================================================================== */
+/* ritmo general del mockup: contenedor más ancho y menos aire vertical */
+:root{--wrap:1320px}
+.section{padding-block:clamp(48px,6vw,92px)}
+@media (min-width:901px){
+  .section > .wrap.two-col > .imgframe,
+  .section > .wrap.two-col > figure.captioned .imgframe{min-height:clamp(400px,36vw,600px)}
+  .section > .wrap.two-col:has(> .imgframe) > div:not(.imgframe){padding-block:clamp(56px,6vw,96px)}
+}
+/* etiquetas numeradas (La Casa, como el mockup) */
+.eyebrow[data-num]::before{content:attr(data-num) " · "}
+
+/* La Casa: un solo fondo con hilos finos entre secciones, bloques compactos */
+.side-row,.side-row-intro{background:var(--cream)!important}
+.side-row{border-top:1px solid var(--line);padding-block:clamp(36px,4vw,56px)}
+@media (min-width:901px){
+  .side-row > .wrap{grid-template-columns:minmax(240px,.78fr) 2.6fr}
+  .side-row > .wrap > .detail-row{margin:0}
+  .side-row .detail-row.cols-5 .imgframe{aspect-ratio:1/1!important}
+  .side-row .detail-row.cols-4 .imgframe{aspect-ratio:4/3!important}
+  .side-row .detail-row.cols-3 .imgframe{aspect-ratio:3/2!important}
+}
+/* History: foto grande + baldosa con frase + aldaba, como el mockup */
+.hist-mosaic{display:grid;grid-template-columns:2.1fr 1fr .8fr;gap:14px;align-items:stretch}
+.hist-mosaic .imgframe{height:100%}
+.hist-mosaic .hm-big{min-height:clamp(300px,26vw,420px)}
+.hist-mosaic .hm-mid{display:flex;flex-direction:column;gap:18px}
+.hist-mosaic .hm-mid .imgframe{aspect-ratio:4/3;height:auto}
+.hist-mosaic .hm-cap{font-size:clamp(1.15rem,1.6vw,1.45rem);line-height:1.25;margin:auto 0 8px}
+@media (max-width:900px){ .hist-mosaic{grid-template-columns:1fr 1fr} .hist-mosaic .hm-big{grid-column:1/-1} }
+@media (min-width:901px){ .side-row-intro .hist-mosaic{margin-right:0!important} }
+/* El Patio · Música: banda oscura con la semana (mockup) + calendario plegado */
+.mp-week{align-self:end}
+.mp-week .eyebrow{display:block;margin-bottom:10px}
+.mp-week .mp-next{border-top:none}
+.mp .mp-head{margin-bottom:clamp(26px,3vw,40px)}
+#music.mp{padding-block:clamp(48px,5vw,72px)}
+#music .mp-month-name{font-size:clamp(3rem,7vw,5.2rem)}
+#music .mp-head h2{font-size:clamp(1.5rem,2.4vw,2rem)}
+.mp-full{max-width:1120px;margin:0 auto}
+.mp-full > summary{list-style:none;cursor:pointer;display:block;width:max-content;margin:0 auto clamp(18px,2vw,26px);font-family:var(--sans);font-size:.68rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);border-bottom:1px solid rgba(243,237,226,.35);padding-bottom:4px}
+.mp-full > summary::-webkit-details-marker{display:none}
+.mp-full > summary::after{content:" +";color:var(--teal)}
+.mp-full[open] > summary::after{content:" −"}
+/* El Patio · barra: tres fotos en una fila hasta el borde */
+.bar-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.bar-row .imgframe{aspect-ratio:3/4}
+@media (min-width:901px){ .bar-row .imgframe{aspect-ratio:auto;min-height:clamp(340px,30vw,500px)} }
+/* El Patio · desayuno y privados: foto + texto en cada mitad (mockup) */
+.pair-sec{padding-block:0}
+.pair-sec .wrap{max-width:none;padding-inline:0}
+@media (min-width:901px){
+  .two-col.pair{gap:0!important;align-items:stretch!important}
+  .two-col.pair > div{display:grid;grid-template-columns:1fr 1.05fr;column-gap:clamp(22px,2.5vw,36px);align-content:center;padding:0 clamp(20px,3vw,44px) 0 0}
+  .two-col.pair > div > .imgframe{grid-column:1;grid-row:1 / span 6;aspect-ratio:auto!important;min-height:clamp(320px,26vw,440px);height:100%}
+  .two-col.pair > div > :not(.imgframe){grid-column:2}
+  .two-col.pair > div > .eyebrow{margin-top:clamp(28px,3vw,48px)}
+  .two-col.pair > div > .stack-cta{margin-bottom:clamp(28px,3vw,48px)}
+  .two-col.pair > div + div{border-left:1px solid var(--line)}
+}
+@media (max-width:900px){ .pair-sec .wrap{padding-inline:var(--gutter)} .pair-sec{padding-block:48px} }
+/* Experiencias · "Make Glòria part of your day": tres fotos altas con el pie sobre la foto (mockup) */
+.day-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.day-strip > div{position:relative}
+.day-strip .imgframe{aspect-ratio:3/4!important}
+.day-strip .cap{position:absolute;left:18px;bottom:16px;right:12px;margin:0!important;font-family:var(--serif)!important;font-size:1.15rem!important;letter-spacing:0!important;text-transform:none!important;color:var(--cream)!important;text-shadow:0 1px 14px rgba(20,14,9,.6);line-height:1.2}
+.day-strip .cap *{color:inherit!important;font:inherit!important}
+.day-strip > div::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,14,9,.55),transparent 45%);pointer-events:none}
+.day-strip .cap{z-index:1}
+@media (min-width:901px){
+  .section:has(.day-strip){padding-block:0}
+  .section:has(.day-strip) .two-col{align-items:stretch}
+  .section:has(.day-strip) .two-col > div:first-child{align-self:center;padding-block:clamp(56px,6vw,96px)}
+  .day-strip{margin-right:var(--bleed)}
+  .day-strip .imgframe{aspect-ratio:auto!important;height:100%;min-height:clamp(380px,32vw,540px)}
+}
+/* Experiencias · "Choose your moment": banda oscura con el monograma grabado */
+.moment-sec{background:#2B221A;color:var(--cream)}
+.moment-sec h2{color:var(--cream)}
+.moment-sec .eyebrow{color:var(--teal)}
+.moment-sec .muted{color:rgba(243,237,226,.78)}
+.moment-quote{font-size:clamp(1.4rem,2.6vw,2rem);letter-spacing:.14em;text-transform:uppercase;line-height:1.3;color:rgba(243,237,226,.9);margin:26px 0;max-width:22ch;font-weight:300}
+/* Palma · "Palma, at your doorstep": fotos a los dos bordes */
+.doorstep{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:clamp(24px,4vw,64px);align-items:center}
+.doorstep > .imgframe{aspect-ratio:3/4}
+@media (min-width:901px){
+  .doorstep-sec{padding-block:0}
+  .doorstep{align-items:stretch}
+  .doorstep > div:not(.imgframe){align-self:center;padding-block:clamp(56px,6vw,96px)}
+  .doorstep > .imgframe{aspect-ratio:auto;min-height:clamp(380px,32vw,540px)}
+  .doorstep > .imgframe:first-child{margin-left:var(--bleed)}
+  .doorstep > .imgframe:last-child{margin-right:var(--bleed)}
+}
+@media (max-width:900px){ .doorstep{grid-template-columns:1fr 1fr} .doorstep > div:not(.imgframe){grid-column:1/-1;grid-row:1} }
+/* Palma · subtítulo del titular más pequeño (mockup) */
+.h2-sub{display:block;font-size:.62em;line-height:1.2;margin-top:.25em}
+/* Habitaciones · tarjetas de categoría más contenidas (mockup) */
+.cat-grid-3 .imgframe{aspect-ratio:4/3!important}
+@media (min-width:901px){
+  .side-row-intro > .wrap.two-col{grid-template-columns:minmax(240px,.78fr) 2.6fr;align-items:center}
+  .hist-mosaic{grid-template-columns:2fr 1.15fr .85fr}
+  .hist-mosaic .hm-big{min-height:clamp(320px,24vw,400px)}
+  .hist-mosaic .hm-mid .imgframe{aspect-ratio:3/2}
+  .hist-mosaic .hm-tall{height:auto;align-self:stretch}
+  .hist-mosaic .hm-tall img{height:100%}
+}
+/* El Patio · música: banda más baja como el mockup */
+.music-cover{min-height:clamp(420px,36vw,560px)}
+.music-cover .cover-bg{object-position:70% 40%}
+/* Experiencias: la banda del monograma, más baja (mockup) */
+.moment-sec .two-col > .imgframe{min-height:clamp(340px,28vw,460px)!important}
+.moment-sec .two-col > div:not(.imgframe){padding-block:clamp(44px,5vw,72px)!important}
+/* Experiencias: tarjetas como el mockup (sobre papel, foto más alta, botón enmarcado) */
+#collection .pc{background:var(--paper);padding-bottom:22px}
+#collection .pc .imgframe{aspect-ratio:3/2}
+#collection .pc > :not(.imgframe){padding-inline:18px}
+#collection .pc .link-arrow{display:inline-flex;justify-content:center;border:1px solid var(--ink);padding:11px 16px;margin:14px 18px 0;width:calc(100% - 36px)}
