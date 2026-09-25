@@ -1221,3 +1221,31 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .wl-hero .hero-in{padding-top:clamp(70px,6vw,100px)}
 .quote-band p{max-width:none!important;white-space:nowrap}
 @media (max-width:900px){ .quote-band p{white-space:normal} .wl-hero{min-height:88svh!important} }
+
+/* =====================================================================
+   Habitaciones · réplica del mockup de Lara (26-09)
+   ===================================================================== */
+.rm-hero{min-height:clamp(380px,30vw,480px)!important}
+.rm-hero h1{font-size:clamp(2.4rem,4.4vw,3.6rem);line-height:1.05}
+.rm-down{display:inline-flex;margin-top:14px;color:var(--cream);opacity:.85}
+.rm-intro{padding-block:clamp(32px,3vw,48px)!important;background:var(--paper)}
+.rm-intro .two-col{grid-template-columns:.95fr 1.1fr!important;align-items:center!important}
+.rm-intro .rm-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0!important}
+.rm-intro .rm-pair .imgframe{aspect-ratio:.95/1}
+.rm-intro h2{font-size:clamp(2rem,3.2vw,2.8rem)}
+.rm-find{padding-block:clamp(32px,3vw,48px)!important}
+.rm-find .muted{max-width:none!important}
+.rm-stay{padding-block:0!important;background:var(--paper)}
+@media (min-width:901px){
+  .rm-stay .two-col{grid-template-columns:.8fr 1.85fr!important;align-items:stretch!important}
+  .rm-stay .two-col > div:first-child{align-self:center;padding-block:clamp(40px,4vw,64px)}
+  .rm-stay .compose-3{margin-right:var(--bleed);display:grid;grid-template-columns:1.05fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:clamp(420px,34vw,560px)}
+  .rm-stay .compose-3 .imgframe{height:100%;aspect-ratio:auto!important}
+  .rm-stay .compose-3 .big{grid-row:1 / span 2}
+}
+.rm-book{background:linear-gradient(180deg,var(--cream-2),var(--cream))}
+.rm-book h2{max-width:none!important;margin-inline:auto;font-size:clamp(1.8rem,3vw,2.5rem)}
+.rm-book .booking-bar{max-width:880px;margin-inline:auto}
+.rm-book .btn-olive{background:#2F3B33;border-color:#2F3B33;color:#F2EDE4}
+.rm-book > .wrap > div:last-child{max-width:880px!important}
+.rm-intro .rm-pair .imgframe{aspect-ratio:.78/1}
