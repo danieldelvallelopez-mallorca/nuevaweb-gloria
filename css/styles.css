@@ -1249,3 +1249,30 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .rm-book .btn-olive{background:#2F3B33;border-color:#2F3B33;color:#F2EDE4}
 .rm-book > .wrap > div:last-child{max-width:880px!important}
 .rm-intro .rm-pair .imgframe{aspect-ratio:.78/1}
+
+/* =====================================================================
+   Palma · réplica del mockup de Lara (26-09)
+   ===================================================================== */
+.p48{padding-block:clamp(28px,3vw,44px)!important;background:var(--paper)}
+@media (min-width:901px){
+  .p48 .two-col{grid-template-columns:1fr 1fr!important;align-items:center!important}
+  .p48 .two-col > div:last-child{margin-right:0!important;grid-template-columns:1fr 1fr!important;gap:16px!important}
+}
+.p48 .two-col > div:last-child .imgframe{aspect-ratio:.82/1!important}
+.p48 .h2-sub{font-size:.66em}
+.p48 .cap{font-size:.62rem!important;letter-spacing:.14em!important;margin-top:10px!important;color:var(--ink)!important}
+.pguide{padding-block:clamp(32px,3vw,48px)!important}
+.pguide > .wrap > .muted{max-width:62ch!important}
+.pguide .photo-cards{gap:clamp(14px,1.8vw,24px);margin-top:22px}
+.pguide .pc .imgframe{aspect-ratio:1.18/1!important}
+.pguide .pc h3{font-size:clamp(1.3rem,1.7vw,1.6rem);margin:.2em 0 .35em}
+.pguide .pc p{font-size:.88rem;margin:0 0 12px;min-height:2.8em}
+.pguide .pc .link-arrow{border-bottom:none;padding-bottom:0;font-size:.62rem}
+@media (min-width:901px){
+  .doorstep{grid-template-columns:1fr 1.2fr 1fr!important}
+  .doorstep .door-text{padding-inline:clamp(8px,2vw,28px)}
+  .doorstep > .imgframe{min-height:clamp(320px,26vw,440px)!important}
+}
+.doorstep .door-text h2{font-size:clamp(1.9rem,2.8vw,2.5rem)}
+.pclose{min-height:clamp(300px,24vw,400px)!important}
+.pclose h2{font-size:clamp(2rem,3.4vw,2.8rem)!important}
