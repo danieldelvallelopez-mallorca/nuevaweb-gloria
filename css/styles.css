@@ -1333,3 +1333,8 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .rm-book .brand-orn{width:clamp(80px,8vw,120px)}
 @media (max-width:700px){ .brand-orn:not(.orn-foot){width:44px;opacity:.22} .orn-foot{width:110px} }
 .orn-bl{bottom:clamp(10px,1.4vw,20px);left:var(--gutter);width:clamp(60px,6vw,86px)} @media (min-width:1400px){ .hx-row .orn-bl{left:calc((100vw - var(--wrap))/2 + var(--gutter))} }
+
+/* El Patio · música: encuadre en el piano (parte baja de la foto), sin la cara de la pianista */
+.music-cover:not(.hm-music) .cover-bg{object-position:50% 74%}
+@media (max-width:900px){ .music-cover .cover-grid{grid-template-columns:1fr!important} }
+@media (max-width:900px){ .music-cover:not(.hm-music){overflow:hidden} .music-cover:not(.hm-music) .cover-bg{object-position:0% 74%;transform:scale(1.4);transform-origin:0 100%} }
