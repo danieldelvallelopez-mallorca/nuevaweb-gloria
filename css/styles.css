@@ -1362,5 +1362,5 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 
 /* Palma · cierre: foto con la torre de Sant Jaume entera (h-109), algo más alta para que respire el texto */
 .pclose{min-height:clamp(380px,30vw,520px)!important}
-.pclose .bg{object-position:50% 18%}
-@media (max-width:700px){ .pclose .bg{object-position:82% 18%} }
+.phero .bg{object-position:50% 18%}
+@media (max-width:700px){ .phero .bg{object-position:82% 18%} }
