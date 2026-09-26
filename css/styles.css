@@ -1338,3 +1338,17 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .music-cover:not(.hm-music) .cover-bg{object-position:50% 74%}
 @media (max-width:900px){ .music-cover .cover-grid{grid-template-columns:1fr!important} }
 @media (max-width:900px){ .music-cover:not(.hm-music){overflow:hidden} .music-cover:not(.hm-music) .cover-bg{object-position:0% 74%;transform:scale(1.4);transform-origin:0 100%} }
+
+/* Home · móvil: la barra de reservas del héroe es solo una línea (como en la web); al tocarla se abren fechas y huéspedes */
+.bb-toggle{display:none}
+@media (max-width:700px){
+  .bb-hero:not(.is-open) > .field,.bb-hero:not(.is-open) > .btn{display:none}
+  .bb-hero:not(.is-open){box-shadow:0 14px 34px -18px rgba(43,33,24,.55)}
+  .bb-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;padding:17px 22px;background:var(--brown);color:var(--cream);border:0;cursor:pointer;
+    font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase}
+  .bb-toggle::after{content:"";width:9px;height:9px;border-right:1.3px solid currentColor;border-bottom:1.3px solid currentColor;transform:rotate(45deg) translateY(-3px)}
+  .bb-hero.is-open .bb-toggle{display:none}
+}
+@media (max-width:899px) and (orientation:portrait){
+  .hero{aspect-ratio:auto;min-height:calc(100svh - 96px);max-height:none}
+}
