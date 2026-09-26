@@ -69,6 +69,16 @@
 
   /* ---------- barra de reservas funcional ---------- */
   function initBookingForms(){
+    // móvil: la barra del héroe se muestra plegada en una línea; al tocarla se despliegan los campos
+    document.querySelectorAll(".bb-toggle").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var f = btn.closest("form");
+        f.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+        var first = f.querySelector('[name="arrival"]');
+        if(first) first.focus({preventScroll:true});
+      });
+    });
     document.querySelectorAll("form[data-booking-form]").forEach(function(form){
       var inEl = form.querySelector('[name="arrival"]');
       var outEl = form.querySelector('[name="departure"]');
