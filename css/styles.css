@@ -1352,3 +1352,4 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 @media (max-width:899px) and (orientation:portrait){
   .hero{aspect-ratio:auto;min-height:calc(100svh - 96px);max-height:none}
 }
+@media (max-width:700px){ .wl-hero .bg{object-position:62% 50%} }
