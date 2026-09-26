@@ -1353,3 +1353,8 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .hero{aspect-ratio:auto;min-height:calc(100svh - 96px);max-height:none}
 }
 @media (max-width:700px){ .wl-hero .bg{object-position:62% 50%} }
+
+/* Wellness · azotea: la foto entera (4:3), sin recortar la torre de Sant Jaume */
+.section.wl-above > .wrap.two-col > .imgframe{aspect-ratio:4/3!important;height:auto!important;min-height:0!important;max-height:none!important;align-self:center}
+.wl-above .imgframe img{object-position:50% 0}
+.wl-above > .wrap.two-col{align-items:center}
