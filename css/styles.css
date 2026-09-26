@@ -1358,3 +1358,4 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .section.wl-above > .wrap.two-col > .imgframe{aspect-ratio:4/3!important;height:auto!important;min-height:0!important;max-height:none!important;align-self:center}
 .wl-above .imgframe img{object-position:50% 0}
 .wl-above > .wrap.two-col{align-items:center}
+@media (max-width:900px){ .px-row.px-m2e,.px-m2e{grid-template-columns:1fr!important} }
