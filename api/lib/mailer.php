@@ -7,51 +7,73 @@
    Puerto 465 = SSL directo; 587 = STARTTLS. */
 
 /**
+ * Envía un email con versión texto y, opcionalmente, HTML, imágenes incrustadas (logo) y adjuntos.
  * @param string[] $to
- * @param array{name:string,type:string,data:string}|null $attachment
+ * @param array{text:string, html?:?string} $content
+ * @param array<int, array{name:string,type:string,data:string}> $attachments
+ * @param array<string, array{type:string,data:string}> $inline  cid => imagen (se cita en el HTML como src="cid:…")
  */
-function gloria_send_mail(array $to, string $subject, string $text, ?string $replyTo, ?array $attachment, array $cfg): bool {
+function gloria_send_mail(array $to, string $subject, array $content, ?string $replyTo, array $attachments, array $inline, array $cfg): bool {
     $smtp = is_array($cfg['smtp'] ?? null) ? $cfg['smtp'] : null;
     $from = $smtp['user'] ?? ($cfg['careers_from'] ?? 'no-reply@hotelgloria.es');
     $fromName = $cfg['mail_from_name'] ?? 'Glòria de Sant Jaume';
-    [$headers, $body] = gloria_build_mime($to, $from, $fromName, $subject, $text, $replyTo, $attachment);
+    [$ctype, $body] = gloria_mime_body($content['text'], $content['html'] ?? null, $attachments, $inline);
 
-    if ($smtp && !empty($smtp['host']) && !empty($smtp['user']) && !empty($smtp['pass'])) {
-        $ok = gloria_smtp_send($smtp, $from, $to, $headers . "\r\n\r\n" . $body);
-        if ($ok) return true;
-        error_log('gloria mail: fallo SMTP, se intenta mail()');
-    }
-    // mail() recibe To y Subject aparte: se quitan de las cabeceras para no duplicarlos
-    $extra = preg_replace('/^(To|Subject):[^\r\n]*\r\n/mi', '', $headers);
-    $encSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-    return @mail(implode(', ', $to), $encSubject, $body, $extra, '-f' . $from);
-}
-
-/** Cabeceras y cuerpo MIME (texto + adjunto opcional). */
-function gloria_build_mime(array $to, string $from, string $fromName, string $subject, string $text, ?string $replyTo, ?array $att): array {
     $domain = substr(strrchr($from, '@') ?: '@localhost', 1);
     $h = [
         'Date: ' . date('r'),
         'Message-ID: <' . bin2hex(random_bytes(12)) . "@$domain>",
-        'From: =?UTF-8?B?' . base64_encode($fromName) . "?= <$from>",
-        'To: ' . implode(', ', $to),
-        'Subject: =?UTF-8?B?' . base64_encode($subject) . '?=',
+        'From: ' . gloria_mime_word($fromName) . " <$from>",
         'MIME-Version: 1.0',
+        "Content-Type: $ctype",
     ];
     if ($replyTo && filter_var($replyTo, FILTER_VALIDATE_EMAIL)) $h[] = "Reply-To: $replyTo";
-    $textPart = "Content-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($text));
-    if (!$att) {
-        $h[] = 'Content-Type: text/plain; charset=UTF-8';
-        $h[] = 'Content-Transfer-Encoding: base64';
-        return [implode("\r\n", $h), chunk_split(base64_encode($text))];
+    $headers = implode("\r\n", $h);
+    $encSubject = gloria_mime_word($subject);
+
+    if ($smtp && !empty($smtp['host']) && !empty($smtp['user']) && !empty($smtp['pass'])) {
+        $full = "To: " . implode(', ', $to) . "\r\nSubject: $encSubject\r\n$headers\r\n\r\n$body";
+        if (gloria_smtp_send($smtp, $from, $to, $full)) return true;
+        error_log('gloria mail: fallo SMTP, se intenta mail()');
     }
-    $b = 'gloria-' . bin2hex(random_bytes(8));
-    $h[] = "Content-Type: multipart/mixed; boundary=\"$b\"";
-    $body = "--$b\r\n$textPart"
-        . "--$b\r\nContent-Type: {$att['type']}; name=\"{$att['name']}\"\r\nContent-Transfer-Encoding: base64\r\n"
-        . "Content-Disposition: attachment; filename=\"{$att['name']}\"\r\n\r\n"
-        . chunk_split(base64_encode($att['data'])) . "--$b--\r\n";
-    return [implode("\r\n", $h), $body];
+    return @mail(implode(', ', $to), $encSubject, $body, $headers, '-f' . $from);
+}
+
+function gloria_mime_word(string $s): string { return '=?UTF-8?B?' . base64_encode($s) . '?='; }
+
+/** Cuerpo MIME: mixed( related( alternative(texto, html), imágenes ), adjuntos ). Devuelve [Content-Type, cuerpo]. */
+function gloria_mime_body(string $text, ?string $html, array $attachments, array $inline): array {
+    $part = fn(string $type, string $data, string $extra = '') =>
+        "Content-Type: $type\r\nContent-Transfer-Encoding: base64\r\n$extra\r\n" . chunk_split(base64_encode($data));
+    $wrap = function (string $sub, array $parts): array {
+        $b = 'gloria-' . bin2hex(random_bytes(8));
+        $out = '';
+        foreach ($parts as $p) $out .= "--$b\r\n$p";
+        return ["multipart/$sub; boundary=\"$b\"", $out . "--$b--\r\n"];
+    };
+
+    [$ct, $body] = ['text/plain; charset=UTF-8', chunk_split(base64_encode($text))];
+    $isMultipart = false;
+    if ($html !== null) {
+        [$ct, $body] = $wrap('alternative', [$part('text/plain; charset=UTF-8', $text), $part('text/html; charset=UTF-8', $html)]);
+        $isMultipart = true;
+        if ($inline) {
+            $parts = ["Content-Type: $ct\r\n\r\n$body"];
+            foreach ($inline as $cid => $img) {
+                $parts[] = $part($img['type'], $img['data'], "Content-ID: <$cid>\r\nContent-Disposition: inline; filename=\"$cid\"\r\n");
+            }
+            [$ct, $body] = $wrap('related', $parts);
+        }
+    }
+    if ($attachments) {
+        $first = $isMultipart ? "Content-Type: $ct\r\n\r\n$body" : $part('text/plain; charset=UTF-8', $text);
+        $parts = [$first];
+        foreach ($attachments as $a) {
+            $parts[] = $part("{$a['type']}; name=\"{$a['name']}\"", $a['data'], "Content-Disposition: attachment; filename=\"{$a['name']}\"\r\n");
+        }
+        [$ct, $body] = $wrap('mixed', $parts);
+    }
+    return [$ct, $body];
 }
 
 /** Cliente SMTP mínimo con AUTH LOGIN (465 SSL o 587 STARTTLS). */
@@ -68,12 +90,12 @@ function gloria_smtp_send(array $s, string $from, array $to, string $message): b
         while (($line = fgets($fp, 1024)) !== false) { $out .= $line; if (strlen($line) < 4 || $line[3] === ' ') break; }
         return $out;
     };
-    // $secret = true: el comando lleva credenciales y nunca se escribe en el log
+    // $secret = true: el comando lleva credenciales o datos personales y nunca se escribe en el log
     $cmd = function (string $c, array $okCodes, bool $secret = false) use ($fp, $read): bool {
         if ($c !== '') fwrite($fp, $c . "\r\n");
         $r = $read();
         $ok = in_array((int)substr($r, 0, 3), $okCodes, true);
-        if (!$ok) error_log('gloria smtp: ' . ($secret ? '[credenciales]' : substr($c, 0, 60)) . ' → ' . trim($r));
+        if (!$ok) error_log('gloria smtp: ' . ($secret ? '[oculto]' : substr($c, 0, 60)) . ' → ' . trim($r));
         return $ok;
     };
 
@@ -84,10 +106,10 @@ function gloria_smtp_send(array $s, string $from, array $to, string $message): b
     }
     $ok = $ok && $cmd('AUTH LOGIN', [334]) && $cmd(base64_encode((string)$s['user']), [334], true) && $cmd(base64_encode((string)$s['pass']), [235], true)
         && $cmd("MAIL FROM:<$from>", [250]);
-    foreach ($to as $rcpt) { $ok = $ok && $cmd("RCPT TO:<$rcpt>", [250, 251]); }
+    foreach ($to as $rcpt) { $ok = $ok && $cmd("RCPT TO:<$rcpt>", [250, 251], true); }
     if ($ok && $cmd('DATA', [354])) {
         $data = preg_replace('/^\./m', '..', str_replace(["\r\n", "\n"], ["\n", "\r\n"], $message));   // dot-stuffing
-        $ok = $cmd($data . "\r\n.", [250], true);   // el cuerpo lleva datos personales: tampoco al log
+        $ok = $cmd($data . "\r\n.", [250], true);
     } else {
         $ok = false;
     }

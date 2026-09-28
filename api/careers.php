@@ -5,6 +5,7 @@
    - Borra solo las candidaturas de más de 12 meses (plazo indicado en la web y en la política de privacidad). */
 require __DIR__ . '/lib/brain.php';
 require __DIR__ . '/lib/mailer.php';
+require __DIR__ . '/lib/careers-mail.php';
 
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
@@ -39,86 +40,18 @@ function recipients(string $hotel, array $cfg): array {
     return array_values(array_unique(array_filter($all, fn($a) => is_string($a) && filter_var($a, FILTER_VALIDATE_EMAIL))));
 }
 
-/** Aviso al director / RR. HH. con el CV adjunto. */
+/** Aviso interno al director / RR. HH., con el CV adjunto y el logo. */
 function notify(array $to, array $record, string $cvFile, string $mime, array $cfg): bool {
-    $body = "Nueva candidatura desde la web
-
-"
-        . "Nombre: {$record['name']}
-Email: {$record['email']}
-Teléfono: {$record['phone']}
-"
-        . "Hotel: {$record['hotel']}
-Área: {$record['area']}
-"
-        . 'Compartir con el grupo: ' . ($record['share_with_group'] ? 'sí' : 'no') . "
-
-"
-        . "Mensaje:
-{$record['message']}
-
-"
-        . "Conservar hasta: {$record['delete_after']} (después se borra automáticamente del servidor).
-";
-    $safeName = preg_replace('/[^\p{L}\p{N} ._-]/u', '', $record['name']);
-    $att = ['name' => "CV-{$record['id']}." . CV_TYPES[$mime], 'type' => $mime, 'data' => (string)file_get_contents($cvFile)];
-    return gloria_send_mail($to, "Candidatura · {$record['hotel']} · {$record['area']} · $safeName", $body, $record['email'], $att, $cfg);
+    [$subject, $text, $html, $inline] = careers_internal_mail($record);
+    $att = [['name' => "CV-{$record['id']}." . CV_TYPES[$mime], 'type' => $mime, 'data' => (string)file_get_contents($cvFile)]];
+    return gloria_send_mail($to, $subject, ['text' => $text, 'html' => $html], $record['email'], $att, $inline, $cfg);
 }
 
-/** Acuse de recibo al candidato, en el idioma en que ha rellenado el formulario. */
+/** Acuse de recibo al candidato, en su idioma, con logo, firma del director y pie legal. Las respuestas llegan al director. */
 function confirm_candidate(array $record, string $lang, array $cfg): bool {
-    $t = [
-        'es' => ['Hemos recibido tu candidatura · Glòria de Sant Jaume', "Hola {n},
-
-Gracias por tu interés en formar parte de Glòria de Sant Jaume. Hemos recibido tu candidatura y tu currículum.
-
-Lo tendremos en cuenta para los procesos de selección actuales y futuros, y nos pondremos en contacto contigo si surge una vacante adecuada. Conservaremos tus datos durante 12 meses; puedes pedirnos que los borremos en cualquier momento respondiendo a este email.
-
-Un saludo,
-Glòria de Sant Jaume · Palma"],
-        'en' => ['We have received your application · Glòria de Sant Jaume', "Hello {n},
-
-Thank you for your interest in joining Glòria de Sant Jaume. We have received your application and your CV.
-
-We will keep it in mind for current and future selection processes and will be in touch if there is a suitable opening. We keep your data for 12 months; you can ask us to delete it at any time by replying to this email.
-
-Kind regards,
-Glòria de Sant Jaume · Palma"],
-        'de' => ['Wir haben Ihre Bewerbung erhalten · Glòria de Sant Jaume', "Hallo {n},
-
-vielen Dank für Ihr Interesse an Glòria de Sant Jaume. Wir haben Ihre Bewerbung und Ihren Lebenslauf erhalten.
-
-Wir berücksichtigen sie für aktuelle und künftige Auswahlverfahren und melden uns, wenn eine passende Stelle frei wird. Wir bewahren Ihre Daten 12 Monate auf; Sie können jederzeit die Löschung verlangen, indem Sie auf diese E-Mail antworten.
-
-Mit freundlichen Grüßen
-Glòria de Sant Jaume · Palma"],
-        'fr' => ['Nous avons bien reçu votre candidature · Glòria de Sant Jaume', "Bonjour {n},
-
-Merci de votre intérêt pour Glòria de Sant Jaume. Nous avons bien reçu votre candidature et votre CV.
-
-Nous en tiendrons compte pour nos recrutements actuels et futurs et vous contacterons si un poste adapté se présente. Nous conservons vos données pendant 12 mois ; vous pouvez demander leur suppression à tout moment en répondant à cet e-mail.
-
-Bien cordialement,
-Glòria de Sant Jaume · Palma"],
-        'sv' => ['Vi har tagit emot din ansökan · Glòria de Sant Jaume', "Hej {n},
-
-Tack för ditt intresse för Glòria de Sant Jaume. Vi har tagit emot din ansökan och ditt CV.
-
-Vi har den i åtanke för nuvarande och framtida rekryteringar och hör av oss om en passande tjänst dyker upp. Vi sparar dina uppgifter i 12 månader; du kan när som helst be oss radera dem genom att svara på detta e-postmeddelande.
-
-Vänliga hälsningar
-Glòria de Sant Jaume · Palma"],
-    ];
-    [$subject, $text] = $t[$lang] ?? $t['en'];
-    $first = preg_split('/\s+/', $record['name'])[0] ?? '';
-    $replyTo = recipients_reply($cfg);
-    return gloria_send_mail([$record['email']], $subject, str_replace('{n}', $first, $text), $replyTo, null, $cfg);
-}
-
-/** A dónde responde el candidato: al primer destinatario del Glòria (el director). */
-function recipients_reply(array $cfg): ?string {
-    $r = recipients('gloria', $cfg);
-    return $r[0] ?? null;
+    [$subject, $text, $html, $inline] = careers_candidate_mail($record, $lang);
+    $replyTo = recipients('gloria', $cfg)[0] ?? null;
+    return gloria_send_mail([$record['email']], $subject, ['text' => $text, 'html' => $html], $replyTo, [], $inline, $cfg);
 }
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') out(405, ['error' => 'method']);
