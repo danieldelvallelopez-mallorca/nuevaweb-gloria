@@ -1424,3 +1424,8 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .sticky-book.btn{background:#fff;color:var(--ink);border:1px solid rgba(95,75,60,.25);box-shadow:0 -10px 28px -18px rgba(43,33,24,.5)}
 /* Móvil: mientras no sale el botón fijo de reservar, el círculo del asistente baja a la esquina y no tapa la barra del héroe */
 @media (max-width:900px){ body:not(:has(.sticky-book.show)) .gc{bottom:calc(14px + env(safe-area-inset-bottom,0px))} }
+
+/* Home · The House: 2 + 2 fotos; cada fila con la misma altura y bordes alineados, sin recortar el cuadro */
+.house-grid.house-grid-4{display:flex;flex-direction:column;gap:8px;max-width:520px}
+.house-grid-4 .hg-row{display:flex;gap:8px}
+.house-grid-4 .imgframe{flex:var(--r) 1 0;aspect-ratio:var(--r);min-width:0}

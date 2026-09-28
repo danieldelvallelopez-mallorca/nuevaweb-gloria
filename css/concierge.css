@@ -63,3 +63,10 @@
   .gc-nudge{white-space:normal;width:max-content;max-width:60vw}
 }
 @media (prefers-reduced-motion:reduce){ .gc *{animation:none!important;transition:none!important} }
+
+/* Lanzador: cuadrado marrón con una baldosa de la marca en dorado (28-09-2026) */
+.gc-launch{border-radius:4px;background:#3B2C21;border:1px solid #C9A45C;box-shadow:0 14px 30px -14px rgba(43,33,24,.7);display:flex;align-items:center;justify-content:center}
+.gc-launch::after{border-radius:4px;border-color:#C9A45C}
+.gc-launch .gc-tile{width:64%;height:64%;transform:rotate(45deg);color:#D9B870;stroke-width:1.15;overflow:visible}
+.gc-launch:hover .gc-tile{color:#E8CB86}
+.gc.is-open .gc-launch{box-shadow:0 8px 20px -10px rgba(43,33,24,.6),0 0 0 3px #C9A45C}
