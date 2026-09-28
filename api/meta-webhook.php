@@ -58,7 +58,7 @@ function history_purge(): void {
     foreach (glob(data_dir() . '/c-*.json') ?: [] as $f) {
         if (@filemtime($f) < time() - 86400) @unlink($f);
     }
-    foreach (glob(data_dir() . '/ia-*.count') ?: [] as $f) {
+    foreach (glob(data_dir() . '/*.count') ?: [] as $f) {
         if (@filemtime($f) < time() - 7 * 86400) @unlink($f);
     }
 }

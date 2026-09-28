@@ -29,15 +29,13 @@ function gloria_client_ip(): string {
     return (string)($_SERVER['REMOTE_ADDR'] ?? '0');
 }
 
-/** Tope de llamadas a la IA por día, sumando web, WhatsApp, Instagram y Messenger.
-    El límite por IP no para a quien cambia de IP; esto pone techo al gasto.
-    Al llegar al tope, el concierge vuelve a las respuestas guiadas hasta mañana. */
-function gloria_daily_budget_ok(): bool {
-    $cfg = gloria_secrets();
-    $max = (int)($cfg['limite_diario_ia'] ?? 800);
-    $f = gloria_data_dir() . '/ia-' . date('Y-m-d') . '.count';
+/** Contador diario compartido por todas las peticiones (fichero con bloqueo).
+    true mientras no se pase de $max. El límite por IP no para a quien cambia
+    de IP; esto pone techo a lo que cuesta dinero o sale en nombre del hotel. */
+function gloria_daily_ok(string $nombre, int $max): bool {
+    $f = gloria_data_dir() . '/' . $nombre . '-' . date('Y-m-d') . '.count';
     $h = @fopen($f, 'c+');
-    if (!$h) return true;                       // sin contador no se bloquea al huésped
+    if (!$h) return true;                       // sin contador no se bloquea a nadie
     flock($h, LOCK_EX);
     $n = (int)stream_get_contents($h) + 1;
     ftruncate($h, 0);
@@ -45,8 +43,27 @@ function gloria_daily_budget_ok(): bool {
     fwrite($h, (string)$n);
     flock($h, LOCK_UN);
     fclose($h);
-    if ($n === $max + 1) error_log("gloria concierge: tope diario de IA alcanzado ($max); respuestas guiadas hasta mañana");
+    if ($n === $max + 1) error_log("gloria: tope diario de '$nombre' alcanzado ($max) hasta mañana");
     return $n <= $max;
+}
+
+/** Tope de llamadas a la IA por día, sumando web, WhatsApp, Instagram y Messenger.
+    Al llegar, el concierge vuelve a las respuestas guiadas hasta mañana. */
+function gloria_daily_budget_ok(): bool {
+    $cfg = gloria_secrets();
+    return gloria_daily_ok('ia', (int)($cfg['limite_diario_ia'] ?? 800));
+}
+
+/** ¿La petición viene de una página nuestra? Una sola lista para todos los
+    endpoints: tener una por fichero dejó el concierge sin IA en web2 (403). */
+function gloria_origin_ok(): bool {
+    $propios = ['web.hotelgloria.es', 'web2.hotelgloria.es', 'nuevaweb.hotelgloria.es', 'hotelgloria.es', 'www.hotelgloria.es',
+        'gloriasantjaume.com', 'www.gloriasantjaume.com',   // cuando la web nueva sustituya a la actual
+        'localhost'];
+    $extra = gloria_secrets()['origenes_extra'] ?? [];
+    $permitidos = array_merge($propios, is_array($extra) ? $extra : []);
+    $origen = parse_url($_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? ''), PHP_URL_HOST);
+    return is_string($origen) && in_array($origen, $permitidos, true);
 }
 
 function gloria_music_tonight(string $date): string {

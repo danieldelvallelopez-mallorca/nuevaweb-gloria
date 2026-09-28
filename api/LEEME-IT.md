@@ -29,11 +29,15 @@ El asistente de la web (el círculo con el monograma) y, si se conecta Meta, el 
 | WhatsApp, Instagram, Messenger | 15 mensajes cada 10 minutos por conversación |
 | Todos los canales | `limite_diario_ia` llamadas a la IA al día |
 | Anthropic | el límite mensual que se ponga en la consola |
+| Candidaturas (Trabaja con nosotros) | 5 por hora por IP, `limite_diario_candidaturas` al día (40) y un solo acuse por dirección de correo y día |
+
+Los dominios desde los que la web puede llamar a la API están en una sola lista, `gloria_origin_ok()` en `api/lib/brain.php` (incluye `web`, `web2`, `nuevaweb` y `gloriasantjaume.com`). Si la web se publica en otro dominio, se añade ahí o en `origenes_extra`; si no, el concierge y el formulario responden 403.
 
 ## 4. Datos personales
 
 - Las conversaciones de Meta se guardan en `gloria-data/` (fuera de `public_html`, permisos 700) durante 24 horas para dar contexto a la respuesta, y después **se borran**. El nombre del fichero es un hash del remitente.
 - `seen.txt` guarda los últimos 500 identificadores de mensaje para no contestar dos veces; no guarda texto.
+- Los CV y sus fichas se guardan en `gloria-data/cv/` (permisos 600) y se borran a los 12 meses; el barrido se hace al entrar cada candidatura nueva.
 - El `error_log` solo registra códigos de error, nunca el texto de los huéspedes.
 
 ## 5. Probar

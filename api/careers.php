@@ -110,9 +110,13 @@ Vänliga hälsningar
 Glòria de Sant Jaume · Palma"],
     ];
     [$subject, $text] = $t[$lang] ?? $t['en'];
+    // Solo letras en el saludo: el nombre lo escribe cualquiera y el correo sale del buzón del hotel
+    // (sin esto, «Hola https://…» viajaba firmado por el Glòria a la dirección que pusiera el formulario).
     $first = preg_split('/\s+/', $record['name'])[0] ?? '';
+    $first = mb_substr((string)preg_replace("/[^\p{L}'’-]/u", '', $first), 0, 30);
+    $text = str_replace(' {n}', $first === '' ? '' : " $first", $text);
     $replyTo = recipients_reply($cfg);
-    return gloria_send_mail([$record['email']], $subject, str_replace('{n}', $first, $text), $replyTo, null, $cfg);
+    return gloria_send_mail([$record['email']], $subject, $text, $replyTo, null, $cfg);
 }
 
 /** A dónde responde el candidato: al primer destinatario del Glòria (el director). */
@@ -124,12 +128,10 @@ function recipients_reply(array $cfg): ?string {
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') out(405, ['error' => 'method']);
 
 // solo desde nuestras páginas
-$allowed = ['web.hotelgloria.es', 'web2.hotelgloria.es', 'nuevaweb.hotelgloria.es', 'hotelgloria.es', 'www.hotelgloria.es', 'localhost'];
-$origin = parse_url($_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? ''), PHP_URL_HOST);
-if (!$origin || !in_array($origin, $allowed, true)) out(403, ['error' => 'origin']);
+if (!gloria_origin_ok()) out(403, ['error' => 'origin']);
 
-$ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? ($_SERVER['REMOTE_ADDR'] ?? '0');
-if (!gloria_rate_ok('careers:' . $ip, 5, 3600)) out(429, ['error' => 'rate']);
+// IP real: CF-Connecting-IP la escribe cualquiera mientras la web no vaya detrás de Cloudflare
+if (!gloria_rate_ok('careers:' . gloria_client_ip(), 5, 3600)) out(429, ['error' => 'rate']);
 
 // campo trampa para bots: si viene relleno, se responde "ok" sin guardar nada
 if (field('website', 200) !== '') out(200, ['ok' => true]);
@@ -156,6 +158,11 @@ if ($mime === 'application/zip' && preg_match('/\.docx$/i', (string)$f['name']))
     $mime = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';   // algunos servidores ven los .docx como zip
 }
 if (!isset(CV_TYPES[$mime])) out(400, ['error' => 'file']);
+
+// Techo diario de candidaturas válidas: cada una guarda hasta 5 MB y manda dos correos desde el buzón
+// del hotel. Aunque alguien cambie de IP, no llena el disco ni la bandeja del director.
+$cfg = gloria_secrets();
+if (!gloria_daily_ok('candidaturas', (int)($cfg['limite_diario_candidaturas'] ?? 40))) out(429, ['error' => 'rate']);
 
 // carpeta privada (un nivel por encima de public_html), sin listado ni acceso web
 $dir = dirname(__DIR__, 2) . '/gloria-data/cv';
@@ -184,11 +191,11 @@ if (@file_put_contents("$dir/$id.json", json_encode($record, JSON_UNESCAPED_UNIC
 }
 @chmod("$dir/$id.json", 0600);
 
-$cfg = gloria_secrets();
 $to = recipients($hotel, $cfg);
 $notified = $to ? notify($to, $record, $cvFile, $mime, $cfg) : false;
 if ($to && !$notified) error_log("gloria careers: no se pudo enviar el aviso de $id");
-$confirmed = confirm_candidate($record, $lang, $cfg);
-if (!$confirmed) error_log("gloria careers: no se pudo enviar el acuse al candidato de $id");
+// Un acuse por dirección y día: el formulario no sirve para bombardear un buzón ajeno desde el del hotel.
+$confirmed = gloria_rate_ok('careers-acuse:' . strtolower($email), 1, 86400) && confirm_candidate($record, $lang, $cfg);
+if (!$confirmed) error_log("gloria careers: acuse no enviado para $id (límite por dirección o fallo de envío)");
 
 out(200, ['ok' => true, 'notified' => $notified, 'confirmed' => $confirmed]);
