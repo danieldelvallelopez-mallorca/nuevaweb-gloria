@@ -19,6 +19,8 @@ return [
     'page_token'         => '',            // token de página de Facebook vinculada a la cuenta de Instagram del hotel
 
     // Trabaja con nosotros: a quién avisar de cada candidatura (el CV va adjunto)
-    'careers_to'         => '',            // p. ej. el email de RR. HH.
+    // (por defecto todo llega a director@gloriasantjaume.com; ver ROUTES en api/careers.php)
+    'careers_hr'         => [],            // p. ej. ['rrhh@cabauhotels.com'] → recibe TODAS las candidaturas
+    'careers_routes'     => [],            // p. ej. ['gloria' => ['director@gloriasantjaume.com']] por hotel
     'careers_from'       => 'no-reply@hotelgloria.es',   // remitente; mejor un buzón real del dominio
 ];

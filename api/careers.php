@@ -1,7 +1,7 @@
 <?php
 /* Trabaja con nosotros: recibe una candidatura (multipart/form-data) con el CV adjunto.
    - Guarda el CV y la ficha FUERA de public_html, en gloria-data/cv/ (nunca accesible por URL).
-   - Si gloria-secrets.php tiene 'careers_to', avisa por email a RR. HH. con el CV adjunto.
+   - Avisa por email, con el CV adjunto, al director del hotel elegido (y a RR. HH. cuando se configure).
    - Borra solo las candidaturas de más de 12 meses (plazo indicado en la web y en la política de privacidad). */
 require __DIR__ . '/lib/brain.php';
 
@@ -17,11 +17,49 @@ const CV_TYPES = [
     'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
 ];
 const HOTELS = ['gloria' => 'Glòria de Sant Jaume · Palma', 'any-cabau' => 'Cualquier hotel de Cabau Hotels', 'other' => 'Otro hotel de Cabau Hotels'];
+// A quién llega cada candidatura según el hotel elegido. De momento todo va al director del Glòria;
+// más adelante, el director de cada hotel + RR. HH. ('careers_routes' y 'careers_hr' en gloria-secrets.php lo sobrescriben).
+const ROUTES = [
+    'gloria'    => ['director@gloriasantjaume.com'],
+    'any-cabau' => ['director@gloriasantjaume.com'],
+    'other'     => ['director@gloriasantjaume.com'],
+];
 const AREAS = ['reception' => 'Recepción', 'housekeeping' => 'Pisos', 'kitchen' => 'Cocina', 'dining' => 'Sala y bar',
     'spa' => 'Spa', 'maintenance' => 'Mantenimiento', 'sales' => 'Ventas, eventos y marketing', 'admin' => 'Administración', 'other' => 'Otra'];
 
 function out(int $code, array $body): void { http_response_code($code); echo json_encode($body, JSON_UNESCAPED_UNICODE); exit; }
 function field(string $k, int $max): string { return trim(mb_substr(str_replace(["\r", "\0"], '', (string)($_POST[$k] ?? '')), 0, $max)); }
+
+/** Destinatarios del aviso: los del hotel elegido + RR. HH., solo direcciones válidas y sin repetir. */
+function recipients(string $hotel, array $cfg): array {
+    $routes = is_array($cfg['careers_routes'] ?? null) ? $cfg['careers_routes'] + ROUTES : ROUTES;
+    $hr = is_array($cfg['careers_hr'] ?? null) ? $cfg['careers_hr'] : [];
+    $all = array_merge((array)($routes[$hotel] ?? []), $hr);
+    return array_values(array_unique(array_filter($all, fn($a) => is_string($a) && filter_var($a, FILTER_VALIDATE_EMAIL))));
+}
+
+/** Envía el aviso con el CV adjunto. Devuelve true si el servidor de correo lo aceptó. */
+function notify(array $to, array $record, string $cvFile, string $mime, array $cfg): bool {
+    $ext = CV_TYPES[$mime];
+    $boundary = 'gloria-' . bin2hex(random_bytes(8));
+    $safeName = preg_replace('/[^\p{L}\p{N} ._-]/u', '', $record['name']);
+    $body = "Nueva candidatura desde la web\n\n"
+        . "Nombre: {$record['name']}\nEmail: {$record['email']}\nTeléfono: {$record['phone']}\n"
+        . "Hotel: {$record['hotel']}\nÁrea: {$record['area']}\n"
+        . 'Compartir con el grupo: ' . ($record['share_with_group'] ? 'sí' : 'no') . "\n\n"
+        . "Mensaje:\n{$record['message']}\n\n"
+        . "Conservar hasta: {$record['delete_after']} (después se borra automáticamente del servidor).\n";
+    $msg = "--$boundary\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
+        . chunk_split(base64_encode($body))
+        . "--$boundary\r\nContent-Type: $mime; name=\"CV-{$record['id']}.$ext\"\r\nContent-Transfer-Encoding: base64\r\n"
+        . "Content-Disposition: attachment; filename=\"CV-{$record['id']}.$ext\"\r\n\r\n"
+        . chunk_split(base64_encode((string)file_get_contents($cvFile))) . "--$boundary--";
+    $from = $cfg['careers_from'] ?? 'no-reply@hotelgloria.es';
+    $headers = 'From: =?UTF-8?B?' . base64_encode('Glòria · Trabaja con nosotros') . "?= <$from>\r\n"
+        . "Reply-To: {$record['email']}\r\nMIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=\"$boundary\"";
+    $subject = '=?UTF-8?B?' . base64_encode("Candidatura · {$record['hotel']} · {$record['area']} · $safeName") . '?=';
+    return @mail(implode(', ', $to), $subject, $msg, $headers, '-f' . $from);
+}
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') out(405, ['error' => 'method']);
 
@@ -85,25 +123,9 @@ if (@file_put_contents("$dir/$id.json", json_encode($record, JSON_UNESCAPED_UNIC
 }
 @chmod("$dir/$id.json", 0600);
 
-// aviso por email a RR. HH. (opcional: solo si IT ha puesto la dirección en gloria-secrets.php)
 $cfg = gloria_secrets();
-$to = $cfg['careers_to'] ?? '';
-if ($to !== '' && filter_var($to, FILTER_VALIDATE_EMAIL)) {
-    $boundary = 'gloria-' . bin2hex(random_bytes(8));
-    $safeName = preg_replace('/[^\p{L}\p{N} ._-]/u', '', $name);
-    $body = "Nueva candidatura desde la web\n\n"
-        . "Nombre: $name\nEmail: $email\nTeléfono: $phone\nHotel: {$record['hotel']}\nÁrea: {$record['area']}\n"
-        . 'Compartir con el grupo: ' . ($share ? 'sí' : 'no') . "\n\nMensaje:\n$message\n\n"
-        . "Conservar hasta: {$record['delete_after']} (después se borra automáticamente).\n";
-    $msg = "--$boundary\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n"
-        . chunk_split(base64_encode($body))
-        . "--$boundary\r\nContent-Type: $mime; name=\"CV-$id." . CV_TYPES[$mime] . "\"\r\nContent-Transfer-Encoding: base64\r\n"
-        . "Content-Disposition: attachment; filename=\"CV-$id." . CV_TYPES[$mime] . "\"\r\n\r\n"
-        . chunk_split(base64_encode((string)file_get_contents($cvFile))) . "--$boundary--";
-    $from = $cfg['careers_from'] ?? 'no-reply@hotelgloria.es';
-    $headers = "From: Glòria web <$from>\r\nReply-To: $email\r\nMIME-Version: 1.0\r\nContent-Type: multipart/mixed; boundary=\"$boundary\"";
-    $subject = '=?UTF-8?B?' . base64_encode("Candidatura · {$record['area']} · $safeName") . '?=';
-    if (!@mail($to, $subject, $msg, $headers)) error_log("gloria careers: no se pudo enviar el aviso de $id");
-}
+$to = recipients($hotel, $cfg);
+$notified = $to ? notify($to, $record, $cvFile, $mime, $cfg) : false;
+if ($to && !$notified) error_log("gloria careers: no se pudo enviar el aviso de $id");
 
-out(200, ['ok' => true]);
+out(200, ['ok' => true, 'notified' => $notified]);
