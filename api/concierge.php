@@ -12,12 +12,9 @@ function out(int $code, array $body): void { http_response_code($code); echo jso
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') out(405, ['error' => 'method']);
 
 // solo desde nuestras páginas
-$allowed = ['web.hotelgloria.es', 'nuevaweb.hotelgloria.es', 'hotelgloria.es', 'www.hotelgloria.es', 'localhost'];
-$origin = parse_url($_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? ''), PHP_URL_HOST);
-if (!$origin || !in_array($origin, $allowed, true)) out(403, ['error' => 'origin']);
+if (!gloria_origin_ok()) out(403, ['error' => 'origin']);
 
-$ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? ($_SERVER['REMOTE_ADDR'] ?? '0');
-if (!gloria_rate_ok('web:' . $ip, 20, 600)) out(429, ['error' => 'rate']);
+if (!gloria_rate_ok('web:' . gloria_client_ip(), 20, 600)) out(429, ['error' => 'rate']);
 
 $raw = file_get_contents('php://input', false, null, 0, 20000);
 $in = json_decode($raw ?: '', true);

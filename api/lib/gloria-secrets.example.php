@@ -5,6 +5,10 @@ return [
     // IA del concierge (console.anthropic.com → API keys)
     'anthropic_api_key'  => '',
     'anthropic_model'    => 'claude-haiku-4-5-20251001',
+    'limite_diario_ia'   => 800,           // llamadas a la IA al día entre todos los canales; al llegar, respuestas guiadas
+    'confiar_cf_connecting_ip' => false,   // true SOLO si la web se pone detrás de Cloudflare
+    'origenes_extra'     => [],            // dominios propios que no estén en gloria_origin_ok() (api/lib/brain.php)
+    'limite_diario_candidaturas' => 40,    // candidaturas con CV al día; al llegar, «inténtalo más tarde»
 
     // Meta · webhook (la app de Meta for Developers)
     'meta_app_secret'    => '',            // App → Configuración → Básica → Clave secreta de la app

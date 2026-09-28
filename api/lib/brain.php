@@ -11,6 +11,61 @@ function gloria_secrets(): array {
     return is_array($cfg) ? $cfg : [];
 }
 
+/** Carpeta privada fuera de public_html (la misma que usa el webhook de Meta). */
+function gloria_data_dir(): string {
+    $d = dirname(__DIR__, 3) . '/gloria-data';
+    if (!is_dir($d)) @mkdir($d, 0700, true);
+    return $d;
+}
+
+/** IP de quien llama. La web no va detrás de Cloudflare (Hostinger/LiteSpeed):
+    CF-Connecting-IP la puede escribir cualquiera y con ella se saltaba el límite
+    por IP. Solo se usa si IT la activa en gloria-secrets.php al poner Cloudflare. */
+function gloria_client_ip(): string {
+    $cfg = gloria_secrets();
+    if (!empty($cfg['confiar_cf_connecting_ip']) && !empty($_SERVER['HTTP_CF_CONNECTING_IP'])) {
+        return (string)$_SERVER['HTTP_CF_CONNECTING_IP'];
+    }
+    return (string)($_SERVER['REMOTE_ADDR'] ?? '0');
+}
+
+/** Contador diario compartido por todas las peticiones (fichero con bloqueo).
+    true mientras no se pase de $max. El límite por IP no para a quien cambia
+    de IP; esto pone techo a lo que cuesta dinero o sale en nombre del hotel. */
+function gloria_daily_ok(string $nombre, int $max): bool {
+    $f = gloria_data_dir() . '/' . $nombre . '-' . date('Y-m-d') . '.count';
+    $h = @fopen($f, 'c+');
+    if (!$h) return true;                       // sin contador no se bloquea a nadie
+    flock($h, LOCK_EX);
+    $n = (int)stream_get_contents($h) + 1;
+    ftruncate($h, 0);
+    rewind($h);
+    fwrite($h, (string)$n);
+    flock($h, LOCK_UN);
+    fclose($h);
+    if ($n === $max + 1) error_log("gloria: tope diario de '$nombre' alcanzado ($max) hasta mañana");
+    return $n <= $max;
+}
+
+/** Tope de llamadas a la IA por día, sumando web, WhatsApp, Instagram y Messenger.
+    Al llegar, el concierge vuelve a las respuestas guiadas hasta mañana. */
+function gloria_daily_budget_ok(): bool {
+    $cfg = gloria_secrets();
+    return gloria_daily_ok('ia', (int)($cfg['limite_diario_ia'] ?? 800));
+}
+
+/** ¿La petición viene de una página nuestra? Una sola lista para todos los
+    endpoints: tener una por fichero dejó el concierge sin IA en web2 (403). */
+function gloria_origin_ok(): bool {
+    $propios = ['web.hotelgloria.es', 'web2.hotelgloria.es', 'nuevaweb.hotelgloria.es', 'hotelgloria.es', 'www.hotelgloria.es',
+        'gloriasantjaume.com', 'www.gloriasantjaume.com',   // cuando la web nueva sustituya a la actual
+        'localhost'];
+    $extra = gloria_secrets()['origenes_extra'] ?? [];
+    $permitidos = array_merge($propios, is_array($extra) ? $extra : []);
+    $origen = parse_url($_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? ''), PHP_URL_HOST);
+    return is_string($origen) && in_array($origen, $permitidos, true);
+}
+
 function gloria_music_tonight(string $date): string {
     $js = @file_get_contents(dirname(__DIR__, 2) . '/js/music-data.js');
     if (!$js || !preg_match('/GLORIA_MUSIC\s*=\s*(\{.*\});/s', $js, $m)) return '';
@@ -52,6 +107,7 @@ TXT;
 function gloria_ask(array $messages, string $lang, string $today, string $channel): ?array {
     $cfg = gloria_secrets();
     if (empty($cfg['anthropic_api_key'])) return null;
+    if (!gloria_daily_budget_ok()) return null;
     $payload = [
         'model' => $cfg['anthropic_model'] ?? 'claude-haiku-4-5-20251001',
         'max_tokens' => 400,
