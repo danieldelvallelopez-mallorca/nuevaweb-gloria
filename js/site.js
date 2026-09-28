@@ -118,6 +118,8 @@ try{ if(/[?&]oscuro(=|&|$)/.test(location.search)) document.documentElement.clas
           arrival_month: o.arrival.slice(0,7)
         });
         var url = bookingUrl(o);
+        // en el móvil, directo en la misma pestaña (más rápido que abrir otra)
+        if(window.matchMedia && window.matchMedia("(max-width:900px)").matches){ location.href = url; return; }
         var w = window.open(url, "_blank", "noopener");
         if(!w) location.href = url;
       });
