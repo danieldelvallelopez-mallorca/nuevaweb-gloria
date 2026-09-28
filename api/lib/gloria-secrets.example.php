@@ -17,4 +17,8 @@ return [
 
     // Instagram + Messenger
     'page_token'         => '',            // token de página de Facebook vinculada a la cuenta de Instagram del hotel
+
+    // Trabaja con nosotros: a quién avisar de cada candidatura (el CV va adjunto)
+    'careers_to'         => '',            // p. ej. el email de RR. HH.
+    'careers_from'       => 'no-reply@hotelgloria.es',   // remitente; mejor un buzón real del dominio
 ];
