@@ -38,7 +38,9 @@
 
     btn.disabled = true;
     say("Sending…");
-    fetch(form.action, { method: "POST", body: new FormData(form), credentials: "same-origin" })
+    var fd = new FormData(form);
+    fd.append("lang", document.documentElement.lang || "en");   // idioma del email de confirmación
+    fetch(form.action, { method: "POST", body: fd, credentials: "same-origin" })
       .then(function(r){ return r.json().catch(function(){ return {}; }).then(function(j){ return { ok: r.ok, j: j }; }); })
       .then(function(res){
         if(res.ok && res.j.ok){

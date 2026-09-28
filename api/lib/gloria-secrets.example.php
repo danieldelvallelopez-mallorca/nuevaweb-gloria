@@ -22,5 +22,9 @@ return [
     // (por defecto todo llega a director@gloriasantjaume.com; ver ROUTES en api/careers.php)
     'careers_hr'         => [],            // p. ej. ['rrhh@cabauhotels.com'] → recibe TODAS las candidaturas
     'careers_routes'     => [],            // p. ej. ['gloria' => ['director@gloriasantjaume.com']] por hotel
+    // Envío de emails (candidaturas y confirmaciones) con un buzón REAL del dominio, para que no acaben en spam.
+    // Sin esto se usa mail() del servidor con no-reply@hotelgloria.es, que no tiene SPF y suele rechazarse.
+    'smtp'               => ['host' => 'smtp.serviciodecorreo.es', 'port' => 465, 'user' => '', 'pass' => ''],   // p. ej. web@gloriasantjaume.com
+    'mail_from_name'     => 'Glòria de Sant Jaume',
     'careers_from'       => 'no-reply@hotelgloria.es',   // remitente; mejor un buzón real del dominio
 ];
