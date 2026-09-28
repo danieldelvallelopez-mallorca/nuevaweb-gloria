@@ -1,3 +1,5 @@
+/* prueba de Lara: ?oscuro pone el difuminado de Rooms hacia negro */
+try{ if(/[?&]oscuro(=|&|$)/.test(location.search)) document.documentElement.classList.add("v-oscuro"); }catch(e){}
 /* =====================================================================
    Glòria de Sant Jaume — comportamiento común de todas las páginas:
    header sobre hero · motor de reservas (Neobookings) · barra de
