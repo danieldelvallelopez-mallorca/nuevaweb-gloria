@@ -1553,3 +1553,11 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 @media (max-width:700px){ .phero .bg[src*="home-above"]{object-position:30% 45%} }
 .wellness-split .pane .bg[src*="palma-sunset"]{object-position:38% 30%}
 @media (max-width:700px){ .wellness-split .pane.light-pane::before{background:linear-gradient(180deg,rgba(243,237,226,.9) 0%,rgba(243,237,226,.84) 65%,rgba(243,237,226,.6) 100%)} }
+/* 29-09: Wellness home — "Beneath" con el texto a la derecha; "Above" con el texto a la izquierda (tapa las antenas) */
+@media (min-width:701px){
+  .wellness-split .pane.dark-pane .inner{display:flex;flex-direction:column;align-items:flex-end;text-align:left}
+  .wellness-split .pane.dark-pane::before{background:linear-gradient(270deg,rgba(22,16,10,.78) 0%,rgba(22,16,10,.5) 40%,rgba(22,16,10,.08) 75%)}
+  .wellness-split .pane.light-pane .inner{align-items:flex-start}
+  .wellness-split .pane.light-pane::before{background:linear-gradient(90deg,rgba(243,237,226,.94) 0%,rgba(243,237,226,.8) 32%,rgba(243,237,226,.1) 62%,rgba(243,237,226,0) 80%)}
+  .wellness-split .pane .bg[src*="palma-sunset"]{object-position:62% 30%}
+}
