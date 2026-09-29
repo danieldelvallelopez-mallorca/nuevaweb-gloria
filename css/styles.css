@@ -1561,3 +1561,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .wellness-split .pane.light-pane::before{background:linear-gradient(90deg,rgba(243,237,226,.94) 0%,rgba(243,237,226,.8) 32%,rgba(243,237,226,.1) 62%,rgba(243,237,226,0) 80%)}
   .wellness-split .pane .bg[src*="palma-sunset"]{object-position:62% 30%}
 }
+/* 29-09: home · "Palma, at your doorstep." — bloque de texto a la derecha (texto alineado a la izquierda dentro del bloque) */
+@media (min-width:901px){
+  .hm-palma .wrap > .eyebrow,.hm-palma .wrap > h2,.hm-palma .wrap > p.muted{display:block;width:min(560px,100%);max-width:none!important;margin-left:auto;margin-right:0}
+}
