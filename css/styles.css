@@ -1548,3 +1548,8 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .phero{min-height:clamp(500px,40vw,580px)!important}
   .pclose{min-height:clamp(340px,27vw,400px)!important}
 }
+/* 29-09: portada de Palma = foto de la azotea (antes en la home); la home "Above the rooftops" = la de la torre */
+.phero .bg[src*="home-above"]{object-position:40% 45%}
+@media (max-width:700px){ .phero .bg[src*="home-above"]{object-position:30% 45%} }
+.wellness-split .pane .bg[src*="palma-sunset"]{object-position:38% 30%}
+@media (max-width:700px){ .wellness-split .pane.light-pane::before{background:linear-gradient(180deg,rgba(243,237,226,.9) 0%,rgba(243,237,226,.84) 65%,rgba(243,237,226,.6) 100%)} }
