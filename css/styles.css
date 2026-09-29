@@ -1429,3 +1429,18 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .house-grid.house-grid-4{display:flex;flex-direction:column;gap:8px;max-width:520px}
 .house-grid-4 .hg-row{display:flex;gap:8px}
 .house-grid-4 .imgframe{flex:var(--r) 1 0;aspect-ratio:var(--r);min-width:0}
+
+/* The House · filas "rectangulares": las fotos ocupan toda la altura del texto, todas del mismo tamaño en cada fila,
+   y los pies (etiqueta + texto) alineados en la misma línea */
+@media (min-width:901px){
+  .hx-row:has(.hx-grid){align-items:stretch}
+  .hx-row:has(.hx-grid) .hx-text{padding-top:0;display:flex;flex-direction:column}
+  .hx-row:has(.hx-grid) .hx-text .link-arrow{margin-top:auto;align-self:flex-start}
+  .hx-row:has(.hx-grid) .hx-text h2{font-size:clamp(1.8rem,2.3vw,2.35rem)}
+  .hx-grid.g5,.hx-grid.g4,.hx-grid.g3{grid-template-rows:1fr auto auto;grid-auto-flow:column;column-gap:8px;row-gap:0;height:100%}
+  .hx-grid.g3{grid-template-columns:repeat(3,1fr)}
+  .hx-grid .item{display:contents}
+  .hx-grid .item .imgframe{aspect-ratio:auto!important;height:auto!important;min-height:clamp(150px,12vw,240px)}
+  .hx-grid .item .cap{margin-top:12px}
+}
+@media (min-width:901px){ .hx-row .orn-bl{display:none} }
