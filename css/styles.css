@@ -212,7 +212,7 @@ h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0;letter-spacing:-.0
 .band .booking-bar .field .k,.band .booking-bar .field .v{color:var(--cream)}
 
 /* CLOSING */
-.closing{position:relative;color:var(--cream);text-align:right;min-height:70vh;display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#33271d}
+.closing{position:relative;color:var(--cream);text-align:right;min-height:clamp(340px,30vw,440px);display:flex;align-items:center;overflow:hidden;isolation:isolate;background:#33271d}
 .closing .ph{position:absolute;inset:0;z-index:-1}
 .closing .inner{margin-left:auto;padding:clamp(30px,6vw,90px)}
 .closing h2{color:var(--cream);font-size:clamp(2.2rem,5vw,3.6rem)}
@@ -812,7 +812,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 }
 
 /* foto entera con el texto encima */
-.cover{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(560px,62vw,820px);display:flex;align-items:center}
+.cover{position:relative;isolation:isolate;overflow:hidden;min-height:clamp(420px,36vw,540px);display:flex;align-items:center}
 .cover .cover-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .cover::before{content:"";position:absolute;inset:0;z-index:-1}
 .cover > .wrap{width:100%;padding-block:clamp(72px,8vw,120px)}
@@ -888,7 +888,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
    ===================================================================== */
 /* ritmo general del mockup: contenedor más ancho y menos aire vertical */
 :root{--wrap:1320px}
-.section{padding-block:clamp(48px,6vw,92px)}
+.section{padding-block:clamp(40px,4.2vw,64px)}
 @media (min-width:901px){
   .section > .wrap.two-col > .imgframe,
   .section > .wrap.two-col > figure.captioned .imgframe{min-height:clamp(400px,36vw,600px)}
@@ -1444,3 +1444,72 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .hx-grid .item .cap{margin-top:12px}
 }
 @media (min-width:901px){ .hx-row .orn-bl{display:none} }
+
+/* =====================================================================
+   COMPACTO COMO LOS MOCKUPS (29-09-2026): contenido casi a todo el ancho, menos aire vertical,
+   texto más ancho y compacto, fotos llenando las filas. Solo escritorio.
+   ===================================================================== */
+@media (min-width:1101px){
+  :root{--wrap:1440px}
+  /* El Patio */
+  .px-m2e{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)!important;align-items:stretch}
+  .px-row .px-text,.px-bar .px-text,.px-food .px-text{align-self:center}
+  .px-text h2{font-size:clamp(2rem,2.7vw,2.6rem)}
+  .px-m2e .px-text h2{white-space:nowrap}
+  .px-text p{line-height:1.42;max-width:62ch;margin-bottom:8px}
+  .px-row,.px-bar{padding-block:clamp(16px,1.6vw,24px)!important}
+  .px-m2e .px-tri{align-self:center}
+  .px-food{grid-template-columns:1fr 1.05fr .9fr}
+  .px-food-big{min-height:clamp(280px,22vw,380px)}
+  .px-bar .px-text{padding-block:clamp(18px,2vw,28px)}
+  .px-bar-imgs .imgframe{height:clamp(240px,19vw,320px)}
+  /* héroe y cierre más bajos, como el mockup */
+  .px-hero{min-height:clamp(400px,30vw,470px)!important}
+  .px-closing{min-height:clamp(260px,20vw,300px)!important}
+  /* cocina: foto grande + texto + 2 verticales, todo a la misma altura */
+  .px-food-small .imgframe{aspect-ratio:.72/1}
+  .px-food-big{min-height:clamp(260px,21vw,330px)}
+  .px-food .px-text{padding-block:clamp(20px,2vw,30px)}
+  .px-bar-imgs .imgframe{height:clamp(220px,17.5vw,270px)!important}
+  /* música: banda compacta */
+  .music-cover{min-height:0!important}
+  .music-cover > .wrap{padding-block:clamp(34px,3vw,46px)!important}
+  .music-cover .cover-text p{max-width:62ch}
+  /* desayuno / eventos privados: foto más estrecha y texto más ancho y compacto */
+  .two-col.pair > div{grid-template-columns:.78fr 1fr!important}
+  .two-col.pair > div > .imgframe{min-height:clamp(230px,18vw,280px)!important}
+  .two-col.pair > div > .eyebrow{margin-top:clamp(16px,1.6vw,24px)!important}
+  .two-col.pair > div > .stack-cta{margin-bottom:clamp(16px,1.6vw,24px)!important}
+  .two-col.pair h2{font-size:clamp(1.45rem,1.9vw,1.85rem)!important;margin:.2em 0 .35em!important}
+  .two-col.pair p{line-height:1.45;max-width:none;margin-bottom:8px}
+  /* texto de las filas: columna más ancha y titulares en una línea */
+  .px-bar{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr)!important}
+  .px-text .serif-lead{margin:4px 0 12px!important}
+  /* héroe: tipografía algo menor, como el mockup */
+  .px-hero{min-height:0!important;padding-bottom:0}
+  .px-hero .hero-in{padding-block:14px 30px!important}
+  .px-hero .sub,.px-hero .px-sub2{max-width:60ch!important}
+  .px-hero h1{font-size:clamp(2.6rem,4vw,3.5rem)}
+  .px-hero .sub{margin-top:14px}
+  /* música: filas del programa más juntas */
+  .music-cover .mp-next-list li{padding:7px 0}
+  .music-cover .cover-text p{margin:0 0 10px;line-height:1.5}
+  .music-cover .stack-cta{margin-top:14px}
+  .music-cover .cover-text h2{margin:.2em 0 .3em!important}
+  .music-cover .music-rule{margin:4px 0 16px}
+  /* cierre */
+  .px-closing .hero-in{padding-block:18px!important}
+  .px-closing .sub{max-width:64ch!important}
+  .px-closing h2{font-size:clamp(1.9rem,2.8vw,2.4rem)!important}
+  .px-closing .sub{font-size:1rem;margin-top:6px}
+}
+
+/* Compacto como los mockups · resto de páginas (solo escritorio; sin tocar textos) */
+@media (min-width:1101px){
+  .section h2{font-size:clamp(1.9rem,2.7vw,2.5rem);margin:.25em 0 .4em}
+  .section p{line-height:1.5}
+  .reviews .grid{margin-top:28px}
+  .reviews blockquote{margin-bottom:12px}
+  .closing h2{font-size:clamp(2rem,3.4vw,2.9rem)}
+  .page-hero h1{font-size:clamp(2.6rem,4vw,3.6rem)}
+}
