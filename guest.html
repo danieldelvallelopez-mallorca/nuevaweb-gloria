@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Work with us · Glòria de Sant Jaume</title>
-<meta name="description" content="Join the team at Glòria de Sant Jaume and Cabau Hotels: send us your CV.">
+<title>Your stay · Glòria de Sant Jaume</title>
+<meta name="description" content="Guest services at Hotel Glòria de Sant Jaume: order to your room, request a table or a treatment, tonight's music and everything about the house.">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png?v=02558355">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=4d293441">
 <meta name="theme-color" content="#534134">
@@ -15,10 +15,9 @@
 <link rel="stylesheet" href="css/styles.css?v=65">
 <link rel="stylesheet" href="css/concierge.css?v=3">
 <link rel="stylesheet" href="css/requests.css?v=1">
-<link rel="stylesheet" href="css/legal.css?v=4">
-<link rel="stylesheet" href="css/careers.css?v=1">
+<link rel="stylesheet" href="css/guest.css?v=1">
 </head>
-<body class="legal-body">
+<body class="guest-body">
 
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="header">
@@ -40,60 +39,173 @@
   </div>
 </header>
 
-<!-- ================= TRABAJA CON NOSOTROS / WORK WITH US ================= -->
-<main class="legal-page careers-page">
-  <div class="legal-wrap">
-    <span class="eyebrow">Work with us</span>
-    <h1 class="careers-title">Be part of the house.</h1>
-    <p class="legal-intro">We are always happy to meet people who care about the details. Tell us where you would like to work and send us your CV: we will keep it in mind for current and future openings at Glòria and across Cabau Hotels.</p>
+<!-- ================= GLÒRIA GUEST · hub para huéspedes (botón NFC / WePass de la habitación) ================= -->
+<main class="gx">
 
-    <form class="careers-form" id="careers-form" action="api/careers.php" method="post" enctype="multipart/form-data" novalidate>
-      <div class="cf-row">
-        <label class="cf-field"><span>Full name *</span><input type="text" name="name" required maxlength="120" autocomplete="name"></label>
-        <label class="cf-field"><span>Email *</span><input type="email" name="email" required maxlength="160" autocomplete="email"></label>
-      </div>
-      <div class="cf-row">
-        <label class="cf-field"><span>Phone</span><input type="tel" name="phone" maxlength="40" autocomplete="tel"></label>
-        <label class="cf-field"><span>Where would you like to work? *</span>
-          <select name="hotel" required>
-            <option value="">Choose an option</option>
-            <option value="gloria">Glòria de Sant Jaume · Palma</option>
-            <option value="any-cabau">Any Cabau Hotels hotel</option>
-            <option value="other">Another Cabau Hotels hotel (tell us below)</option>
-          </select></label>
-      </div>
-      <div class="cf-row">
-        <label class="cf-field"><span>Area *</span>
-          <select name="area" required>
-            <option value="">Choose an area</option>
-            <option value="reception">Reception &amp; guest relations</option>
-            <option value="housekeeping">Housekeeping</option>
-            <option value="kitchen">Kitchen</option>
-            <option value="dining">Restaurant &amp; bar</option>
-            <option value="spa">Spa &amp; wellness</option>
-            <option value="maintenance">Maintenance</option>
-            <option value="sales">Sales, events &amp; marketing</option>
-            <option value="admin">Administration</option>
-            <option value="other">Other</option>
-          </select></label>
-        <label class="cf-field cf-file"><span>CV (PDF or Word, max. 5 MB) *</span><input type="file" name="cv" required accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"></label>
-      </div>
-      <label class="cf-field"><span>Anything you would like to tell us</span><textarea name="message" rows="4" maxlength="1500"></textarea></label>
-      <label class="cf-hp" aria-hidden="true">Leave this field empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+  <!-- 01 · ACCIONES -->
+  <section class="gx-top">
+    <span class="orn-tile"><svg class="tile" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="-0.5 -0.5 37.3 37.3" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14.19 17.75C14.19 15.72 15.84 14.07 17.87 14.07M17.87 14.07C19.9 14.07 21.55 15.72 21.55 17.75M21.55 17.75C21.55 19.79 19.9 21.43 17.87 21.43M17.87 21.43C15.84 21.43 14.19 19.79 14.19 17.75M20.33 28.55C21.99 28.17 23.51 27.42 24.8 26.39M24.8 26.39C24.59 26.44 24.37 26.47 24.14 26.47M24.14 26.47C22.62 26.47 21.38 25.23 21.38 23.71M21.38 23.71C21.38 22.19 22.62 20.95 24.14 20.95M24.14 20.95C25.66 20.95 26.9 22.19 26.9 23.71M26.9 23.71C26.9 23.89 26.88 24.06 26.85 24.23M26.85 24.23C27.7 23.05 28.33 21.7 28.66 20.23M28.66 20.23L28.66 20.24M28.66 20.24C30.88 19.92 33.46 17.76 33.46 17.76M33.46 17.76L33.46 17.75M33.46 17.75L33.46 17.75M33.46 17.75C33.46 17.75 30.88 15.58 28.66 15.27M28.66 15.27L28.66 15.27M28.66 15.27C28.33 13.81 27.7 12.46 26.85 11.28M26.85 11.28C26.88 11.45 26.9 11.62 26.9 11.8M26.9 11.8C26.9 13.32 25.66 14.56 24.14 14.56M24.14 14.56C22.62 14.56 21.38 13.32 21.38 11.8M21.38 11.8C21.38 10.28 22.62 9.04 24.14 9.04M24.14 9.04C24.37 9.04 24.59 9.07 24.8 9.12M24.8 9.12C23.51 8.09 21.99 7.34 20.33 6.96M20.33 6.96C19.95 4.78 17.88 2.31 17.88 2.31M17.88 2.31L17.87 2.31M17.87 2.31L17.86 2.31M17.86 2.31C17.86 2.31 15.79 4.78 15.41 6.96M15.41 6.96C13.75 7.34 12.23 8.09 10.94 9.12M10.94 9.12C11.15 9.07 11.38 9.04 11.6 9.04M11.6 9.04C13.13 9.04 14.36 10.28 14.36 11.8M14.36 11.8C14.36 13.32 13.13 14.56 11.6 14.56M11.6 14.56C10.08 14.56 8.84 13.32 8.84 11.8M8.84 11.8C8.84 11.62 8.86 11.45 8.89 11.28M8.89 11.28C8.04 12.46 7.42 13.81 7.08 15.27M7.08 15.27L7.08 15.27M7.08 15.27C4.86 15.58 2.28 17.75 2.28 17.75M2.28 17.75L2.28 17.75M2.28 17.75L2.28 17.76M2.28 17.76C2.28 17.76 4.86 19.92 7.08 20.24M7.08 20.24L7.08 20.23M7.08 20.23C7.42 21.7 8.04 23.05 8.89 24.23M8.89 24.23C8.86 24.06 8.84 23.89 8.84 23.71M8.84 23.71C8.84 22.19 10.08 20.95 11.6 20.95M11.6 20.95C13.13 20.95 14.36 22.19 14.36 23.71M14.36 23.71C14.36 25.23 13.13 26.47 11.6 26.47M11.6 26.47C11.38 26.47 11.15 26.44 10.94 26.39M10.94 26.39C12.23 27.42 13.75 28.17 15.41 28.55M15.41 28.55C15.79 30.73 17.86 33.2 17.86 33.2M17.86 33.2L17.87 33.2M17.87 33.2L17.88 33.2M17.88 33.2C17.88 33.2 19.95 30.73 20.33 28.55" stroke-width="0.47"/><path d="M-0.2 -0.36h36.21v36.21h-36.21z" stroke-width="0.47"/></svg></span>
+    <div class="gx-wrap">
+      <span class="eyebrow">Glòria de Sant Jaume</span>
+      <h1 class="gx-title">Your stay at Glòria</h1>
+      <p class="gx-lead">A house with a story.</p>
+      <nav class="gx-actions" aria-label="Guest services">
+        <a class="gx-act gx-act-main" href="https://hotelgloriapedidos.es/?acceso=1" target="_blank" rel="noopener" data-track="guest_order">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 22h22M7 22a9 9 0 0 1 18 0M16 11V9M13 9h6M4 25h24"/></svg>
+          <span>Order to your room</span></a>
+        <a class="gx-act" href="#" role="button" data-request="restaurant">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M10 4v8a3 3 0 0 0 6 0V4M13 4v24M22 28V4c-3 2-4 6-4 10h4"/></svg>
+          <span>Request a table</span></a>
+        <a class="gx-act" href="#" role="button" data-request="spa">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27c-6 0-10-4-10-9 4 0 8 2 10 6 2-4 6-6 10-6 0 5-4 9-10 9zM16 24c-2-3-3-6-3-9 0-3 1.5-6 3-8 1.5 2 3 5 3 8 0 3-1 6-3 9z"/></svg>
+          <span>Request a treatment</span></a>
+        <a class="gx-act" href="https://wa.me/34620518344" target="_blank" rel="noopener" data-track="whatsapp">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4a12 12 0 0 0-10.3 18.2L4 28l6-1.6A12 12 0 1 0 16 4z"/><path d="M12 11c0 5 4 9 9 9l1.5-2.5-3-1.5-1.3 1.3c-1.7-.7-3-2-3.7-3.7l1.3-1.3-1.5-3z"/></svg>
+          <span>WhatsApp us</span></a>
+        <a class="gx-act" href="tel:+34971717997" data-track="phone">
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M9 4l4 6-2.5 2.5c1.5 3.5 4.5 6.5 8 8L21 18l6 4-2 5c-11 0-20-9-20-20z"/></svg>
+          <span>Call reception</span></a>
+        <a class="gx-act" href="index.html#book" data-book>
+          <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M5 8h22v19H5zM5 13h22M11 5v6M21 5v6M12 20l3 3 6-6"/></svg>
+          <span>Book your next stay</span></a>
+      </nav>
+    </div>
+  </section>
 
-      <div class="cf-legal">
-        <p class="cf-legal-title">Basic data protection information</p>
-        <p><strong>Controller:</strong> the company operating Hotel Glòria de Sant Jaume (Cabau Hotels). <strong>Purpose:</strong> to manage your application in current and future selection processes. <strong>Legal basis:</strong> your consent. <strong>Retention:</strong> 12 months, after which your CV is deleted. <strong>Recipients:</strong> none, unless you allow us to share it with the other Cabau Hotels hotels. <strong>Rights:</strong> access, rectification, erasure, objection, restriction and portability, and to withdraw your consent at any time, as explained in our <a href="privacy.html">Privacy Policy</a>.</p>
+  <!-- 02 · MÚSICA DE LA SEMANA (js/guest.js + js/music-data.js) -->
+  <section class="gx-music" id="music">
+    <div class="gx-wrap gx-music-in">
+      <div>
+        <span class="eyebrow">Music at Glòria</span>
+        <h2>The house has its own soundtrack.</h2>
+        <p class="gx-p">As evening falls, music becomes part of the atmosphere at Glòria. Live piano and occasional vocals accompany dinner, drinks and conversation every evening at El Patio, from 20:00 to 22:00.</p>
       </div>
-      <label class="cf-check"><input type="checkbox" name="consent" value="1" required><span>I have read the data protection information and I consent to Glòria de Sant Jaume processing my data and my CV for selection processes. *</span></label>
-      <label class="cf-check"><input type="checkbox" name="share" value="1"><span>I also allow my CV to be shared with the other Cabau Hotels hotels.</span></label>
+      <div class="gx-week">
+        <span class="eyebrow">This week's music</span>
+        <ol class="gx-days" id="gx-days" data-noi18n>
+          <li class="gx-day"><span class="gx-d-art">Every evening, live music accompanies dinner at El Patio, from 20:00 – 22:00.</span></li>
+        </ol>
+        <p class="gx-note">Tuesday &amp; Wednesday · El Patio rests</p>
+        <div class="gx-cta"><a class="btn btn-light" href="#" role="button" data-request="restaurant">Request a table</a><a class="link-arrow" href="el-patio.html#music">See the full programme →</a></div>
+      </div>
+    </div>
+  </section>
 
-      <div class="cf-actions">
-        <button class="btn btn-dark" type="submit">Send my application</button>
-        <p class="cf-status" role="status" aria-live="polite"></p>
+  <!-- 03 · LA CASA -->
+  <section class="gx-cards-sec">
+    <div class="gx-wrap">
+      <div class="gx-cards">
+
+        <article class="gx-card">
+          <a class="gx-img" href="el-patio.html" tabindex="-1" aria-hidden="true"><img loading="lazy" decoding="async" src="img/guest/home-patio.jpg" alt="" width="900" height="814"></a>
+          <div class="gx-body">
+            <span class="eyebrow">El Patio</span>
+            <h3>The heart of the house.</h3>
+            <p>At the centre of Glòria, El Patio brings the house to life from breakfast to evening. Seasonal cooking, cocktails, conversation and nights accompanied by music. For hotel guests and visitors alike.</p>
+            <div class="gx-links"><a class="link-arrow" href="el-patio.html">Explore El Patio</a><a class="link-arrow" href="#" role="button" data-request="restaurant">Request a table</a></div>
+          </div>
+        </article>
+
+        <article class="gx-card">
+          <a class="gx-img" href="el-patio.html#music" tabindex="-1" aria-hidden="true"><img loading="lazy" decoding="async" src="img/guest/home-music-dining.jpg" alt="" width="900" height="675"></a>
+          <div class="gx-body">
+            <span class="eyebrow">Music at Glòria</span>
+            <h3>The house has its own soundtrack.</h3>
+            <p>For three years, live music has been part of the rhythm of Glòria. Piano, voices and different sounds fill the house throughout the week.</p>
+            <div class="gx-links"><a class="link-arrow" href="el-patio.html#music">See the full programme →</a></div>
+          </div>
+        </article>
+
+        <article class="gx-card">
+          <a class="gx-img" href="wellness.html" tabindex="-1" aria-hidden="true"><img loading="lazy" decoding="async" src="img/guest/wellness-hero.jpg" alt="" width="900" height="675"></a>
+          <div class="gx-body">
+            <span class="eyebrow">Wellness at Glòria</span>
+            <h3>A different<br>rhythm.</h3>
+            <p>From the quiet spaces beneath the house to the sunlight of the rooftop above, wellness at Glòria is simply about finding time to slow down.</p>
+            <div class="gx-links"><a class="link-arrow" href="docs/spa-menu-2026.pdf" target="_blank" rel="noopener" data-track="spa_menu">Explore treatments</a><a class="link-arrow" href="#" role="button" data-request="spa">Request a treatment</a><a class="link-arrow" href="wellness.html">Discover wellness</a></div>
+          </div>
+        </article>
+
+        <article class="gx-card gx-card-house">
+          <a class="gx-img" href="the-house.html#details" tabindex="-1" aria-hidden="true"><img loading="lazy" decoding="async" src="img/guest/house-material-hydraulic.jpg" alt="" width="900" height="815"></a>
+          <div class="gx-body">
+            <span class="eyebrow">The Details of the House</span>
+            <h3>Look closely.</h3>
+            <p>Stone, wood, marble and original hydraulic tiles carry traces of the house through the centuries.</p>
+            <ul class="gx-materials">
+              <li><img loading="lazy" decoding="async" src="img/guest/house-material-santanyi.jpg" alt="" width="400" height="362"><span>Santanyí stone</span></li>
+              <li><img loading="lazy" decoding="async" src="img/guest/house-material-mares.jpg" alt="" width="400" height="365"><span>Marés stone</span></li>
+              <li><img loading="lazy" decoding="async" src="img/guest/house-material-marble.jpg" alt="" width="400" height="443"><span>Marble staircase</span></li>
+            </ul>
+            <div class="gx-links"><a class="link-arrow" href="the-house.html#details">Discover the details →</a></div>
+          </div>
+        </article>
+
+        <article class="gx-card">
+          <a class="gx-img" href="experiences.html" tabindex="-1" aria-hidden="true"><img loading="lazy" decoding="async" src="img/guest/exp-card-evening.jpg" alt="" width="900" height="576"></a>
+          <div class="gx-body">
+            <span class="eyebrow">Experiences at Glòria</span>
+            <h3>A little more<br>of Glòria.</h3>
+            <p>Some moments deserve a little more time. Discover experiences created around the flavours, spaces and quiet rituals of the house, to enjoy during your stay or simply whenever you feel like returning to Glòria.</p>
+            <div class="gx-links"><a class="link-arrow" href="experiences.html">Explore all experiences →</a></div>
+          </div>
+        </article>
+
+        <article class="gx-card">
+          <a class="gx-img" href="palma.html" tabindex="-1" aria-hidden="true"><img loading="lazy" decoding="async" src="img/guest/palma-guide-art.jpg" alt="" width="900" height="660"></a>
+          <div class="gx-body">
+            <span class="eyebrow">Palma by Glòria</span>
+            <h3>A Glòria guide<br>to Palma.</h3>
+            <p>Step outside the house and discover Palma at your own pace. From historic streets and quiet corners to art, architecture and local flavours, our guide brings together the places that make the city worth exploring.</p>
+            <ul class="gx-guides">
+              <li><a href="palma.html#guide"><span class="gx-g-n">01 · Art &amp; Culture</span><span>Art &amp; Galleries</span></a></li>
+              <li><a href="palma.html#guide"><span class="gx-g-n">02 · Food &amp; Culture</span><span>Mallorcan Flavours</span></a></li>
+              <li><a href="palma.html#guide"><span class="gx-g-n">03 · On Foot</span><span>A Walk from Glòria</span></a></li>
+              <li><a href="palma.html#shopping"><span class="gx-g-n">Fem barri · Sant Jaume</span><span>Our neighbours.</span></a></li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="gx-card gx-card-circle">
+          <div class="gx-body">
+            <span class="eyebrow">Cabau Circle</span>
+            <h3>Feel part of the family.</h3>
+            <p>Discover Cabau Circle, the loyalty programme from Cabau Hotels.</p>
+            <div class="gx-links"><a class="btn btn-ghost-light" href="https://cabauhotels.com/" target="_blank" rel="noopener">Discover Cabau Circle →</a></div>
+            <img class="gx-cabau" loading="lazy" decoding="async" src="img/logo-cabau.webp" alt="Cabau Hotels">
+          </div>
+        </article>
+
       </div>
-    </form>
-  </div>
+    </div>
+  </section>
+
+  <!-- 04 · PRÁCTICO -->
+  <section class="gx-info">
+    <div class="gx-wrap">
+      <span class="eyebrow">Contact</span>
+      <div class="gx-info-grid">
+        <div class="gx-info-item">
+          <h3>Address</h3>
+          <p>Carrer Sant Jaume, 18<br>07012 Palma de Mallorca</p>
+          <a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel+Gl%C3%B2ria+de+Sant+Jaume+Palma" target="_blank" rel="noopener" data-track="maps">Open in Google Maps →</a>
+        </div>
+        <div class="gx-info-item">
+          <h3>Phone</h3>
+          <p>Reservas · <a href="tel:+34971921891">+34 971 92 18 91</a><br>Hotel · <a href="tel:+34971717997">+34 971 71 79 97</a></p>
+        </div>
+        <div class="gx-info-item">
+          <h3>Email</h3>
+          <p><a href="mailto:info@gloriasantjaume.com">info@gloriasantjaume.com</a><br><a href="mailto:reservas@gloriasantjaume.com">reservas@gloriasantjaume.com</a></p>
+        </div>
+        <div class="gx-info-item">
+          <h3>WhatsApp</h3>
+          <p><a href="https://wa.me/34620518344" target="_blank" rel="noopener" data-track="whatsapp">+34 620 51 83 44</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <!-- ================= FOOTER ================= -->
@@ -142,6 +254,7 @@
 <script src="js/site.js?v=21d"></script>
 <script src="js/concierge.js?v=5" defer></script>
 <script src="js/requests.js?v=1" defer></script>
-<script src="js/careers.js?v=2" defer></script>
+<script src="js/music-data.js" defer></script>
+<script src="js/guest.js?v=1" defer></script>
 </body>
 </html>
