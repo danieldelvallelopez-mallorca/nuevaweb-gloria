@@ -27,3 +27,6 @@ DirectoryIndex index.html
   ExpiresByType video/mp4 "access plus 30 days"
 </IfModule>
 AddType video/mp4 .mp4
+
+# Zona de clientes instalable (web2)
+AddType application/manifest+json .webmanifest
