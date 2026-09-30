@@ -1,0 +1,16 @@
+{
+  "name": "Glòria de Sant Jaume",
+  "short_name": "Glòria",
+  "description": "Tu estancia en Glòria: pedidos, reservas, spa, traslados y experiencias.",
+  "start_url": "guest.html?source=app",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F3EDE2",
+  "theme_color": "#534134",
+  "lang": "es",
+  "icons": [
+    { "src": "img/app-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "img/app-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "img/app-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

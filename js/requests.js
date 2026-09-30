@@ -21,16 +21,25 @@
   var ZONES = ["rooftop-1","rooftop-2","rooftop-3","spa","bar"];
 
   /* Ubicación del cliente: cada NFC/QR del hotel abre guest.html?room=<habitación o zona>.
-     Se recuerda durante la visita (sessionStorage) para rellenar la habitación sola. */
+     Se recuerda durante la visita (sessionStorage) y, si es una habitación, 4 días en el móvil
+     (localStorage) para que la «app» instalada en la pantalla de inicio la siga sabiendo.
+     Cada nuevo escaneo de NFC/QR la sustituye. */
+  var LOC_DAYS = 4;
   var LOC = (function(){
+    function ok(x){ return !!x && (ROOMS.indexOf(x) > -1 || ZONES.indexOf(x) > -1); }
     var v = null;
     try{ v = new URLSearchParams(location.search).get("room"); }catch(e){}
     v = v ? String(v).toLowerCase().trim() : null;
-    if(v && (ROOMS.indexOf(v) > -1 || ZONES.indexOf(v) > -1)){
+    if(ok(v)){
       try{ sessionStorage.setItem("gloria_loc", v); }catch(e){}
+      try{ if(ROOMS.indexOf(v) > -1) localStorage.setItem("gloria_room", JSON.stringify({r:v, t:Date.now()})); }catch(e){}
       return v;
     }
-    try{ var s = sessionStorage.getItem("gloria_loc"); if(s && (ROOMS.indexOf(s) > -1 || ZONES.indexOf(s) > -1)) return s; }catch(e){}
+    try{ var s = sessionStorage.getItem("gloria_loc"); if(ok(s)) return s; }catch(e){}
+    try{
+      var saved = JSON.parse(localStorage.getItem("gloria_room") || "null");
+      if(saved && ok(saved.r) && Date.now() - saved.t < LOC_DAYS * 864e5) return saved.r;
+    }catch(e){}
     return null;
   })();
   window.gloriaLocation = {
