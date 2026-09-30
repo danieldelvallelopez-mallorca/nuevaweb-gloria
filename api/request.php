@@ -1,6 +1,8 @@
 <?php
-/* Solicitudes de mesa (El Patio) y de tratamiento (Spa by Eric) desde la web.
+/* Solicitudes de servicios desde la web (mesa en El Patio, spa, traslados, sorpresas, check-out tardío…).
    NO es disponibilidad en tiempo real: el cliente envía una SOLICITUD y el equipo la confirma después.
+   - El catálogo y sus reglas (días cerrados, antelación, horas, personas, campos extra, habitación)
+     están en ../data/services.json: la misma fuente que usa la web (js/requests.js, js/guest.js).
    - Guarda la solicitud en Supabase (tabla `requests`) si gloria-secrets.php trae 'supabase_url' y 'supabase_anon_key'.
    - Avisa por email a reservas (o a 'requests_to' de gloria-secrets.php), con Reply-To al cliente.
    - Envía al cliente un acuse en su idioma: "hemos recibido su solicitud, aún no es una confirmación". */
@@ -16,24 +18,9 @@ const REQUESTS_TO = ['reservas@gloriasantjaume.com'];
 const REQUEST_TZ = 'Europe/Madrid';
 const REQUEST_MAX_DAYS = 180;
 const REQUEST_BODY_MAX = 16384;
-const RESTAURANT_CLOSED_DAYS = [2, 3];        // ISO-8601 'N': 2 = martes, 3 = miércoles (El Patio descansa)
-const RESTAURANT_PAX_MAX = 10;
-const SPA_PAX_MAX = 2;
+const REQUEST_CATALOG = __DIR__ . '/../data/services.json';
+const REQUEST_LANGS = ['es', 'en', 'de', 'fr', 'sv'];
 const HOTEL_ROOMS = ['101', '102', '103', '104', '105', '106', '107', '201', '202', '203', '204', '205', '206', '207'];
-const SPA_TREATMENTS = [
-    'sports-60'          => 'Sports massage · 60 min · 120 €',
-    'relaxing-60'        => 'Relaxing massage · 60 min · 120 €',
-    'lymphatic-60'       => 'Lymphatic drainage · 60 min · 120 €',
-    'reflexology-60'     => 'Reflexology & craniosacral · 60 min · 120 €',
-    'pregnancy-60'       => 'Pregnancy massage · 60 min · 120 €',
-    'ayurvedic-90'       => 'Ayurvedic massage · 90 min · 250 €',
-    'lomilomi-90'        => 'Lomi Lomi · 90 min · 250 €',
-    'inka-90'            => 'Inka energetic massage · 90 min · 220 €',
-    'facial-kobido-50'   => 'Facial & Kobido · 50 min · 190 €',
-    'ritual-olive-90'    => 'Ritual · The Power of the Olive Tree · 90 min · 230 €',
-    'ritual-lavender-90' => 'Ritual · Lavender Garden · 90 min · 230 €',
-    'ritual-coconut-90'  => 'Ritual · Organic Coconut · 90 min · 230 €',
-];
 
 function out(int $code, array $body): void { http_response_code($code); echo json_encode($body, JSON_UNESCAPED_UNICODE); exit; }
 
@@ -55,18 +42,92 @@ function field(array $in, string $k, int $max): string {
     return trim(mb_substr(str_replace(["\r", "\0"], '', (string)$v), 0, $max));
 }
 
+/** Texto libre de un campo extra: sin caracteres de control, recortado y de como mucho $max caracteres. */
+function request_clean_text($v, int $max): string {
+    if (!is_scalar($v)) return '';
+    $s = preg_replace('/[\x00-\x1F\x7F]+/u', ' ', (string)$v);
+    if (!is_string($s)) return '';                                   // UTF-8 no válido
+    return trim(mb_substr(trim($s), 0, $max));
+}
+
+/** Catálogo de servicios activos, indexado por id. Null si el JSON falta o no es válido. */
+function request_catalog(): ?array {
+    $raw = @file_get_contents(REQUEST_CATALOG);
+    if ($raw === false) return null;
+    $c = json_decode($raw, true);
+    if (!is_array($c) || !is_array($c['services'] ?? null)) return null;
+    $byId = [];
+    foreach ($c['services'] as $s) {
+        if (is_array($s) && is_string($s['id'] ?? null) && ($s['active'] ?? true) !== false) $byId[$s['id']] = $s;
+    }
+    return $byId;
+}
+
+/** "HH:MM" → minutos desde medianoche, o null. */
+function request_minutes(string $hhmm): ?int {
+    if (!preg_match('/^([01]\d|2[0-3]):([0-5]\d)$/', $hhmm, $m)) return null;
+    return (int)$m[1] * 60 + (int)$m[2];
+}
+
+/** Hora válida para el servicio: dentro de from..to y en la rejilla de 'step' minutos desde 'from'. */
+function request_time_ok(array $svcTime, string $time): bool {
+    $mins = request_minutes($time);
+    $from = request_minutes((string)($svcTime['from'] ?? ''));
+    $to = request_minutes((string)($svcTime['to'] ?? ''));
+    $step = (int)($svcTime['step'] ?? 0);
+    if ($mins === null || $from === null || $to === null || $step < 1) return false;
+    return $mins >= $from && $mins <= $to && ($mins - $from) % $step === 0;
+}
+
 /** Destinatarios del aviso interno: los de gloria-secrets.php ('requests_to') o reservas@. */
 function request_recipients(array $cfg): array {
     $list = is_array($cfg['requests_to'] ?? null) && $cfg['requests_to'] ? $cfg['requests_to'] : REQUESTS_TO;
     return array_values(array_unique(array_filter($list, fn($a) => is_string($a) && filter_var($a, FILTER_VALIDATE_EMAIL))));
 }
 
-/** Franja horaria válida: restaurante 19:00–22:30 cada media hora; spa 10:00–20:00 en punto. */
-function request_time_ok(string $kind, string $time): bool {
-    if (!preg_match('/^([01]\d|2[0-3]):([0-5]\d)$/', $time, $m)) return false;
-    $mins = (int)$m[1] * 60 + (int)$m[2];
-    if ($kind === 'restaurant') return $mins >= 19 * 60 && $mins <= 22 * 60 + 30 && (int)$m[2] % 30 === 0;
-    return $mins >= 10 * 60 && $mins <= 20 * 60 && (int)$m[2] === 0;
+/**
+ * Valida los campos extra del servicio. Devuelve [valores (nombre => valor crudo), detalles en español
+ * (etiqueta ES => opción ES / texto / número)] o termina con 400.
+ */
+function request_extra_fields(array $svc, array $in): array {
+    $given = is_array($in['fields'] ?? null) ? $in['fields'] : [];
+    $values = [];
+    $details = [];
+    foreach (($svc['fields'] ?? []) as $f) {
+        if (!is_array($f) || !is_string($f['name'] ?? null)) continue;
+        $name = $f['name'];
+        $raw = $given[$name] ?? ($in[$name] ?? '');                  // compatibilidad: 'treatment' suelto (requests.js antiguo)
+        $required = !empty($f['required']);
+        $type = (string)($f['type'] ?? 'text');
+        $label = (string)($f['label']['es'] ?? $name);
+        $code = $name === 'treatment' ? 'treatment' : 'fields';
+
+        if ($type === 'select') {
+            $v = is_scalar($raw) ? trim((string)$raw) : '';
+            if ($v === '') { if ($required) out(400, ['error' => $code, 'field' => $name]); continue; }
+            $opt = null;
+            foreach (($f['options'] ?? []) as $o) {
+                if (is_array($o) && (string)($o['value'] ?? '') === $v) { $opt = $o; break; }
+            }
+            if ($opt === null) out(400, ['error' => $code, 'field' => $name]);
+            $values[$name] = $v;
+            $details[$label] = (string)($opt['label']['es'] ?? $v);
+        } elseif ($type === 'number') {
+            $v = is_scalar($raw) ? trim((string)$raw) : '';
+            if ($v === '') { if ($required) out(400, ['error' => $code, 'field' => $name]); continue; }
+            if (!preg_match('/^-?\d{1,6}$/', $v)) out(400, ['error' => $code, 'field' => $name]);
+            $n = (int)$v;
+            if ((isset($f['min']) && $n < (int)$f['min']) || (isset($f['max']) && $n > (int)$f['max'])) out(400, ['error' => $code, 'field' => $name]);
+            $values[$name] = $n;
+            $details[$label] = $n;
+        } else {
+            $v = request_clean_text($raw, max(1, (int)($f['max'] ?? 120)));
+            if ($v === '') { if ($required) out(400, ['error' => $code, 'field' => $name]); continue; }
+            $values[$name] = $v;
+            $details[$label] = $v;
+        }
+    }
+    return [$values, $details];
 }
 
 /** Inserta la solicitud en Supabase (REST). Devuelve false si no está configurado o falla; nunca registra datos personales. */
@@ -114,61 +175,87 @@ $in = request_input();
 // campo trampa para bots: si viene relleno, se responde "ok" sin hacer nada
 if (field($in, 'website', 200) !== '') out(200, ['ok' => true, 'stored' => false, 'notified' => false, 'confirmed' => false]);
 
-$kind = field($in, 'kind', 20);
+$catalog = request_catalog();
+if ($catalog === null) {
+    error_log('gloria requests: no se puede leer data/services.json');
+    out(500, ['error' => 'config']);
+}
+
+$kind = field($in, 'kind', 40);
 $date = field($in, 'date', 10);
 $time = field($in, 'time', 5);
 $paxRaw = field($in, 'pax', 3);
-$treatmentKey = field($in, 'treatment', 40);
 $name = field($in, 'name', 120);
 $phone = field($in, 'phone', 40);
 $email = field($in, 'email', 160);
 $notes = field($in, 'notes', 600);
-$room = field($in, 'room', 3);                // opcional: huéspedes alojados en el hotel
+$room = field($in, 'room', 3);
 $consent = field($in, 'consent', 5) === '1' || ($in['consent'] ?? null) === true;
-$lang = in_array(field($in, 'lang', 2), ['es', 'en', 'de', 'fr', 'sv'], true) ? field($in, 'lang', 2) : 'en';
+$langIn = field($in, 'lang', 2);
+$lang = in_array($langIn, REQUEST_LANGS, true) ? $langIn : 'en';
 
-if (!in_array($kind, ['restaurant', 'spa'], true) || $name === '') out(400, ['error' => 'fields']);
+$svc = $catalog[$kind] ?? null;
+if ($svc === null || $name === '') out(400, ['error' => 'fields']);
 // mismas reglas que la tabla `requests` de Supabase (si no, la fila se rechazaría allí)
 if ($phone !== '' && !preg_match('/^[0-9+() .\/\-]{6,40}$/', $phone)) out(400, ['error' => 'phone']);
 if ($email !== '' && (!filter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/[?&=<>"\']/', $email))) out(400, ['error' => 'email']);
 if ($phone === '' && $email === '') out(400, ['error' => 'contact']);
+// habitación: obligatoria en los servicios solo para alojados (stayOnly); opcional en el resto
+if ($room === '' && !empty($svc['stayOnly'])) out(400, ['error' => 'roomReq']);
 if ($room !== '' && (!preg_match('/^\d{3}$/', $room) || !in_array($room, HOTEL_ROOMS, true))) out(400, ['error' => 'room']);
 if (!$consent) out(400, ['error' => 'consent']);
 
-// fecha: hoy .. +180 días (hora de Palma)
+// fecha: hoy .. +180 días (hora de Palma), sin los días de descanso del servicio (ISO-8601 'N': 1 = lunes … 7 = domingo)
 $tz = new DateTimeZone(REQUEST_TZ);
 $now = new DateTimeImmutable('now', $tz);
 $day = DateTimeImmutable::createFromFormat('!Y-m-d', $date, $tz);
 if (!$day || $day->format('Y-m-d') !== $date) out(400, ['error' => 'date']);
 $today = $now->setTime(0, 0);
 if ($day < $today || $day > $today->modify('+' . REQUEST_MAX_DAYS . ' days')) out(400, ['error' => 'date']);
-if ($kind === 'restaurant' && in_array((int)$day->format('N'), RESTAURANT_CLOSED_DAYS, true)) out(400, ['error' => 'closed']);
+$closed = array_map('intval', is_array($svc['date']['closedWeekdays'] ?? null) ? $svc['date']['closedWeekdays'] : []);
+if (in_array((int)$day->format('N'), $closed, true)) out(400, ['error' => 'closed']);
 
-if (!request_time_ok($kind, $time)) out(400, ['error' => 'time']);
-[$hh, $mm] = array_map('intval', explode(':', $time));
-if ($day->setTime($hh, $mm) <= $now) out(400, ['error' => 'time']);
-
-$paxMax = $kind === 'restaurant' ? RESTAURANT_PAX_MAX : SPA_PAX_MAX;
-if (!ctype_digit($paxRaw) || (int)$paxRaw < 1 || (int)$paxRaw > $paxMax) out(400, ['error' => 'pax']);
-$pax = (int)$paxRaw;
-
-$treatment = null;
-if ($kind === 'spa') {
-    if (!isset(SPA_TREATMENTS[$treatmentKey])) out(400, ['error' => 'treatment']);
-    $treatment = SPA_TREATMENTS[$treatmentKey];
+// hora: obligatoria si el servicio la tiene (en su rejilla); si no, no se guarda
+$leadHours = max(0, (int)($svc['leadHours'] ?? 0));
+$earliest = $now->modify('+' . $leadHours . ' hours');
+$svcTime = is_array($svc['time'] ?? null) ? $svc['time'] : null;
+if ($svcTime !== null) {
+    if (!request_time_ok($svcTime, $time)) out(400, ['error' => 'time']);
+    [$hh, $mm] = array_map('intval', explode(':', $time));
+    $at = $day->setTime($hh, $mm);
+    if ($at <= $now) out(400, ['error' => 'time']);
+    if ($at < $earliest) out(400, ['error' => 'lead']);
+} else {
+    $time = '';
+    if ($day->modify('+1 day') <= $earliest) out(400, ['error' => 'lead']);   // sin hora: tiene que quedar parte del día
 }
 
+// personas: dentro del rango del servicio; sin campo de personas se guarda 1
+$svcPax = is_array($svc['pax'] ?? null) ? $svc['pax'] : null;
+$pax = 1;
+if ($svcPax !== null) {
+    $paxMin = max(1, (int)($svcPax['min'] ?? 1));
+    $paxMax = max($paxMin, (int)($svcPax['max'] ?? $paxMin));
+    if (!ctype_digit($paxRaw) || (int)$paxRaw < $paxMin || (int)$paxRaw > $paxMax) out(400, ['error' => 'pax']);
+    $pax = (int)$paxRaw;
+}
+
+[$values, $details] = request_extra_fields($svc, $in);
+$title = (string)($svc['title']['es'] ?? $kind);
+
 $record = [
-    'kind' => $kind, 'date' => $date, 'time' => $time, 'pax' => $pax, 'treatment' => $treatment,
-    'name' => $name, 'phone' => $phone, 'email' => $email, 'notes' => $notes, 'lang' => $lang, 'room' => $room,
+    'kind' => $kind, 'service' => $svc, 'title' => $title, 'date' => $date, 'time' => $time,
+    'pax' => $pax, 'values' => $values, 'name' => $name, 'phone' => $phone, 'email' => $email,
+    'notes' => $notes, 'lang' => $lang, 'room' => $room,
 ];
 
 $cfg = gloria_secrets();
 
 $stored = request_store([
-    'kind' => $kind, 'source' => 'web', 'req_date' => $date, 'req_time' => $time, 'pax' => $pax,
-    'treatment' => $treatment, 'name' => $name, 'phone' => $phone ?: null, 'email' => $email ?: null,
-    'notes' => $notes ?: null, 'lang' => $lang, 'room' => $room !== '' ? $room : null,
+    'kind' => $kind, 'title' => $title, 'details' => (object)$details, 'source' => 'web',
+    'req_date' => $date, 'req_time' => $time !== '' ? $time : null, 'pax' => $pax,
+    'name' => $name, 'phone' => $phone ?: null, 'email' => $email ?: null,
+    'notes' => $notes ?: null, 'lang' => $lang, 'room' => $room !== '' ? $room : null, 'treatment' => null,
 ], $cfg);
 
 $to = request_recipients($cfg);

@@ -1,0 +1,986 @@
+{
+ "version": 1,
+ "_nota": "Catálogo de servicios de la zona de clientes (web2). Cada servicio = una PETICIÓN que el equipo confirma desde el panel. Para añadir/quitar un servicio: editar este archivo (lo leen la web y api/request.php). 'active': false lo oculta. 'price' opcional por idioma; si falta, se muestra 'Te confirmamos disponibilidad y precio'. Textos 'desc' nuevos: pendientes de revisión de marketing (Lara).",
+ "categories": [
+  {
+   "id": "dining",
+   "icon": "fork",
+   "title": {
+    "es": "Gastronomía",
+    "en": "Dining",
+    "de": "Kulinarik",
+    "fr": "Gastronomie",
+    "sv": "Mat & dryck"
+   }
+  },
+  {
+   "id": "wellness",
+   "icon": "leaf",
+   "title": {
+    "es": "Bienestar",
+    "en": "Wellness",
+    "de": "Wellness",
+    "fr": "Bien-être",
+    "sv": "Wellness"
+   }
+  },
+  {
+   "id": "experiences",
+   "icon": "sparkle",
+   "title": {
+    "es": "Experiencias",
+    "en": "Experiences",
+    "de": "Erlebnisse",
+    "fr": "Expériences",
+    "sv": "Upplevelser"
+   }
+  },
+  {
+   "id": "transport",
+   "icon": "car",
+   "title": {
+    "es": "Traslados y excursiones",
+    "en": "Transfers & excursions",
+    "de": "Transfers & Ausflüge",
+    "fr": "Transferts & excursions",
+    "sv": "Transfer & utflykter"
+   }
+  },
+  {
+   "id": "stay",
+   "icon": "key",
+   "title": {
+    "es": "Tu estancia",
+    "en": "Your stay",
+    "de": "Ihr Aufenthalt",
+    "fr": "Votre séjour",
+    "sv": "Din vistelse"
+   }
+  }
+ ],
+ "services": [
+  {
+   "id": "restaurant",
+   "category": "dining",
+   "active": true,
+   "icon": "fork",
+   "title": {
+    "es": "Mesa en El Patio",
+    "en": "A table at El Patio",
+    "de": "Ein Tisch im El Patio",
+    "fr": "Une table à El Patio",
+    "sv": "Ett bord på El Patio"
+   },
+   "desc": {
+    "es": "Cena en El Patio de Glòria, con música en directo de 20:00 a 22:00.",
+    "en": "Dinner at El Patio de Glòria, with live music from 20:00 to 22:00.",
+    "de": "Abendessen im El Patio de Glòria, mit Livemusik von 20:00 bis 22:00 Uhr.",
+    "fr": "Dîner à El Patio de Glòria, avec musique live de 20h00 à 22h00.",
+    "sv": "Middag på El Patio de Glòria, med livemusik 20.00–22.00."
+   },
+   "date": {
+    "closedWeekdays": [
+     2,
+     3
+    ],
+    "closedNote": {
+     "es": "Martes y miércoles El Patio descansa.",
+     "en": "Tuesday & Wednesday · El Patio rests",
+     "de": "Dienstag & Mittwoch · El Patio ruht",
+     "fr": "Mardi et mercredi · El Patio se repose",
+     "sv": "Tisdag & onsdag · El Patio vilar"
+    }
+   },
+   "time": {
+    "from": "19:00",
+    "to": "22:30",
+    "step": 30
+   },
+   "pax": {
+    "min": 1,
+    "max": 10,
+    "label": {
+     "es": "Personas",
+     "en": "Guests",
+     "de": "Gäste",
+     "fr": "Personnes",
+     "sv": "Gäster"
+    }
+   },
+   "fields": [],
+   "price": {
+    "es": "A la carta",
+    "en": "À la carte",
+    "de": "À la carte",
+    "fr": "À la carte",
+    "sv": "À la carte"
+   }
+  },
+  {
+   "id": "breakfast-room",
+   "category": "dining",
+   "active": true,
+   "icon": "cup",
+   "title": {
+    "es": "Desayuno en la habitación",
+    "en": "Breakfast in your room",
+    "de": "Frühstück auf dem Zimmer",
+    "fr": "Petit-déjeuner en chambre",
+    "sv": "Frukost på rummet"
+   },
+   "desc": {
+    "es": "Te llevamos el desayuno a la habitación a la hora que prefieras.",
+    "en": "We bring breakfast to your room at the time you prefer.",
+    "de": "Wir bringen Ihnen das Frühstück zur gewünschten Zeit aufs Zimmer.",
+    "fr": "Nous vous apportons le petit-déjeuner en chambre à l’heure de votre choix.",
+    "sv": "Vi serverar frukost på ditt rum när det passar dig."
+   },
+   "stayOnly": true,
+   "time": {
+    "from": "07:30",
+    "to": "11:30",
+    "step": 30
+   },
+   "pax": {
+    "min": 1,
+    "max": 4,
+    "label": {
+     "es": "Personas",
+     "en": "Guests",
+     "de": "Gäste",
+     "fr": "Personnes",
+     "sv": "Gäster"
+    }
+   },
+   "fields": []
+  },
+  {
+   "id": "picnic",
+   "category": "dining",
+   "active": true,
+   "icon": "basket",
+   "title": {
+    "es": "Picnic para salida temprana",
+    "en": "Early-departure picnic",
+    "de": "Picknick für die frühe Abreise",
+    "fr": "Pique-nique pour un départ matinal",
+    "sv": "Picknick för tidig avresa"
+   },
+   "desc": {
+    "es": "Si sales antes de las 08:00, te preparamos un picnic para llevar, sin coste. Pídelo antes de las 22:00 del día anterior.",
+    "en": "Leaving before 08:00? We prepare a complimentary picnic to take with you. Please ask before 22:00 the day before.",
+    "de": "Abreise vor 08:00 Uhr? Wir bereiten Ihnen kostenlos ein Picknick zum Mitnehmen vor. Bitte bis 22:00 Uhr am Vortag bestellen.",
+    "fr": "Vous partez avant 08h00 ? Nous vous préparons un pique-nique offert à emporter. Merci de le demander avant 22h00 la veille.",
+    "sv": "Reser du före 08:00? Vi förbereder en kostnadsfri picknick att ta med. Beställ före 22:00 dagen innan."
+   },
+   "leadHours": 8,
+   "time": {
+    "from": "04:00",
+    "to": "07:30",
+    "step": 30,
+    "label": {
+     "es": "Hora de recogida",
+     "en": "Pick-up time",
+     "de": "Abholzeit",
+     "fr": "Heure de retrait",
+     "sv": "Hämtningstid"
+    }
+   },
+   "pax": {
+    "min": 1,
+    "max": 6,
+    "label": {
+     "es": "Personas",
+     "en": "People",
+     "de": "Personen",
+     "fr": "Personnes",
+     "sv": "Personer"
+    }
+   },
+   "fields": [],
+   "price": {
+    "es": "Sin coste",
+    "en": "Complimentary",
+    "de": "Kostenlos",
+    "fr": "Offert",
+    "sv": "Kostnadsfritt"
+   }
+  },
+  {
+   "id": "celebration",
+   "category": "dining",
+   "active": true,
+   "icon": "gift",
+   "title": {
+    "es": "Sorpresa en la habitación",
+    "en": "A surprise in your room",
+    "de": "Eine Überraschung auf dem Zimmer",
+    "fr": "Une surprise dans votre chambre",
+    "sv": "En överraskning på rummet"
+   },
+   "desc": {
+    "es": "Cava, flores o una tarta esperándote en la habitación para una ocasión especial.",
+    "en": "Cava, flowers or a cake waiting in your room for a special occasion.",
+    "de": "Cava, Blumen oder eine Torte, die zu einem besonderen Anlass auf Ihrem Zimmer warten.",
+    "fr": "Cava, fleurs ou gâteau vous attendent dans votre chambre pour une occasion spéciale.",
+    "sv": "Cava, blommor eller en tårta som väntar på rummet inför ett särskilt tillfälle."
+   },
+   "time": null,
+   "pax": null,
+   "fields": [
+    {
+     "name": "occasion",
+     "type": "select",
+     "required": true,
+     "label": {
+      "es": "Ocasión",
+      "en": "Occasion",
+      "de": "Anlass",
+      "fr": "Occasion",
+      "sv": "Tillfälle"
+     },
+     "options": [
+      {
+       "value": "birthday",
+       "label": {
+        "es": "Cumpleaños",
+        "en": "Birthday",
+        "de": "Geburtstag",
+        "fr": "Anniversaire",
+        "sv": "Födelsedag"
+       }
+      },
+      {
+       "value": "anniversary",
+       "label": {
+        "es": "Aniversario",
+        "en": "Anniversary",
+        "de": "Jahrestag",
+        "fr": "Anniversaire de couple",
+        "sv": "Årsdag"
+       }
+      },
+      {
+       "value": "honeymoon",
+       "label": {
+        "es": "Luna de miel",
+        "en": "Honeymoon",
+        "de": "Flitterwochen",
+        "fr": "Lune de miel",
+        "sv": "Smekmånad"
+       }
+      },
+      {
+       "value": "proposal",
+       "label": {
+        "es": "Pedida de mano",
+        "en": "Proposal",
+        "de": "Heiratsantrag",
+        "fr": "Demande en mariage",
+        "sv": "Frieri"
+       }
+      },
+      {
+       "value": "other",
+       "label": {
+        "es": "Otra",
+        "en": "Other",
+        "de": "Sonstiges",
+        "fr": "Autre",
+        "sv": "Annat"
+       }
+      }
+     ]
+    },
+    {
+     "name": "extras",
+     "type": "select",
+     "required": true,
+     "label": {
+      "es": "Qué te gustaría",
+      "en": "What would you like",
+      "de": "Was wünschen Sie sich",
+      "fr": "Que souhaitez-vous",
+      "sv": "Vad vill du ha"
+     },
+     "options": [
+      {
+       "value": "cava",
+       "label": {
+        "es": "Cava",
+        "en": "Cava",
+        "de": "Cava",
+        "fr": "Cava",
+        "sv": "Cava"
+       }
+      },
+      {
+       "value": "flowers",
+       "label": {
+        "es": "Flores",
+        "en": "Flowers",
+        "de": "Blumen",
+        "fr": "Fleurs",
+        "sv": "Blommor"
+       }
+      },
+      {
+       "value": "cake",
+       "label": {
+        "es": "Tarta",
+        "en": "Cake",
+        "de": "Torte",
+        "fr": "Gâteau",
+        "sv": "Tårta"
+       }
+      },
+      {
+       "value": "cava-flowers",
+       "label": {
+        "es": "Cava y flores",
+        "en": "Cava & flowers",
+        "de": "Cava & Blumen",
+        "fr": "Cava et fleurs",
+        "sv": "Cava & blommor"
+       }
+      },
+      {
+       "value": "all",
+       "label": {
+        "es": "Cava, flores y tarta",
+        "en": "Cava, flowers & cake",
+        "de": "Cava, Blumen & Torte",
+        "fr": "Cava, fleurs et gâteau",
+        "sv": "Cava, blommor & tårta"
+       }
+      }
+     ]
+    }
+   ],
+   "stayOnly": true
+  },
+  {
+   "id": "spa",
+   "category": "wellness",
+   "active": true,
+   "icon": "leaf",
+   "title": {
+    "es": "Tratamiento en Spa by Erik",
+    "en": "A treatment at Spa by Erik",
+    "de": "Eine Behandlung im Spa by Erik",
+    "fr": "Un soin au Spa by Erik",
+    "sv": "En behandling på Spa by Erik"
+   },
+   "desc": {
+    "es": "Masajes, facial y rituales completos, en el espacio de bienestar bajo la casa.",
+    "en": "Massages, facial and full rituals, in the wellness space beneath the house.",
+    "de": "Massagen, Gesichtsbehandlung und komplette Rituale im Wellnessbereich unter dem Haus.",
+    "fr": "Massages, soin du visage et rituels complets, dans l’espace bien-être sous la maison.",
+    "sv": "Massage, ansiktsbehandling och hela ritualer i spaet under huset."
+   },
+   "time": {
+    "from": "10:00",
+    "to": "20:00",
+    "step": 60
+   },
+   "pax": {
+    "min": 1,
+    "max": 2,
+    "label": {
+     "es": "Personas",
+     "en": "Persons",
+     "de": "Personen",
+     "fr": "Personnes",
+     "sv": "Personer"
+    }
+   },
+   "fields": [
+    {
+     "name": "treatment",
+     "type": "select",
+     "required": true,
+     "label": {
+      "es": "Tratamiento",
+      "en": "Treatment",
+      "de": "Behandlung",
+      "fr": "Soin",
+      "sv": "Behandling"
+     },
+     "options": [
+      {
+       "value": "sports-60",
+       "label": {
+        "es": "Masaje deportivo · 60 min · 120 €",
+        "en": "Sports massage · 60 min · 120 €",
+        "de": "Sportmassage · 60 Min. · 120 €",
+        "fr": "Massage sportif · 60 min · 120 €",
+        "sv": "Sportmassage · 60 min · 120 €"
+       }
+      },
+      {
+       "value": "relaxing-60",
+       "label": {
+        "es": "Masaje relajante · 60 min · 120 €",
+        "en": "Relaxing massage · 60 min · 120 €",
+        "de": "Entspannungsmassage · 60 Min. · 120 €",
+        "fr": "Massage relaxant · 60 min · 120 €",
+        "sv": "Avslappnande massage · 60 min · 120 €"
+       }
+      },
+      {
+       "value": "lymphatic-60",
+       "label": {
+        "es": "Drenaje linfático · 60 min · 120 €",
+        "en": "Lymphatic drainage · 60 min · 120 €",
+        "de": "Lymphdrainage · 60 Min. · 120 €",
+        "fr": "Drainage lymphatique · 60 min · 120 €",
+        "sv": "Lymfdränage · 60 min · 120 €"
+       }
+      },
+      {
+       "value": "reflexology-60",
+       "label": {
+        "es": "Reflexología y craneosacral · 60 min · 120 €",
+        "en": "Reflexology & craniosacral · 60 min · 120 €",
+        "de": "Reflexzonen & Craniosacral · 60 Min. · 120 €",
+        "fr": "Réflexologie & crânio-sacré · 60 min · 120 €",
+        "sv": "Zonterapi & kraniosakral · 60 min · 120 €"
+       }
+      },
+      {
+       "value": "pregnancy-60",
+       "label": {
+        "es": "Masaje para embarazadas · 60 min · 120 €",
+        "en": "Pregnancy massage · 60 min · 120 €",
+        "de": "Schwangerschaftsmassage · 60 Min. · 120 €",
+        "fr": "Massage femme enceinte · 60 min · 120 €",
+        "sv": "Gravidmassage · 60 min · 120 €"
+       }
+      },
+      {
+       "value": "ayurvedic-90",
+       "label": {
+        "es": "Masaje ayurvédico · 90 min · 250 €",
+        "en": "Ayurvedic massage · 90 min · 250 €",
+        "de": "Ayurveda-Massage · 90 Min. · 250 €",
+        "fr": "Massage ayurvédique · 90 min · 250 €",
+        "sv": "Ayurvedisk massage · 90 min · 250 €"
+       }
+      },
+      {
+       "value": "lomilomi-90",
+       "label": {
+        "es": "Lomi Lomi · 90 min · 250 €",
+        "en": "Lomi Lomi · 90 min · 250 €",
+        "de": "Lomi Lomi · 90 Min. · 250 €",
+        "fr": "Lomi Lomi · 90 min · 250 €",
+        "sv": "Lomi Lomi · 90 min · 250 €"
+       }
+      },
+      {
+       "value": "inka-90",
+       "label": {
+        "es": "Masaje energético inca · 90 min · 220 €",
+        "en": "Inka energetic massage · 90 min · 220 €",
+        "de": "Energetische Inka-Massage · 90 Min. · 220 €",
+        "fr": "Massage énergétique inca · 90 min · 220 €",
+        "sv": "Energetisk inkamassage · 90 min · 220 €"
+       }
+      },
+      {
+       "value": "facial-kobido-50",
+       "label": {
+        "es": "Facial y Kobido · 50 min · 190 €",
+        "en": "Facial & Kobido · 50 min · 190 €",
+        "de": "Gesichtsbehandlung & Kobido · 50 Min. · 190 €",
+        "fr": "Soin du visage & Kobido · 50 min · 190 €",
+        "sv": "Ansiktsbehandling & Kobido · 50 min · 190 €"
+       }
+      },
+      {
+       "value": "ritual-olive-90",
+       "label": {
+        "es": "Ritual · El poder del olivo · 90 min · 230 €",
+        "en": "Ritual · The Power of the Olive Tree · 90 min · 230 €",
+        "de": "Ritual · Die Kraft des Olivenbaums · 90 Min. · 230 €",
+        "fr": "Rituel · Le pouvoir de l’olivier · 90 min · 230 €",
+        "sv": "Ritual · Olivträdets kraft · 90 min · 230 €"
+       }
+      },
+      {
+       "value": "ritual-lavender-90",
+       "label": {
+        "es": "Ritual · Jardín de lavanda · 90 min · 230 €",
+        "en": "Ritual · Lavender Garden · 90 min · 230 €",
+        "de": "Ritual · Lavendelgarten · 90 Min. · 230 €",
+        "fr": "Rituel · Jardin de lavande · 90 min · 230 €",
+        "sv": "Ritual · Lavendelträdgård · 90 min · 230 €"
+       }
+      },
+      {
+       "value": "ritual-coconut-90",
+       "label": {
+        "es": "Ritual · Coco ecológico · 90 min · 230 €",
+        "en": "Ritual · Organic Coconut · 90 min · 230 €",
+        "de": "Ritual · Bio-Kokos · 90 Min. · 230 €",
+        "fr": "Rituel · Coco bio · 90 min · 230 €",
+        "sv": "Ritual · Ekologisk kokos · 90 min · 230 €"
+       }
+      }
+     ]
+    }
+   ],
+   "price": {
+    "es": "Desde 120 €",
+    "en": "From €120",
+    "de": "Ab 120 €",
+    "fr": "À partir de 120 €",
+    "sv": "Från 120 €"
+   }
+  },
+  {
+   "id": "wine-tasting",
+   "category": "experiences",
+   "active": true,
+   "icon": "glass",
+   "title": {
+    "es": "Cata de vinos de Mallorca",
+    "en": "Mallorcan wine tasting",
+    "de": "Mallorquinische Weinprobe",
+    "fr": "Dégustation de vins de Majorque",
+    "sv": "Provning av mallorkinska viner"
+   },
+   "desc": {
+    "es": "Una selección de vinos de la isla, comentada, en El Patio.",
+    "en": "A guided selection of island wines at El Patio.",
+    "de": "Eine kommentierte Auswahl von Inselweinen im El Patio.",
+    "fr": "Une sélection commentée de vins de l’île, à El Patio.",
+    "sv": "Ett guidat urval av öns viner på El Patio."
+   },
+   "date": {
+    "closedWeekdays": [
+     2,
+     3
+    ]
+   },
+   "time": {
+    "from": "17:00",
+    "to": "20:00",
+    "step": 60
+   },
+   "pax": {
+    "min": 2,
+    "max": 10,
+    "label": {
+     "es": "Personas",
+     "en": "Guests",
+     "de": "Gäste",
+     "fr": "Personnes",
+     "sv": "Gäster"
+    }
+   },
+   "fields": [],
+   "price": {
+    "es": "Desde 60 € por persona",
+    "en": "From €60 per person",
+    "de": "Ab 60 € pro Person",
+    "fr": "À partir de 60 € par personne",
+    "sv": "Från 60 € per person"
+   }
+  },
+  {
+   "id": "polymer-workshop",
+   "category": "experiences",
+   "active": true,
+   "icon": "ring",
+   "title": {
+    "es": "Taller de joyería en arcilla polimérica",
+    "en": "Polymer clay jewellery workshop",
+    "de": "Schmuck-Workshop mit Polymer Clay",
+    "fr": "Atelier de bijoux en pâte polymère",
+    "sv": "Smyckesworkshop i polymerlera"
+   },
+   "desc": {
+    "es": "Diseña y crea tus propias joyas en arcilla polimérica y llévatelas como recuerdo.",
+    "en": "Design and make your own polymer clay jewellery and take it home as a keepsake.",
+    "de": "Entwerfen und fertigen Sie Ihren eigenen Schmuck aus Polymer Clay und nehmen Sie ihn als Andenken mit.",
+    "fr": "Imaginez et créez vos propres bijoux en pâte polymère, et emportez-les en souvenir.",
+    "sv": "Designa och gör dina egna smycken i polymerlera och ta med dem hem som minne."
+   },
+   "time": {
+    "from": "10:00",
+    "to": "18:00",
+    "step": 60
+   },
+   "pax": {
+    "min": 1,
+    "max": 6,
+    "label": {
+     "es": "Participantes",
+     "en": "Participants",
+     "de": "Teilnehmer",
+     "fr": "Participants",
+     "sv": "Deltagare"
+    }
+   },
+   "fields": []
+  },
+  {
+   "id": "transfer-airport",
+   "category": "transport",
+   "active": true,
+   "icon": "plane",
+   "title": {
+    "es": "Transfer al aeropuerto",
+    "en": "Airport transfer",
+    "de": "Flughafentransfer",
+    "fr": "Transfert aéroport",
+    "sv": "Flygplatstransfer"
+   },
+   "desc": {
+    "es": "Coche privado entre el aeropuerto de Palma y el hotel, a la llegada o a la salida.",
+    "en": "Private car between Palma airport and the hotel, on arrival or departure.",
+    "de": "Privatwagen zwischen dem Flughafen Palma und dem Hotel, bei Ankunft oder Abreise.",
+    "fr": "Voiture privée entre l’aéroport de Palma et l’hôtel, à l’arrivée ou au départ.",
+    "sv": "Privat bil mellan Palmas flygplats och hotellet, vid ankomst eller avresa."
+   },
+   "time": {
+    "from": "00:00",
+    "to": "23:30",
+    "step": 15,
+    "label": {
+     "es": "Hora (llegada del vuelo o recogida)",
+     "en": "Time (flight arrival or pick-up)",
+     "de": "Uhrzeit (Landung oder Abholung)",
+     "fr": "Heure (arrivée du vol ou prise en charge)",
+     "sv": "Tid (flygets ankomst eller upphämtning)"
+    }
+   },
+   "pax": {
+    "min": 1,
+    "max": 8,
+    "label": {
+     "es": "Pasajeros",
+     "en": "Passengers",
+     "de": "Fahrgäste",
+     "fr": "Passagers",
+     "sv": "Passagerare"
+    }
+   },
+   "fields": [
+    {
+     "name": "direction",
+     "type": "select",
+     "required": true,
+     "label": {
+      "es": "Trayecto",
+      "en": "Journey",
+      "de": "Strecke",
+      "fr": "Trajet",
+      "sv": "Resa"
+     },
+     "options": [
+      {
+       "value": "arrival",
+       "label": {
+        "es": "Aeropuerto → Hotel (llegada)",
+        "en": "Airport → Hotel (arrival)",
+        "de": "Flughafen → Hotel (Ankunft)",
+        "fr": "Aéroport → Hôtel (arrivée)",
+        "sv": "Flygplats → Hotell (ankomst)"
+       }
+      },
+      {
+       "value": "departure",
+       "label": {
+        "es": "Hotel → Aeropuerto (salida)",
+        "en": "Hotel → Airport (departure)",
+        "de": "Hotel → Flughafen (Abreise)",
+        "fr": "Hôtel → Aéroport (départ)",
+        "sv": "Hotell → Flygplats (avresa)"
+       }
+      }
+     ]
+    },
+    {
+     "name": "flight",
+     "type": "text",
+     "required": false,
+     "max": 20,
+     "label": {
+      "es": "Nº de vuelo",
+      "en": "Flight number",
+      "de": "Flugnummer",
+      "fr": "Numéro de vol",
+      "sv": "Flightnummer"
+     }
+    },
+    {
+     "name": "luggage",
+     "type": "number",
+     "required": false,
+     "min": 0,
+     "max": 12,
+     "label": {
+      "es": "Maletas",
+      "en": "Suitcases",
+      "de": "Koffer",
+      "fr": "Valises",
+      "sv": "Resväskor"
+     }
+    }
+   ],
+   "price": {
+    "es": "Desde 85 €",
+    "en": "From €85",
+    "de": "Ab 85 €",
+    "fr": "À partir de 85 €",
+    "sv": "Från 85 €"
+   },
+   "provider": "gprivatedriver.com"
+  },
+  {
+   "id": "taxi",
+   "category": "transport",
+   "active": true,
+   "icon": "car",
+   "title": {
+    "es": "Taxi",
+    "en": "Taxi",
+    "de": "Taxi",
+    "fr": "Taxi",
+    "sv": "Taxi"
+   },
+   "desc": {
+    "es": "Te pedimos un taxi a la puerta del hotel. Indícanos la hora y a dónde vas; la tarifa es la del taxímetro.",
+    "en": "We book a taxi to the hotel door. Tell us the time and where you are going; the fare is the meter rate.",
+    "de": "Wir bestellen Ihnen ein Taxi vor die Hoteltür. Nennen Sie uns Uhrzeit und Ziel; es gilt der Taxameterpreis.",
+    "fr": "Nous vous réservons un taxi devant l'hôtel. Indiquez-nous l'heure et votre destination ; le tarif est celui du compteur.",
+    "sv": "Vi beställer en taxi till hotellets dörr. Ange tid och vart du ska; priset är enligt taxametern."
+   },
+   "time": {
+    "from": "00:00",
+    "to": "23:45",
+    "step": 15
+   },
+   "pax": {
+    "min": 1,
+    "max": 6,
+    "label": {
+     "es": "Personas",
+     "en": "People",
+     "de": "Personen",
+     "fr": "Personnes",
+     "sv": "Personer"
+    }
+   },
+   "fields": [
+    {
+     "name": "destination",
+     "type": "text",
+     "required": true,
+     "max": 120,
+     "label": {
+      "es": "Dirección o lugar de destino",
+      "en": "Destination address or place",
+      "de": "Zieladresse oder Ort",
+      "fr": "Adresse ou lieu de destination",
+      "sv": "Adress eller plats dit du ska"
+     }
+    }
+   ],
+   "price": {
+    "es": "Tarifa de taxímetro",
+    "en": "Meter fare",
+    "de": "Taxameterpreis",
+    "fr": "Tarif au compteur",
+    "sv": "Taxameterpris"
+   }
+  },
+  {
+   "id": "excursion",
+   "category": "transport",
+   "active": true,
+   "icon": "mountain",
+   "title": {
+    "es": "Excursión privada con guía",
+    "en": "Private excursion with a guide",
+    "de": "Private Ausflug mit Guide",
+    "fr": "Excursion privée avec guide",
+    "sv": "Privat utflykt med guide"
+   },
+   "desc": {
+    "es": "Excursiones personalizadas por la isla con guía, a tu ritmo.",
+    "en": "Tailor-made excursions around the island with a local guide, at your own pace.",
+    "de": "Individuelle Ausflüge über die Insel mit einheimischem Guide, in Ihrem Tempo.",
+    "fr": "Excursions sur mesure à travers l'île avec un guide local, à votre rythme.",
+    "sv": "Skräddarsydda utflykter på ön med lokal guide, i din egen takt."
+   },
+   "time": {
+    "from": "08:00",
+    "to": "17:00",
+    "step": 30,
+    "label": {
+     "es": "Hora de salida",
+     "en": "Departure time",
+     "de": "Abfahrtszeit",
+     "fr": "Heure de départ",
+     "sv": "Avresetid"
+    }
+   },
+   "pax": {
+    "min": 1,
+    "max": 8,
+    "label": {
+     "es": "Personas",
+     "en": "People",
+     "de": "Personen",
+     "fr": "Personnes",
+     "sv": "Personer"
+    }
+   },
+   "fields": [
+    {
+     "name": "destination",
+     "type": "select",
+     "required": true,
+     "label": {
+      "es": "Destino",
+      "en": "Destination",
+      "de": "Ziel",
+      "fr": "Destination",
+      "sv": "Resmål"
+     },
+     "options": [
+      {
+       "value": "soller",
+       "label": {
+        "es": "Sóller y Port de Sóller",
+        "en": "Sóller & Port de Sóller",
+        "de": "Sóller & Port de Sóller",
+        "fr": "Sóller et Port de Sóller",
+        "sv": "Sóller & Port de Sóller"
+       }
+      },
+      {
+       "value": "valldemossa",
+       "label": {
+        "es": "Valldemossa y Deià",
+        "en": "Valldemossa & Deià",
+        "de": "Valldemossa & Deià",
+        "fr": "Valldemossa et Deià",
+        "sv": "Valldemossa & Deià"
+       }
+      },
+      {
+       "value": "tramuntana",
+       "label": {
+        "es": "Serra de Tramuntana y Sa Calobra",
+        "en": "Serra de Tramuntana & Sa Calobra",
+        "de": "Serra de Tramuntana & Sa Calobra",
+        "fr": "Serra de Tramuntana et Sa Calobra",
+        "sv": "Serra de Tramuntana & Sa Calobra"
+       }
+      },
+      {
+       "value": "formentor",
+       "label": {
+        "es": "Cap de Formentor",
+        "en": "Cap de Formentor",
+        "de": "Cap de Formentor",
+        "fr": "Cap de Formentor",
+        "sv": "Cap de Formentor"
+       }
+      },
+      {
+       "value": "other",
+       "label": {
+        "es": "Otro (cuéntanoslo en las notas)",
+        "en": "Other (tell us in the notes)",
+        "de": "Anderes (bitte in den Anmerkungen angeben)",
+        "fr": "Autre (précisez-le dans les remarques)",
+        "sv": "Annat (berätta i kommentarerna)"
+       }
+      }
+     ]
+    }
+   ],
+   "price": {
+    "es": "Desde 400 €",
+    "en": "From €400",
+    "de": "Ab 400 €",
+    "fr": "À partir de 400 €",
+    "sv": "Från 400 €"
+   }
+  },
+  {
+   "id": "late-checkout",
+   "category": "stay",
+   "active": true,
+   "icon": "clock",
+   "title": {
+    "es": "Salida más tarde",
+    "en": "Late check-out",
+    "de": "Später Check-out",
+    "fr": "Départ tardif",
+    "sv": "Sen utcheckning"
+   },
+   "desc": {
+    "es": "Quédate un poco más el día de tu salida, según disponibilidad.",
+    "en": "Stay a little longer on your departure day, subject to availability.",
+    "de": "Bleiben Sie am Abreisetag etwas länger, je nach Verfügbarkeit.",
+    "fr": "Restez un peu plus longtemps le jour de votre départ, selon disponibilité.",
+    "sv": "Stanna lite längre på avresedagen, i mån av tillgång."
+   },
+   "stayOnly": true,
+   "time": {
+    "from": "12:00",
+    "to": "18:00",
+    "step": 60,
+    "label": {
+     "es": "Hasta las",
+     "en": "Until",
+     "de": "Bis",
+     "fr": "Jusqu’à",
+     "sv": "Till"
+    }
+   },
+   "pax": null,
+   "fields": []
+  },
+  {
+   "id": "early-checkin",
+   "category": "stay",
+   "active": true,
+   "icon": "key",
+   "title": {
+    "es": "Llegada anticipada",
+    "en": "Early check-in",
+    "de": "Früher Check-in",
+    "fr": "Arrivée anticipée",
+    "sv": "Tidig incheckning"
+   },
+   "desc": {
+    "es": "Si llegas temprano, intentamos tener tu habitación lista antes.",
+    "en": "Arriving early? We will try to have your room ready sooner.",
+    "de": "Sie kommen früh an? Wir versuchen, Ihr Zimmer früher bereitzuhalten.",
+    "fr": "Vous arrivez tôt ? Nous essaierons de préparer votre chambre plus tôt.",
+    "sv": "Kommer du tidigt? Vi försöker ha ditt rum klart tidigare."
+   },
+   "time": {
+    "from": "07:00",
+    "to": "14:00",
+    "step": 30,
+    "label": {
+     "es": "Hora de llegada",
+     "en": "Arrival time",
+     "de": "Ankunftszeit",
+     "fr": "Heure d’arrivée",
+     "sv": "Ankomsttid"
+    }
+   },
+   "pax": null,
+   "fields": []
+  }
+ ]
+}
