@@ -78,3 +78,9 @@ html.rq-lock,html.rq-lock body{overflow:hidden}
 .btn.req-alt{background:transparent!important;border-color:transparent!important;color:inherit;padding-inline:8px;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
 .btn.req-alt:hover{text-decoration-color:var(--teal);transform:none}
 .stack-cta:has([data-request]){flex-wrap:wrap!important;align-items:center}
+
+/* web2 · acceso «Área de clientes» en el menú principal */
+.main-nav .nav-guest{color:#9DD4CA;border:1px solid rgba(157,212,202,.55);padding:6px 12px;border-radius:999px;margin-left:6px}
+.site-header:not(.on-hero) .main-nav .nav-guest,.site-header.scrolled .main-nav .nav-guest{color:#2E685E;border-color:rgba(46,104,94,.45)}
+.main-nav .nav-guest:hover{background:rgba(157,212,202,.14)}
+@media (max-width:900px){ .main-nav .nav-guest{display:inline-block;margin:10px 0 0;border-radius:999px} }

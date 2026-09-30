@@ -14,7 +14,10 @@ header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 header('X-Robots-Tag: noindex');
 
-const REQUESTS_TO = ['reservas@gloriasantjaume.com'];
+// MODO PRUEBA (web2, antes del lanzamiento): las solicitudes van al director con «[PRUEBA]» en el asunto.
+// Al lanzar: REQUEST_TEST_MODE = false → van a reservas@ (o a `requests_to` de gloria-secrets.php).
+const REQUEST_TEST_MODE = true;
+const REQUESTS_TO = REQUEST_TEST_MODE ? ['director@gloriasantjaume.com'] : ['reservas@gloriasantjaume.com'];
 const REQUEST_TZ = 'Europe/Madrid';
 const REQUEST_MAX_DAYS = 180;
 const REQUEST_BODY_MAX = 16384;
@@ -83,7 +86,7 @@ function request_time_ok(array $svcTime, string $time): bool {
 
 /** Destinatarios del aviso interno: los de gloria-secrets.php ('requests_to') o reservas@. */
 function request_recipients(array $cfg): array {
-    $list = is_array($cfg['requests_to'] ?? null) && $cfg['requests_to'] ? $cfg['requests_to'] : REQUESTS_TO;
+    $list = !REQUEST_TEST_MODE && is_array($cfg['requests_to'] ?? null) && $cfg['requests_to'] ? $cfg['requests_to'] : REQUESTS_TO;
     return array_values(array_unique(array_filter($list, fn($a) => is_string($a) && filter_var($a, FILTER_VALIDATE_EMAIL))));
 }
 
@@ -276,6 +279,7 @@ $to = request_recipients($cfg);
 $notified = false;
 if ($to) {
     [$subject, $text, $html, $inline] = requests_internal_mail($record);
+    if (REQUEST_TEST_MODE) $subject = '[PRUEBA] ' . $subject;
     $notified = gloria_send_mail($to, $subject, ['text' => $text, 'html' => $html], $email ?: null, [], $inline, $cfg);
     if (!$notified) error_log("gloria requests: no se pudo enviar el aviso interno ($kind $date)");
 }
