@@ -40,7 +40,8 @@ function request_input(): array {
 function field(array $in, string $k, int $max): string {
     $v = $in[$k] ?? '';
     if (!is_scalar($v)) return '';
-    return trim(mb_substr(str_replace(["\r", "\0"], '', (string)$v), 0, $max));
+    // sin saltos de línea: nadie puede «inventar» líneas (p. ej. «Proveedor: …») en el aviso al equipo
+    return trim(mb_substr(str_replace(["\r", "\0", "\n", "\t"], ['', '', ' ', ' '], (string)$v), 0, $max));
 }
 
 /** Texto libre de un campo extra: sin caracteres de control, recortado y de como mucho $max caracteres. */
@@ -164,12 +165,16 @@ function request_store(array $row, array $cfg): bool {
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') out(405, ['error' => 'method']);
 
 // solo desde nuestras páginas
-$allowed = ['web.hotelgloria.es', 'web2.hotelgloria.es', 'nuevaweb.hotelgloria.es', 'hotelgloria.es', 'www.hotelgloria.es', 'localhost'];
+$allowed = ['web.hotelgloria.es', 'web2.hotelgloria.es', 'nuevaweb.hotelgloria.es', 'hotelgloria.es', 'www.hotelgloria.es'];
 $origin = parse_url($_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? ''), PHP_URL_HOST);
 if (!$origin || !in_array($origin, $allowed, true)) out(403, ['error' => 'origin']);
 
-$ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? ($_SERVER['REMOTE_ADDR'] ?? '0');
+// IP real: detrás de la CDN de Hostinger REMOTE_ADDR ya es la IP del cliente y no se puede falsificar
+// con cabeceras (comprobado 30-09-2026); CF-Connecting-IP / X-Forwarded-For sí se podrían inventar.
+$ip = $_SERVER['REMOTE_ADDR'] ?? '0';
+if ((int)($_SERVER['CONTENT_LENGTH'] ?? 0) > REQUEST_BODY_MAX) out(413, ['error' => 'size']);
 if (!gloria_rate_ok('requests:' . $ip, 5, 3600)) out(429, ['error' => 'rate']);
+if (!gloria_rate_ok('requests:global', 60, 3600)) out(429, ['error' => 'rate']);   // techo para toda la web
 
 $in = request_input();
 
@@ -276,7 +281,9 @@ if ($to) {
 }
 
 $confirmed = false;
-if ($email !== '') {
+// acuse al cliente: como mucho 2 al día a la misma dirección (el formulario no puede usarse
+// para enviar correos con la marca del hotel a terceros)
+if ($email !== '' && gloria_rate_ok('requests:mail:' . strtolower($email), 2, 86400)) {
     [$subject, $text, $html, $inline] = requests_guest_mail($record, $lang);
     $confirmed = gloria_send_mail([$email], $subject, ['text' => $text, 'html' => $html], $to[0] ?? null, [], $inline, $cfg);
     if (!$confirmed) error_log("gloria requests: no se pudo enviar el acuse al cliente ($kind $date)");

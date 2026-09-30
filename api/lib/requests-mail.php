@@ -113,7 +113,7 @@ function requests_tx($o, string $lang): string {
  * Filas del resumen en el idioma dado, como pares [etiqueta, valor] (así dos etiquetas iguales no se pisan).
  * Devuelve [principales (servicio, fecha, hora, personas), resto (campos extra, habitación, notas)].
  */
-function requests_summary_rows(array $r, array $labels, string $lang): array {
+function requests_summary_rows(array $r, array $labels, string $lang, bool $guestCopy = false): array {
     $svc = is_array($r['service'] ?? null) ? $r['service'] : [];
     $main = [
         [$labels['kind'], requests_tx($svc['title'] ?? null, $lang) ?: (string)$r['kind']],
@@ -135,10 +135,13 @@ function requests_summary_rows(array $r, array $labels, string $lang): array {
                 if (is_array($o) && (string)($o['value'] ?? '') === $v) { $v = requests_tx($o['label'] ?? null, $lang) ?: $v; break; }
             }
         }
+        // el acuse al cliente no repite texto libre escrito por quien envía el formulario
+        // (evita usar la web como «relé» de correos con la marca del hotel)
+        if ($guestCopy && ($f['type'] ?? '') === 'text') continue;
         $rest[] = [requests_tx($f['label'] ?? null, $lang) ?: (string)$f['name'], $v];
     }
     if (!empty($r['room'])) $rest[] = [$labels['room'], $r['room']];
-    if (!empty($r['notes'])) $rest[] = [$labels['notes'], $r['notes']];
+    if (!$guestCopy && !empty($r['notes'])) $rest[] = [$labels['notes'], $r['notes']];
     return [$main, $rest];
 }
 
@@ -184,9 +187,10 @@ function requests_html(string $blocksHtml, string $team, array $legal, bool $has
 function requests_guest_mail(array $r, string $lang): array {
     $t = requests_texts($lang);
     $s = REQUESTS_SIGNATURE;
-    $first = preg_split('/\s+/', trim($r['name']))[0] ?? '';
+    // solo letras del primer nombre (máx. 30): nada de enlaces ni texto arbitrario en el saludo
+    $first = mb_substr(preg_replace('/[^\p{L}\-\x{27}]/u', '', preg_split('/\s+/', trim($r['name']))[0] ?? ''), 0, 30);
     $hello = str_replace('{n}', $first, $t['hello']);
-    [$main, $rest] = requests_summary_rows($r, $t['labels'], $lang);
+    [$main, $rest] = requests_summary_rows($r, $t['labels'], $lang, true);
     $rows = array_merge($main, $rest);
     $title = requests_tx($r['service']['title'] ?? null, $lang) ?: (string)$r['kind'];
     $subject = str_replace('{t}', $title, $t['subject']);
