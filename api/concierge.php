@@ -16,7 +16,7 @@ $allowed = ['web.hotelgloria.es', 'nuevaweb.hotelgloria.es', 'hotelgloria.es', '
 $origin = parse_url($_SERVER['HTTP_ORIGIN'] ?? ($_SERVER['HTTP_REFERER'] ?? ''), PHP_URL_HOST);
 if (!$origin || !in_array($origin, $allowed, true)) out(403, ['error' => 'origin']);
 
-$ip = $_SERVER['HTTP_CF_CONNECTING_IP'] ?? ($_SERVER['REMOTE_ADDR'] ?? '0');
+$ip = $_SERVER['REMOTE_ADDR'] ?? '0';   // detrás de la CDN de Hostinger es la IP real; las cabeceras CF-* se pueden falsificar
 if (!gloria_rate_ok('web:' . $ip, 20, 600)) out(429, ['error' => 'rate']);
 
 $raw = file_get_contents('php://input', false, null, 0, 20000);
