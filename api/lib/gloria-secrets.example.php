@@ -22,10 +22,6 @@ return [
     // (por defecto todo llega a director@gloriasantjaume.com; ver ROUTES en api/careers.php)
     'careers_hr'         => [],            // p. ej. ['rrhh@cabauhotels.com'] → recibe TODAS las candidaturas
     'careers_routes'     => [],            // p. ej. ['gloria' => ['director@gloriasantjaume.com']] por hotel
-    // Solicitudes de mesa / spa (api/request.php): a quién avisar y dónde guardarlas
-    'requests_to'        => [],            // p. ej. ['reservas@gloriasantjaume.com'] (por defecto reservas@)
-    'supabase_url'       => '',            // p. ej. https://xxxx.supabase.co — tabla `requests` con RLS que solo permita INSERT a anon
-    'supabase_anon_key'  => '',
     // Envío de emails (candidaturas y confirmaciones) con un buzón REAL del dominio, para que no acaben en spam.
     // Sin esto se usa mail() del servidor con no-reply@hotelgloria.es, que no tiene SPF y suele rechazarse.
     'smtp'               => ['host' => 'smtp.serviciodecorreo.es', 'port' => 465, 'user' => '', 'pass' => ''],   // p. ej. web@gloriasantjaume.com

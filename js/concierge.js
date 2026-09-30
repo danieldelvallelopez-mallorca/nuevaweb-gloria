@@ -3,7 +3,6 @@
    · Reserva de habitación → motor Neobookings con fechas y personas.
    · Cena en El Patio → reserva de mesa + música de esa noche.
    · Spa, cómo llegar, contacto (teléfono, email, WhatsApp).
-   · Mesa y tratamiento también "por solicitud" (js/requests.js → api/request.php).
    · Texto libre: si CONFIG.aiEndpoint está definido responde la IA
      (api/concierge.php); si no, o si falla, detecta la intención por palabras.
    ===================================================================== */
@@ -32,7 +31,7 @@
       dinnerReady:"{d} · {p}.", playing:"That evening at the piano: {a}.", reserve:"Reserve a table →", orCall:"Or call us: {ph}",
       tonight:"Tonight at El Patio: {a}, from 20:00 to 22:00.", tonightGeneric:"Tonight, as every evening, live music accompanies dinner at El Patio from 20:00 to 22:00.", tonightNone:"Tonight El Patio rests. Next evening with music: {d}, {a}.", calendar:"See the month's calendar →",
       spaText:"Beneath the house, a heated pool in the old cistern, sauna and steam bath. Upstairs, the rooftop pool above Palma. Spa by Eric: massages, facials and complete rituals.",
-      sendRequest:"Send a request →", requestSpa:"Request a treatment →", spaMenu:"Spa menu (PDF) →", wellness:"Discover Wellness →",
+      spaMenu:"Spa menu (PDF) →", wellness:"Discover Wellness →",
       whereText:"We are at Carrer Sant Jaume, 18, in the old town of Palma — a short walk from the Cathedral, the Born and Jaume III.", maps:"Open in Google Maps →",
       humanText:"Our team will be delighted to help you personally.", call:"Call", write:"Email", waText:"Hello, I am writing from the Glòria website.", whatsapp:"WhatsApp",
       fallback:"I can help you book a room, reserve dinner at El Patio, the spa or how to find us. Or speak with our team directly:",
@@ -49,7 +48,7 @@
       dinnerReady:"{d} · {p}.", playing:"Esa noche al piano: {a}.", reserve:"Reservar mesa →", orCall:"O llámenos: {ph}",
       tonight:"Esta noche en El Patio: {a}, de 20:00 a 22:00.", tonightGeneric:"Esta noche, como cada noche, la música en directo ameniza las cenas de El Patio de 20:00 a 22:00.", tonightNone:"Esta noche El Patio descansa. Próxima noche con música: {d}, {a}.", calendar:"Ver el calendario del mes →",
       spaText:"Bajo la casa, una piscina climatizada en el antiguo aljibe, sauna y baño de vapor. Arriba, la piscina en la azotea sobre Palma. Spa by Eric: masajes, faciales y rituales completos.",
-      sendRequest:"Enviar una solicitud →", requestSpa:"Solicitar un tratamiento →", spaMenu:"Carta del spa (PDF) →", wellness:"Descubrir Wellness →",
+      spaMenu:"Carta del spa (PDF) →", wellness:"Descubrir Wellness →",
       whereText:"Estamos en Carrer Sant Jaume, 18, en el casco antiguo de Palma, a pocos minutos a pie de la Catedral, el Born y Jaume III.", maps:"Abrir en Google Maps →",
       humanText:"Nuestro equipo estará encantado de atenderle personalmente.", call:"Llamar", write:"Email", waText:"Hola, les escribo desde la web de Glòria.", whatsapp:"WhatsApp",
       fallback:"Puedo ayudarle a reservar habitación, mesa en El Patio, el spa o cómo llegar. O hable directamente con nuestro equipo:",
@@ -66,7 +65,7 @@
       dinnerReady:"{d} · {p}.", playing:"An diesem Abend am Flügel: {a}.", reserve:"Tisch reservieren →", orCall:"Oder rufen Sie uns an: {ph}",
       tonight:"Heute Abend im El Patio: {a}, von 20:00 bis 22:00 Uhr.", tonightGeneric:"Heute Abend begleitet, wie jeden Abend, Live-Musik das Dinner im El Patio von 20:00 bis 22:00 Uhr.", tonightNone:"Heute ruht das El Patio. Nächster Musikabend: {d}, {a}.", calendar:"Monatskalender ansehen →",
       spaText:"Unter dem Haus ein beheiztes Becken in der alten Zisterne, Sauna und Dampfbad. Oben der Rooftop-Pool über Palma. Spa by Eric: Massagen, Gesichtsbehandlungen und Rituale.",
-      sendRequest:"Anfrage senden →", requestSpa:"Behandlung anfragen →", spaMenu:"Spa-Karte (PDF) →", wellness:"Wellness entdecken →",
+      spaMenu:"Spa-Karte (PDF) →", wellness:"Wellness entdecken →",
       whereText:"Sie finden uns in der Carrer Sant Jaume, 18, in der Altstadt von Palma – wenige Gehminuten von Kathedrale, Born und Jaume III.", maps:"In Google Maps öffnen →",
       humanText:"Unser Team hilft Ihnen gern persönlich.", call:"Anrufen", write:"E-Mail", waText:"Hallo, ich schreibe Ihnen von der Glòria-Website.", whatsapp:"WhatsApp",
       fallback:"Ich helfe Ihnen gern bei Zimmer, Tisch im El Patio, Spa oder Anreise. Oder sprechen Sie direkt mit unserem Team:",
@@ -83,7 +82,7 @@
       dinnerReady:"{d} · {p}.", playing:"Ce soir-là au piano : {a}.", reserve:"Réserver une table →", orCall:"Ou appelez-nous : {ph}",
       tonight:"Ce soir à El Patio : {a}, de 20h00 à 22h00.", tonightGeneric:"Ce soir, comme chaque soir, la musique live accompagne le dîner à El Patio de 20h00 à 22h00.", tonightNone:"Ce soir El Patio se repose. Prochaine soirée musicale : {d}, {a}.", calendar:"Voir le calendrier du mois →",
       spaText:"Sous la maison, une piscine chauffée dans l'ancienne citerne, sauna et hammam. En haut, la piscine sur le toit au-dessus de Palma. Spa by Eric : massages, soins du visage et rituels.",
-      sendRequest:"Envoyer une demande →", requestSpa:"Demander un soin →", spaMenu:"Carte du spa (PDF) →", wellness:"Découvrir Wellness →",
+      spaMenu:"Carte du spa (PDF) →", wellness:"Découvrir Wellness →",
       whereText:"Nous sommes Carrer Sant Jaume, 18, dans la vieille ville de Palma, à quelques pas de la Cathédrale, du Born et de Jaume III.", maps:"Ouvrir dans Google Maps →",
       humanText:"Notre équipe sera ravie de vous aider personnellement.", call:"Appeler", write:"E-mail", waText:"Bonjour, je vous écris depuis le site de Glòria.", whatsapp:"WhatsApp",
       fallback:"Je peux vous aider pour une chambre, une table à El Patio, le spa ou l'accès. Ou parlez directement à notre équipe :",
@@ -100,7 +99,7 @@
       dinnerReady:"{d} · {p}.", playing:"Den kvällen vid pianot: {a}.", reserve:"Boka bord →", orCall:"Eller ring oss: {ph}",
       tonight:"I kväll på El Patio: {a}, 20:00–22:00.", tonightGeneric:"I kväll, som varje kväll, ackompanjerar livemusik middagen på El Patio 20:00–22:00.", tonightNone:"I kväll vilar El Patio. Nästa musikkväll: {d}, {a}.", calendar:"Se månadens kalender →",
       spaText:"Under huset en uppvärmd pool i den gamla cisternen, bastu och ångbad. Uppe takpoolen över Palma. Spa by Eric: massage, ansiktsbehandlingar och ritualer.",
-      sendRequest:"Skicka en förfrågan →", requestSpa:"Förfråga en behandling →", spaMenu:"Spameny (PDF) →", wellness:"Upptäck Wellness →",
+      spaMenu:"Spameny (PDF) →", wellness:"Upptäck Wellness →",
       whereText:"Vi finns på Carrer Sant Jaume, 18, i Palmas gamla stad – några minuters promenad från katedralen, Born och Jaume III.", maps:"Öppna i Google Maps →",
       humanText:"Vårt team hjälper dig gärna personligen.", call:"Ring", write:"E-post", waText:"Hej, jag skriver från Glòrias webbplats.", whatsapp:"WhatsApp",
       fallback:"Jag kan hjälpa till med rum, bord på El Patio, spa eller vägbeskrivning. Eller prata direkt med vårt team:",
@@ -218,14 +217,7 @@
     items.forEach(function(it){
       var a = el("a", "gc-link" + (it.primary ? " is-primary" : ""), it.label);
       a.href = it.href; if(/^https?:|\.pdf$/.test(it.href)){ a.target = "_blank"; a.rel = "noopener"; }
-      a.addEventListener("click", function(e){
-        track("concierge_" + it.ev, {});
-        if(it.request && window.gloriaRequest){                        // abre el formulario de solicitud (js/requests.js)
-          e.preventDefault();
-          if(state.open) toggle();
-          window.gloriaRequest.open(it.request, launcher, it.prefill);
-        }
-      });
+      a.addEventListener("click", function(){ track("concierge_" + it.ev, {}); });
       w.appendChild(a);
     });
     list.appendChild(w); scroll();
@@ -294,8 +286,7 @@
       bot(t("dinnerReady", {d:fmtDate(day), p:p.value + " " + t("people").toLowerCase()}) + (a ? " " + t("playing", {a:a}) : ""));
       track("concierge_dinner_intent", {people:+p.value, lead_time_days:Math.round((day - today()) / 86400000)});
       var reserve = (window.gloriaLinks && window.gloriaLinks.elpatioReserve) || "https://elpatiodegloria.com/reservas.html";
-      links([{label:t("sendRequest"), href:"el-patio.html", request:"restaurant", prefill:{date:d.value, pax:p.value}, primary:true, ev:"dinner_request"},
-        {label:t("reserve"), href:reserve, ev:"dinner_click"}, waLink(false), {label:t("orCall", {ph:CONFIG.phoneRoomsLabel}), href:"tel:" + CONFIG.phoneRooms, ev:"phone_click"}]);
+      links([{label:t("reserve"), href:reserve, primary:true, ev:"dinner_click"}, waLink(false), {label:t("orCall", {ph:CONFIG.phoneRoomsLabel}), href:"tel:" + CONFIG.phoneRooms, ev:"phone_click"}]);
     });
     list.appendChild(f); scroll();
   }
@@ -307,7 +298,7 @@
     else{ var n = nextMusic(addDays(t0, 1)); bot(n ? t("tonightNone", {d:fmtDate(n.d), a:n.a}) : t("closed")); }
     links([{label:t("reserve"), href:(window.gloriaLinks && window.gloriaLinks.elpatioReserve) || "#", primary:true, ev:"dinner_click"}, {label:t("calendar"), href:"el-patio.html#music", ev:"music_calendar"}]);
   }
-  function flowSpa(){ bot(t("spaText")); links([{label:t("requestSpa"), href:"wellness.html", request:"spa", primary:true, ev:"spa_request"}, {label:t("spaMenu"), href:CONFIG.spaMenu, ev:"spa_menu"}, {label:t("wellness"), href:"wellness.html", ev:"wellness_page"}]); }
+  function flowSpa(){ bot(t("spaText")); links([{label:t("spaMenu"), href:CONFIG.spaMenu, primary:true, ev:"spa_menu"}, {label:t("wellness"), href:"wellness.html", ev:"wellness_page"}]); }
   function flowWhere(){ bot(t("whereText")); links([{label:t("maps"), href:CONFIG.mapsUrl, primary:true, ev:"maps_click"}]); }
   function contactLinks(){
     var l = [{label:t("call") + " · " + CONFIG.phoneRoomsLabel, href:"tel:" + CONFIG.phoneRooms, ev:"phone_click"}, {label:t("write") + " · " + CONFIG.email, href:"mailto:" + CONFIG.email, ev:"email_click"}];
