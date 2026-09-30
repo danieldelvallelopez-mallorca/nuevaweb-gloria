@@ -25,6 +25,23 @@
     sparkle:  "M16 4c1 6 3 9 9 10-6 1-8 4-9 10-1-6-3-9-9-10 6-1 8-4 9-10zM25 22c.4 2 1 3 3 3.5-2 .5-2.6 1.5-3 3.5-.4-2-1-3-3-3.5 2-.5 2.6-1.5 3-3.5z"
   };
 
+  /* NFC/QR de habitación o zona: el botón «Pedir a la habitación» va directo a su carta
+     (sin código) y se muestra dónde está el cliente. Desde la web: habitación + código. */
+  function applyLocation(){
+    var L = window.gloriaLocation;
+    var a = document.querySelector(".gx-act-main");
+    if(a && L) a.href = L.orderUrl();
+    var badge = document.querySelector(".gx-loc");
+    if(L && L.id){
+      if(!badge){
+        badge = el("p", "gx-loc");
+        var h = document.querySelector(".gx-title");
+        if(h) h.parentNode.insertBefore(badge, h);
+      }
+      badge.textContent = L.label(t);
+    }
+  }
+
   function lang(){ var l = (document.documentElement.lang || "en").slice(0, 2); return LANGS.indexOf(l) > -1 ? l : "en"; }
   function t(s){ var d = (window.I18N_DATA || {})[lang()] || {}; return d[s] || s; }
   function tx(o){ if(o == null) return ""; if(typeof o === "string") return o; return o[lang()] || o.en || o.es || ""; }
@@ -47,6 +64,11 @@
     li.appendChild(el("h4", "gx-svc-title", tx(s.title)));
     if(s.desc) li.appendChild(el("p", "gx-svc-desc", tx(s.desc)));
     li.appendChild(el("p", "gx-svc-price" + (s.price ? "" : " is-tbc"), s.price ? tx(s.price) : t("We will confirm availability and price.")));
+    if(s.link && s.link.url){                   // p. ej. calendario del taller en sabeneida.com
+      var lk = el("a", "link-arrow gx-svc-link", tx(s.link.label) + " →");
+      lk.href = s.link.url; lk.target = "_blank"; lk.rel = "noopener";
+      li.appendChild(lk);
+    }
     var b = el("a", "btn btn-ghost gx-svc-btn", t("Request"));
     b.href = "#"; b.setAttribute("role", "button"); b.setAttribute("data-request", s.id);
     b.setAttribute("aria-label", t("Request") + " · " + tx(s.title));
@@ -119,4 +141,6 @@
   function render(){ renderServices(); renderMusic(); }
   function init(){ render(); document.addEventListener("gloria:lang", render); }
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+  applyLocation();
+  document.addEventListener("gloria:lang", applyLocation);
 })();

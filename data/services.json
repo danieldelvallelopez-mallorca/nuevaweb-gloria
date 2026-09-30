@@ -594,36 +594,89 @@
    "active": true,
    "icon": "ring",
    "title": {
-    "es": "Taller de joyería en arcilla polimérica",
-    "en": "Polymer clay jewellery workshop",
-    "de": "Schmuck-Workshop mit Polymer Clay",
-    "fr": "Atelier de bijoux en pâte polymère",
-    "sv": "Smyckesworkshop i polymerlera"
+    "es": "Taller de joyería con Sa Beneïda",
+    "en": "Jewellery workshop with Sa Beneïda",
+    "de": "Schmuck-Workshop mit Sa Beneïda",
+    "fr": "Atelier de bijoux avec Sa Beneïda",
+    "sv": "Smyckesworkshop med Sa Beneïda"
    },
    "desc": {
-    "es": "Diseña y crea tus propias joyas en arcilla polimérica y llévatelas como recuerdo.",
-    "en": "Design and make your own polymer clay jewellery and take it home as a keepsake.",
-    "de": "Entwerfen und fertigen Sie Ihren eigenen Schmuck aus Polymer Clay und nehmen Sie ihn als Andenken mit.",
-    "fr": "Imaginez et créez vos propres bijoux en pâte polymère, et emportez-les en souvenir.",
-    "sv": "Designa och gör dina egna smycken i polymerlera och ta med dem hem som minne."
+    "es": "Crea tus propias joyas de arcilla polimérica con Laura, aquí en Glòria. Vino y picoteo, materiales incluidos y sin experiencia previa. También talleres privados para grupos.",
+    "en": "Make your own polymer clay jewellery with Laura, here at Glòria. Wine and nibbles, all materials included, no experience needed. Private workshops for groups too.",
+    "de": "Gestalten Sie mit Laura hier im Glòria Ihren eigenen Schmuck aus Polymer-Ton. Wein und Häppchen, alle Materialien inklusive, keine Vorkenntnisse nötig. Auch private Workshops für Gruppen.",
+    "fr": "Créez vos propres bijoux en pâte polymère avec Laura, ici à Glòria. Vin et amuse-bouches, matériel inclus, sans expérience. Ateliers privés pour groupes également.",
+    "sv": "Skapa dina egna smycken i polymerlera med Laura, här på Glòria. Vin och tilltugg, allt material ingår, ingen erfarenhet behövs. Även privata workshops för grupper."
    },
    "time": {
     "from": "10:00",
-    "to": "18:00",
+    "to": "17:00",
     "step": 60
    },
    "pax": {
     "min": 1,
-    "max": 6,
+    "max": 16,
     "label": {
      "es": "Participantes",
      "en": "Participants",
-     "de": "Teilnehmer",
+     "de": "Teilnehmende",
      "fr": "Participants",
      "sv": "Deltagare"
     }
    },
-   "fields": []
+   "fields": [
+    {
+     "name": "format",
+     "type": "select",
+     "required": true,
+     "label": {
+      "es": "Formato",
+      "en": "Format",
+      "de": "Format",
+      "fr": "Format",
+      "sv": "Format"
+     },
+     "options": [
+      {
+       "value": "open",
+       "label": {
+        "es": "Taller abierto (fecha del calendario, máx. 8)",
+        "en": "Open workshop (calendar date, max. 8)",
+        "de": "Offener Workshop (Kalendertermin, max. 8)",
+        "fr": "Atelier ouvert (date du calendrier, max. 8)",
+        "sv": "Öppen workshop (datum i kalendern, max 8)"
+       }
+      },
+      {
+       "value": "private",
+       "label": {
+        "es": "Taller privado para mi grupo",
+        "en": "Private workshop for my group",
+        "de": "Privater Workshop für meine Gruppe",
+        "fr": "Atelier privé pour mon groupe",
+        "sv": "Privat workshop för min grupp"
+       }
+      }
+     ]
+    }
+   ],
+   "price": {
+    "es": "55 € por persona",
+    "en": "€55 per person",
+    "de": "55 € pro Person",
+    "fr": "55 € par personne",
+    "sv": "55 € per person"
+   },
+   "provider": "Laura · Sa Beneïda (sabeneida.com)",
+   "link": {
+    "url": "https://www.sabeneida.com/talleres",
+    "label": {
+     "es": "Ver próximas fechas",
+     "en": "See upcoming dates",
+     "de": "Nächste Termine",
+     "fr": "Voir les prochaines dates",
+     "sv": "Se kommande datum"
+    }
+   }
   },
   {
    "id": "transfer-airport",

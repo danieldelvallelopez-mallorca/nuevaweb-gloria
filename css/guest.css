@@ -113,3 +113,9 @@
 .gx-info-item h3{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
 .gx-info-item p{margin:0 0 12px;font-size:1.02rem;line-height:1.6}
 .gx-info-item a:not(.link-arrow){color:var(--ink);text-decoration:underline;text-decoration-color:var(--teal);text-underline-offset:4px}
+
+/* Ubicación del cliente (desde el NFC/QR): «Habitación 204», «Rooftop 1»… */
+.gx-loc{display:inline-block;margin:0 0 14px;padding:6px 14px;border:1px solid rgba(157,212,202,.55);border-radius:999px;
+  font-family:var(--sans,Montserrat,system-ui,sans-serif);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#9DD4CA}
+
+.gx-svc-link{display:inline-block;margin:0 0 14px;font-size:.62rem}

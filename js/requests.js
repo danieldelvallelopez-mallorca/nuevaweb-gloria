@@ -18,6 +18,33 @@
   var SEARCH_DAYS = 21;                          // días que se miran para proponer la primera fecha libre
   var SELECT_NUMBER_SPAN = 30;                   // campos numéricos con rango pequeño → desplegable
   var ROOMS = ["101","102","103","104","105","106","107","201","202","203","204","205","206","207"];
+  var ZONES = ["rooftop-1","rooftop-2","rooftop-3","spa","bar"];
+
+  /* Ubicación del cliente: cada NFC/QR del hotel abre guest.html?room=<habitación o zona>.
+     Se recuerda durante la visita (sessionStorage) para rellenar la habitación sola. */
+  var LOC = (function(){
+    var v = null;
+    try{ v = new URLSearchParams(location.search).get("room"); }catch(e){}
+    v = v ? String(v).toLowerCase().trim() : null;
+    if(v && (ROOMS.indexOf(v) > -1 || ZONES.indexOf(v) > -1)){
+      try{ sessionStorage.setItem("gloria_loc", v); }catch(e){}
+      return v;
+    }
+    try{ var s = sessionStorage.getItem("gloria_loc"); if(s && (ROOMS.indexOf(s) > -1 || ZONES.indexOf(s) > -1)) return s; }catch(e){}
+    return null;
+  })();
+  window.gloriaLocation = {
+    id: LOC,
+    isRoom: !!LOC && ROOMS.indexOf(LOC) > -1,
+    label: function(tfn){
+      if(!LOC) return "";
+      if(ROOMS.indexOf(LOC) > -1) return (tfn ? tfn("Room") : "Room") + " " + LOC;
+      return LOC.split("-").map(function(w){ return w.charAt(0).toUpperCase() + w.slice(1); }).join(" ");
+    },
+    orderUrl: function(){
+      return "https://hotelgloriapedidos.es/" + (LOC ? "?room=" + encodeURIComponent(LOC) : "?acceso=1");
+    }
+  };
   var PHONE_RE = /^[0-9+() .\/\-]{6,40}$/;       // mismas reglas que api/request.php y la tabla `requests`
   var EMAIL_RE = /^[^\s@?&=<>"']+@[^\s@?&=<>"']+\.[^\s@?&=<>"']+$/;
   var PHONE_LABEL = "+34 971 92 18 91";
@@ -266,17 +293,22 @@
     });
     var roomAttrs = {inputmode:"numeric", maxlength:"3", pattern:"[0-9]{3}", autocomplete:"off"};
     if(svc.stayOnly) roomAttrs.required = "";
+    // desde el NFC de una habitación la habitación ya se sabe: se rellena y se bloquea
+    if(window.gloriaLocation.isRoom){ roomAttrs.value = LOC; roomAttrs.readonly = ""; }
     small.push(field(t(svc.stayOnly ? "Room number" : "Room number (if you are staying with us)"), input("text", "room", roomAttrs),
       svc.stayOnly ? {required:true} : {optional:true}));
     rows(form, small);
 
     // 3 · contacto, notas, consentimiento
-    form.appendChild(field(t("Name"), input("text", "name", {autocomplete:"name", maxlength:"120", required:""}), {required:true}));
+    // desde el NFC de una habitación ya sabemos a dónde ir: nombre y contacto opcionales
+    var known = window.gloriaLocation.isRoom;
+    form.appendChild(field(t("Name"), input("text", "name", known ? {autocomplete:"name", maxlength:"120"} : {autocomplete:"name", maxlength:"120", required:""}),
+      known ? {optional:true} : {required:true}));
     rows(form, [
       field(t("Phone"), input("tel", "phone", {autocomplete:"tel", maxlength:"40", inputmode:"tel"})),
       field(t("Email"), input("email", "email", {autocomplete:"email", maxlength:"160"}))
     ]);
-    form.appendChild(el("p", "rq-hint rq-contact-hint", t("Please give us a phone number or an email so we can confirm.")));
+    if(!known) form.appendChild(el("p", "rq-hint rq-contact-hint", t("Please give us a phone number or an email so we can confirm.")));
 
     var notes = el("textarea"); notes.name = "notes"; notes.rows = 3; notes.maxLength = 600;
     notes.placeholder = t(svc.id === "restaurant" ? "Allergies, a special occasion, preferences…" :
@@ -416,11 +448,12 @@
     });
     var dErr = checkDate(form, true); if(dErr) fail("date", dErr);
     if(E.time && !E.time.value) fail("time", "time");
-    if(!E.name.value.trim()) fail("name", "fields");
+    var known = window.gloriaLocation.isRoom;
+    if(!known && !E.name.value.trim()) fail("name", "fields");
     var ph = E.phone.value.trim(), em = E.email.value.trim();
     if(ph && !PHONE_RE.test(ph)) fail("phone", "phone");
     if(em && !EMAIL_RE.test(em)) fail("email", "email");
-    if(!ph && !em){ fail("phone", "contact"); mark(form, "email", true); }
+    if(!known && !ph && !em){ fail("phone", "contact"); mark(form, "email", true); }
     var room = E.room.value.trim();
     if(svc.stayOnly && !room) fail("room", "roomReq");
     else if(room && ROOMS.indexOf(room) < 0) fail("room", svc.stayOnly ? "roomReq" : "room");
@@ -434,7 +467,8 @@
     return {
       kind:svc.id, date:E.date.value, time:E.time ? E.time.value : "", pax:E.pax ? E.pax.value : "1", fields:extra,
       name:E.name.value.trim(), phone:E.phone.value.trim(), email:E.email.value.trim(),
-      room:E.room.value.trim(), notes:E.notes.value.trim(), lang:lang(), consent:"1", website:E.website.value
+      room:E.room.value.trim(), spot:(LOC && ROOMS.indexOf(LOC) < 0) ? LOC : "",
+      notes:E.notes.value.trim(), lang:lang(), consent:"1", website:E.website.value
     };
   }
 

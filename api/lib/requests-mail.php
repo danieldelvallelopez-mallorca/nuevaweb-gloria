@@ -212,7 +212,7 @@ function requests_internal_mail(array $r): array {
     $t = requests_texts('es');
     [$main, $rest] = requests_summary_rows($r, $t['labels'], 'es');
     $contact = [
-        ['Nombre', $r['name']],
+        ['Nombre', $r['name'] !== '' ? $r['name'] : '—'],
         ['Teléfono', $r['phone'] ?: '—'],
         ['Email', $r['email'] ?: '—'],
         ['Idioma', strtoupper($r['lang'])],

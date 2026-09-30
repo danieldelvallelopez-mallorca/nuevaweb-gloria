@@ -21,6 +21,7 @@ const REQUEST_BODY_MAX = 16384;
 const REQUEST_CATALOG = __DIR__ . '/../data/services.json';
 const REQUEST_LANGS = ['es', 'en', 'de', 'fr', 'sv'];
 const HOTEL_ROOMS = ['101', '102', '103', '104', '105', '106', '107', '201', '202', '203', '204', '205', '206', '207'];
+const HOTEL_ZONES = ['rooftop-1', 'rooftop-2', 'rooftop-3', 'spa', 'bar'];
 
 function out(int $code, array $body): void { http_response_code($code); echo json_encode($body, JSON_UNESCAPED_UNICODE); exit; }
 
@@ -190,19 +191,25 @@ $phone = field($in, 'phone', 40);
 $email = field($in, 'email', 160);
 $notes = field($in, 'notes', 600);
 $room = field($in, 'room', 3);
+$spot = strtolower(field($in, 'spot', 12));   // zona del NFC/QR (rooftop-1…3, spa, bar) si no es una habitación
+if ($spot !== '' && !in_array($spot, HOTEL_ZONES, true)) $spot = '';
 $consent = field($in, 'consent', 5) === '1' || ($in['consent'] ?? null) === true;
 $langIn = field($in, 'lang', 2);
 $lang = in_array($langIn, REQUEST_LANGS, true) ? $langIn : 'en';
 
 $svc = $catalog[$kind] ?? null;
-if ($svc === null || $name === '') out(400, ['error' => 'fields']);
-// mismas reglas que la tabla `requests` de Supabase (si no, la fila se rechazaría allí)
-if ($phone !== '' && !preg_match('/^[0-9+() .\/\-]{6,40}$/', $phone)) out(400, ['error' => 'phone']);
-if ($email !== '' && (!filter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/[?&=<>"\']/', $email))) out(400, ['error' => 'email']);
-if ($phone === '' && $email === '') out(400, ['error' => 'contact']);
+if ($svc === null) out(400, ['error' => 'fields']);
 // habitación: obligatoria en los servicios solo para alojados (stayOnly); opcional en el resto
 if ($room === '' && !empty($svc['stayOnly'])) out(400, ['error' => 'roomReq']);
 if ($room !== '' && (!preg_match('/^\d{3}$/', $room) || !in_array($room, HOTEL_ROOMS, true))) out(400, ['error' => 'room']);
+// con habitación (NFC/QR de la habitación o escrita por el huésped) el equipo va a la habitación:
+// nombre y contacto pasan a ser opcionales. Sin habitación, hacen falta para poder confirmar.
+$inRoom = $room !== '';
+if (!$inRoom && $name === '') out(400, ['error' => 'fields']);
+// mismas reglas que la tabla `requests` de Supabase (si no, la fila se rechazaría allí)
+if ($phone !== '' && !preg_match('/^[0-9+() .\/\-]{6,40}$/', $phone)) out(400, ['error' => 'phone']);
+if ($email !== '' && (!filter_var($email, FILTER_VALIDATE_EMAIL) || preg_match('/[?&=<>"\']/', $email))) out(400, ['error' => 'email']);
+if (!$inRoom && $phone === '' && $email === '') out(400, ['error' => 'contact']);
 if (!$consent) out(400, ['error' => 'consent']);
 
 // fecha: hoy .. +180 días (hora de Palma), sin los días de descanso del servicio (ISO-8601 'N': 1 = lunes … 7 = domingo)
@@ -241,6 +248,8 @@ if ($svcPax !== null) {
 }
 
 [$values, $details] = request_extra_fields($svc, $in);
+// pedido desde el NFC/QR de una zona (rooftop, spa…): el equipo sabe dónde está el cliente
+if ($spot !== '') $details['Desde'] = ucwords(str_replace('-', ' ', $spot));
 $title = (string)($svc['title']['es'] ?? $kind);
 
 $record = [
@@ -252,9 +261,9 @@ $record = [
 $cfg = gloria_secrets();
 
 $stored = request_store([
-    'kind' => $kind, 'title' => $title, 'details' => (object)$details, 'source' => 'web',
+    'kind' => $kind, 'title' => $title, 'details' => (object)$details, 'source' => $inRoom ? 'room' : 'web',
     'req_date' => $date, 'req_time' => $time !== '' ? $time : null, 'pax' => $pax,
-    'name' => $name, 'phone' => $phone ?: null, 'email' => $email ?: null,
+    'name' => $name !== '' ? $name : null, 'phone' => $phone ?: null, 'email' => $email ?: null,
     'notes' => $notes ?: null, 'lang' => $lang, 'room' => $room !== '' ? $room : null, 'treatment' => null,
 ], $cfg);
 
