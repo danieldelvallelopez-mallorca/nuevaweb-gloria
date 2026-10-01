@@ -1,0 +1,113 @@
+/* Palma by Glòria · guías "The Palma you almost walked past" (primer día) y "48 hours in Palma".
+   Maquetas de Lara (24h palma.png y 48 Hours). Textos literales de sus PDFs. */
+
+.pg-fig{margin:0}
+.pg-fig .imgframe{aspect-ratio:3/4}
+.pg-fig figcaption{font-family:var(--sans);font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.pg-script{font-family:"La Belle Aurore",cursive;font-size:clamp(1.25rem,1.8vw,1.6rem);line-height:1.15;color:var(--muted);display:block;max-width:12em;transform:rotate(-6deg);margin-top:22px;opacity:.9}
+.pg-note{font-style:italic;color:var(--muted);font-size:.95rem;border-left:2px solid var(--teal);padding-left:14px;margin-top:16px}
+.pg-links{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:18px}
+.pg-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.pg-box{background:var(--paper);border:1px solid var(--line);padding:clamp(18px,2vw,26px);margin-top:20px}
+.pg-box h3{font-size:1.25rem;margin:.3em 0 .4em}
+.pg-box p{margin:0 0 .6em}
+.pg-dash{display:inline-flex;align-items:center;gap:14px}
+.pg-dash::after{content:"";width:46px;height:1px;background:currentColor;opacity:.5}
+
+/* ---------- héroe ---------- */
+.pg-hero,.p48-hero{min-height:clamp(480px,42vw,620px)!important}
+.pg-hero::before,.p48-hero::before{background:linear-gradient(90deg,rgba(22,16,10,.72) 0%,rgba(22,16,10,.45) 42%,rgba(22,16,10,.05) 75%)!important}
+.pg-hero .hero-in,.p48-hero .hero-in{padding-top:clamp(90px,9vw,120px)!important;padding-bottom:clamp(36px,4vw,56px)!important}
+.pg-hero h1,.p48-hero h1{max-width:12ch}
+.pg-hero .sub,.p48-hero .sub{max-width:52ch}
+.pg-hero .bg{object-position:50% 40%}
+.p48-hero .bg{object-position:50% 60%}
+.pg-script-hero{position:absolute;right:clamp(20px,6vw,90px);top:clamp(96px,10vw,130px);color:rgba(243,237,226,.9);transform:rotate(-12deg)}
+.p48-sub{font-family:var(--serif);font-size:clamp(1.2rem,2.2vw,1.6rem);color:var(--cream);margin-top:10px}
+.p48-tag{font-family:var(--sans);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,237,226,.85);margin-top:18px}
+
+/* ---------- introducción ---------- */
+.pg-intro{padding-block:clamp(36px,4vw,56px)!important;text-align:center}
+.pg-intro .wrap{max-width:900px}
+.pg-intro p{font-size:1.06rem;line-height:1.7;margin:0 0 .9em}
+.pg-intro-end{font-style:italic;color:var(--muted)}
+.pg-rule{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px;font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);scroll-margin-top:90px}
+.pg-rule::before,.pg-rule::after{content:"";width:36px;height:1px;background:var(--ink);opacity:.5}
+
+/* ---------- paradas (primer día) ---------- */
+.pg-step{border-top:1px solid var(--line);scroll-margin-top:80px}
+.pg-step-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,60px);align-items:center;padding-block:clamp(28px,3.4vw,48px)}
+.pg-step.flip .pg-media{order:2}
+.pg-media{display:grid;gap:14px}
+.pg-media.two{grid-template-columns:1fr 1fr}
+.pg-media:not(.two) .imgframe{aspect-ratio:4/5;max-height:620px}
+.pg-text h2{font-size:clamp(1.6rem,2.6vw,2.2rem);margin:.35em 0 .55em}
+.pg-text p{margin:0 0 .8em;line-height:1.7;max-width:62ch}
+.pg-text .pg-script{margin-left:auto;margin-right:4%}
+
+/* ---------- tarde en Glòria ---------- */
+.pg-evening{background:var(--brown);color:var(--cream)}
+.pg-evening-in{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+.pg-evening-p{font-family:var(--serif);font-size:clamp(1.15rem,1.9vw,1.45rem);line-height:1.6;margin:.6em 0}
+.pg-evening-end{color:rgba(243,237,226,.8);font-style:italic}
+.pg-quote{margin:0;border-left:1px solid rgba(243,237,226,.35);padding-left:clamp(20px,3vw,40px)}
+.pg-quote p{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.25;margin:0 0 .4em;color:var(--cream)}
+
+/* ---------- nota / siguiente ---------- */
+.pg-noteblock{padding-block:clamp(40px,4.5vw,64px)!important}
+.pg-note-in{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(24px,4vw,64px);align-items:start}
+.pg-note-in h2{font-size:clamp(1.7rem,2.8vw,2.3rem);margin-top:.3em}
+.pg-next{display:flex;flex-wrap:wrap;align-items:center;gap:12px 30px;margin-top:clamp(28px,3vw,44px);padding-top:22px;border-top:1px solid var(--line)}
+.pg-next-sec{padding-block:clamp(10px,1.5vw,20px) clamp(36px,4vw,56px)!important}
+.pg-next-sec .pg-next{margin-top:0}
+
+/* ---------- 48 horas: los dos días ---------- */
+.p48-days{padding-block:clamp(36px,4vw,56px)!important}
+.p48-days-in{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,44px)}
+.p48-day{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2vw,28px);align-items:stretch;border-left:1px solid var(--line);padding-left:clamp(16px,2vw,28px)}
+.p48-day h2{font-size:clamp(1.6rem,2.4vw,2.1rem);margin:.4em 0 .5em}
+.p48-day .pg-fig .imgframe{aspect-ratio:3/4.2}
+.p48-meta{list-style:none;padding:0;margin:20px 0 24px;display:grid;gap:10px;font-size:.92rem;color:var(--ink)}
+.p48-meta li{display:flex;align-items:center;gap:10px}
+.p48-meta li::before{content:"";width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--muted)}
+
+/* ---------- 48 horas: cada día ---------- */
+.p48-walk{background:var(--cream-2);scroll-margin-top:70px;padding-block:clamp(40px,4.5vw,64px)!important}
+.p48-walk + .p48-walk{background:var(--cream)}
+.p48-over{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:start}
+.p48-over h2{font-size:clamp(1.8rem,3vw,2.5rem);margin:.35em 0 .4em}
+.p48-list{list-style:none;padding:0;margin:24px 0 28px;display:grid;gap:14px}
+.p48-list li{display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start}
+.p48-list .num{width:28px;height:28px;border-radius:50%;background:var(--brown);color:var(--cream);font-family:var(--sans);font-size:.72rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+.p48-list b{font-weight:500;display:block;font-size:1.02rem}
+.p48-list small{display:block;color:var(--muted);font-size:.9rem}
+.p48-aside .pg-fig .imgframe{aspect-ratio:3/4;max-height:600px}
+.p48-aside > .pg-note{font-size:1.05rem;margin-top:0}
+.p48-stops{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.4vw,32px);margin-top:clamp(32px,4vw,56px);padding-top:clamp(24px,3vw,40px);border-top:1px solid var(--line)}
+.p48-stop{position:relative;padding-left:46px}
+.p48-stop > .num{position:absolute;left:0;top:-2px;font-family:var(--serif);font-size:1.6rem;color:var(--muted)}
+.p48-stop h3{font-size:1.35rem;margin:.35em 0 .45em}
+.p48-stop p{margin:0 0 .7em;line-height:1.7}
+.p48-stop.pg-box{margin-top:0;padding-left:clamp(18px,2vw,26px)}
+
+/* ---------- móvil ---------- */
+@media (max-width:900px){
+  .pg-step-in,.pg-evening-in,.pg-note-in,.p48-over,.p48-days-in{grid-template-columns:1fr}
+  .pg-step.flip .pg-media{order:0}
+  .pg-media:not(.two) .imgframe{aspect-ratio:4/3}
+  .p48-stops{grid-template-columns:1fr}
+  .pg-script-hero{display:none}
+}
+@media (max-width:560px){
+  .p48-day{grid-template-columns:1fr;border-left:0;padding-left:0}
+  .p48-day .pg-fig .imgframe{aspect-ratio:4/3}
+  .pg-media.two{grid-template-columns:1fr 1fr;gap:10px}
+}
+
+/* ajustes tras revisión */
+.pg-intro .wrap > p{max-width:74ch;margin-inline:auto}
+.pg-media:not(.two) .imgframe{aspect-ratio:1/1;max-height:none}
+.pg-media:not(.two) .pg-fig{width:100%}
+.p48-over .muted{max-width:56ch}
+.p48-aside > .pg-note{font-size:1.15rem;line-height:1.6;margin-top:clamp(40px,6vw,90px)}
+.pg-note-in .muted{max-width:62ch}
