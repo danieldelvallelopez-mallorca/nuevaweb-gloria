@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>Experiences · Glòria de Sant Jaume</title>
-<meta name="description" content="A little more of Glòria — experiences created around the flavours, spaces and quiet rituals of the house.">
+<title>The Palma you almost walked past · First 24 hours in Palma · Glòria de Sant Jaume</title>
+<meta name="description" content="A first-day walk through Palma that begins and ends at Glòria de Sant Jaume: secret passages, Modernist façades, working bakeries and traditional shops.">
 <link rel="icon" type="image/png" sizes="64x64" href="img/favicon.png?v=02558355">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png?v=4d293441">
 <meta name="theme-color" content="#534134">
@@ -13,17 +13,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Karma:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="css/styles.css?v=65">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap">
+<link rel="stylesheet" href="css/palma-guide.css?v=1">
 <link rel="stylesheet" href="css/concierge.css?v=3">
-<style>
-  .exp-hero{position:relative;min-height:74vh;display:flex;align-items:center;color:var(--cream);
-    margin-top:-88px;padding-top:88px;overflow:hidden;isolation:isolate;background:#33271d}
-  .exp-hero .strip{position:absolute;inset:0;z-index:-2;display:flex}
-  .exp-hero .strip .imgframe{height:100%}
-  .exp-hero::before{content:"";position:absolute;inset:0;z-index:-1;
-    background:linear-gradient(90deg,rgba(25,18,12,.78),rgba(25,18,12,.5) 40%,rgba(25,18,12,.15))}
-  .price{font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);margin:6px 0 12px;font-weight:600}
-  .fam-icons{font-family:var(--sans);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:2px 0 6px}
-</style>
 </head>
 <body>
 
@@ -36,77 +28,135 @@
       <a href="rooms.html">Rooms</a>
       <a href="el-patio.html">El Patio</a>
       <a href="wellness.html">Wellness</a>
-      <a href="experiences.html" class="active">Experiences</a>
-      <a href="palma.html">Palma</a>
+      <a href="experiences.html">Experiences</a>
+      <a href="palma.html" class="active">Palma</a>
     </nav>
     <div class="header-right"><a class="btn btn-ghost-light" href="index.html#book" data-book>Book</a><span class="lang">EN ▾</span></div>
   </div>
 </header>
 
-<!-- HERO strip -->
-<section class="exp-hero">
-  <div class="strip">
-    <div class="col"><div class="imgframe"><img loading="eager" decoding="async" src="img/exp-hero-1.jpg?v=d0ec6901" alt=""></div></div>
-    <div class="col"><div class="imgframe"><img loading="eager" decoding="async" src="img/exp-hero-2.jpg?v=b1e0c617" alt=""></div><span class="cap">Slower<br>days</span></div>
-    <div class="col"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-hero-3.jpg?v=a2e42ad7" alt=""></div><span class="cap">Memorable<br>flavours</span></div>
-    <div class="col"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-hero-4.jpg?v=0f636be9" alt=""></div><span class="cap">Beautiful<br>evenings</span></div>
-    <div class="col"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-hero-5.jpg?v=2abacd80" alt=""></div><span class="cap">Special<br>moments</span></div>
-    <div class="col"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-hero-6.jpg?v=7edcfe29" alt=""></div><span class="cap">Always<br>a good idea</span></div>
-  </div>
+
+<!-- HERO -->
+<section class="page-hero phero pg-hero">
+  <img fetchpriority="high" class="bg" src="img/pw-cathedral.jpg?v=a1c53d5f" alt="La Seu, Palma’s Cathedral">
   <div class="hero-in">
-    <span class="eyebrow" style="color:rgba(243,237,226,.85)">Experiences at Glòria</span>
-    <h1>A little more<br>of Glòria.</h1>
-    <p class="sub" style="max-width:40ch">Some moments deserve a little more time. Discover experiences created around the flavours, spaces and quiet rituals of the house, to enjoy during your stay or simply whenever you feel like returning to Glòria.</p>
-    <div class="stack-cta"><a class="exp-play" href="#collection"><span class="ring"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>Discover experiences ↓</a></div>
+    <span class="eyebrow" style="color:rgba(243,237,226,.85)">First 24 hours in Palma</span>
+    <h1>The Palma you almost walked past</h1>
+    <p class="sub">An unexpected passage, a face hidden in a Modernist façade, the scent of a traditional bakery and a postcard chosen by chance. Our favourite way to discover Palma begins just outside the door.</p>
+    <div class="stack-cta"><a class="link-arrow" style="color:var(--cream);border-color:var(--line-light)" href="#walk">Start the walk ↓</a></div>
   </div>
+  <span class="pg-script pg-script-hero" aria-hidden="true">Same city, a different story</span>
 </section>
 
-<!-- 02 COLLECTION -->
-<section class="section" id="collection">
+<section class="section pg-intro">
   <div class="wrap">
-    <div class="two-col" style="align-items:flex-end">
-      <div><span class="eyebrow">Experiences</span><h2 style="margin-bottom:0">How would you like<br>to spend your time?</h2></div>
-      <p class="muted">From a slow morning over breakfast to time beneath the house, lunch at El Patio or an evening of cocktails and music, choose your own way to experience Glòria.</p>
-    </div>
-    <div class="photo-cards cols-4">
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-card-breakfast.jpg?v=7d508b74" alt="Breakfast at Glòria"></div><span class="eyebrow">Taste</span><h3>Breakfast at Glòria</h3><p>A calm and generous breakfast at El Patio, to start the day the Glòria way.</p><div class="fam-icons"><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10.5h1.5a2 2 0 0 1 0 4H17"/><path d="M3 21h17"/></svg>Breakfast</span></div><div class="price">€35 per person</div><a class="btn btn-ghost exp-book" href="mailto:reservas@gloriasantjaume.com?subject=Breakfast%20at%20Gl%C3%B2ria" data-track="experience_enquiry">Discover &amp; book →</a></div>
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-card-breakfast-spa.jpg?v=4574bb34" alt="Breakfast & Spa"></div><span class="eyebrow">Relax</span><h3>Breakfast &amp; Spa</h3><p>Begin the morning over breakfast at El Patio, followed by time to slow down beneath the house.</p><div class="fam-icons"><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10.5h1.5a2 2 0 0 1 0 4H17"/><path d="M3 21h17"/></svg>Breakfast</span><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 13c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg>Spa access</span></div><div class="price">€95 per person</div><a class="btn btn-ghost exp-book" href="mailto:reservas@gloriasantjaume.com?subject=Breakfast%20%26%20Spa" data-track="experience_enquiry">Discover &amp; book →</a></div>
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-card-lunch-spa.jpg?v=f017ef09" alt="Lunch & Spa"></div><span class="eyebrow">Relax</span><h3>Lunch &amp; Spa</h3><p>A relaxed lunch at El Patio and time to unwind in our wellness area beneath the house.</p><div class="fam-icons"><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M16 3c-2 1-2.5 4-2.5 7h2.5v11"/></svg>Lunch</span><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 13c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0"/></svg>Spa access</span></div><div class="price">€120 per person</div><a class="btn btn-ghost exp-book" href="mailto:reservas@gloriasantjaume.com?subject=Lunch%20%26%20Spa" data-track="experience_enquiry">Discover &amp; book →</a></div>
-      <div class="pc"><div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-card-evening.jpg?v=06fc7b01" alt="An Evening at Glòria"></div><span class="eyebrow">Evening</span><h3>An Evening at Glòria</h3><p>Cocktail &amp; musical atmosphere at El Patio.</p><div class="fam-icons"><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16l-8 9z"/><path d="M12 13v7M8 21h8"/></svg>Cocktail</span><span><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></svg>Musical atmosphere</span></div><div class="price">€45 per person</div><a class="btn btn-ghost exp-book" href="mailto:reservas@gloriasantjaume.com?subject=An%20Evening%20at%20Gl%C3%B2ria" data-track="experience_enquiry">Discover &amp; book →</a></div>
-    </div>
+    <p>There is a particular pleasure in exploring a city without feeling obliged to conquer it. In Palma, that pleasure might be found in a narrow passage you nearly missed, an old-fashioned shop window or an architectural detail that makes you stop and look twice.</p>
+    <p>Of course, there is a magnificent Cathedral and a beautiful waterfront. But there is also another Palma, hiding in plain sight: one of working bakeries, extravagant façades, woven baskets, little cafés and streets that seem to lead somewhere entirely unexpected.</p>
+    <p>For your first day, we have put together a walk that begins and ends at Glòria de Sant Jaume. It follows a route we know and love, with a few optional stops and plenty of opportunities to let curiosity take the lead.</p>
+    <p class="pg-intro-end">Leave the car behind. Wear comfortable shoes. And remember to look up.</p>
+    <div class="pg-rule" id="walk"><span>A walk from Glòria</span></div>
   </div>
 </section>
 
-<!-- 03 GLÒRIA FOR THE DAY -->
-<section class="section" style="background:var(--cream-2)">
-  <div class="wrap two-col">
+<section class="pg-steps">
+  <article class="pg-step" id="step-01">
+    <div class="wrap pg-step-in">
+      <div class="pg-media"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-sant-jaume.jpg?v=01caee5f" alt="The church of Sant Jaume, next to Glòria"></div><figcaption>The church of Sant Jaume, next to Glòria</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">01 · A slow beginning</span><h2>Start where you feel at home.</h2><p>Begin with breakfast at El Patio de Glòria. When you are ready to explore, step outside onto Carrer de Sant Jaume. Some of Palma’s most fascinating streets are just moments from the hotel, and today there is no need for a car.</p><p>There is no rush. The pleasure of discovering Palma often lies in the places you had not planned to find.</p><div class="pg-links"><a class="link-arrow" href="el-patio.html">Discover El Patio →</a></div><span class="pg-script" aria-hidden="true">Good mornings lead to beautiful days</span></div>
+    </div>
+  </article>
+  <article class="pg-step flip" id="step-02">
+    <div class="wrap pg-step-in">
+      <div class="pg-media two"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-passage.jpg?v=a8e93a42" alt="Carrer de la Sagristia de Sant Jaume"></div><figcaption>Carrer de la Sagristia de Sant Jaume</figcaption></figure><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-passage-steps.jpg?v=2e9f0713" alt="Old stone underfoot"></div><figcaption>Old stone underfoot</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">02 · The secret way out</span><h2>Take the narrow way.</h2><p>Just around the corner from Glòria, discover Carrer de la Sagristia de Sant Jaume, a tiny passage tucked alongside the church. If its gates are open, slip through.</p><p>It is the kind of shortcut that feels like a secret, even when it is right there in the middle of the city. For a few moments, Palma seems to shrink to the width of a passageway, the texture of an old wall and the anticipation of what might be waiting at the other end.</p><p>Then, quite suddenly, the city opens up again.</p><p class="pg-note">Glòria’s note: The passage is only an option when its gates are open. If they are closed, simply follow the surrounding streets towards the next stop.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Carrer%20de%20la%20Sagristia%20de%20Sant%20Jaume%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step" id="step-03">
+    <div class="wrap pg-step-in">
+      <div class="pg-media two"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-casasayas.jpg?v=4c48a15b" alt="Can Casasayas"></div><figcaption>Can Casasayas</figcaption></figure><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-forn-fondo.jpg?v=1b2d6b73" alt="Forn Fondo"></div><figcaption>Forn Fondo</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">03 · A little Modernist drama</span><h2>Look up. Then look again.</h2><p>Make your way towards Forn Fondo, allowing yourself a moment to enjoy this traditional bakery and the streets around it.</p><p>Nearby, two remarkable buildings demand a closer look: Can Casasayas and the Pensió Menorquina. Their gently undulating façades bring an almost playful movement to the architecture, as though the buildings were responding to one another across the street.</p><p>This is the first rule of our Palma walk: never assume that the most interesting thing is at eye level.</p><p>Continue to Forn des Teatre, home to Fornet de la Soca. Admire the shopfront, but do not stop there. Look for the little window that gives you a glimpse of the people working inside.</p><p>It is a wonderfully ordinary moment: a bakery going about its day, the craft behind the counter briefly visible from the street.</p><p>In a city full of extraordinary architecture, it is worth remembering that some of its most compelling scenes are still part of everyday life.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Forn%20Fondo%2C%20Carrer%20de%20la%20Uni%C3%B3%2015%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step flip" id="step-04">
+    <div class="wrap pg-step-in">
+      <div class="pg-media"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-gran-hotel.jpg?v=8e3e16f3" alt="CaixaForum Palma, the former Gran Hotel"></div><figcaption>CaixaForum Palma, the former Gran Hotel</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">04 · The grand gesture</span><h2>An icon worth stopping for.</h2><p>A short stroll brings you to CaixaForum Palma, housed in the former Gran Hotel.</p><p>Its elaborate Modernist façade is reason enough to pause. There is something gloriously confident about a building that refuses to be overlooked.</p><p>If an exhibition catches your interest, go inside. If not, admire the exterior and continue towards the steps by the Teatre Principal.</p><p>Take a quick look at Plaça Major before slipping back into the smaller streets. The square may be one of Palma’s familiar landmarks, but today we are more interested in what happens just beyond it.</p><p>And there is something rather extraordinary waiting there.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=CaixaForum%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step" id="step-05">
+    <div class="wrap pg-step-in">
+      <div class="pg-media"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-forteza-rey.jpg?v=43af8fae" alt="Can Forteza Rey"></div><figcaption>Can Forteza Rey</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">05 · The face in the façade</span><h2>Palma has a mischievous side.</h2><p>Find Can Forteza Rey, a building whose exuberant decoration seems determined to compete for your attention.</p><p>There are colourful surfaces, elaborate windows and enough sculptural detail to keep you looking for quite some time. Yet our favourite feature is not necessarily the one you notice first.</p><p>Beneath one of the balconies, search for a mysterious face surrounded by forms that resemble serpents or dragons.</p><p>It is strange, slightly unsettling and utterly fascinating.</p><p>Once you have spotted it, you may find yourself looking at every other building in Palma a little differently. What else have you been walking past without noticing?</p><div class="pg-box"><span class="eyebrow">The little challenge</span><h3>Find the face before you leave.</h3><p>This is one architectural detail we would rather you discover for yourself.</p></div><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Can%20Forteza%20Rey%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step flip" id="step-06">
+    <div class="wrap pg-step-in">
+      <div class="pg-media two"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-la-montana.jpg?v=50aad5db" alt="Colmado La Montaña"></div><figcaption>Colmado La Montaña</figcaption></figure><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-umbrellas.jpg?v=069bc071" alt="The umbrella shop"></div><figcaption>The umbrella shop</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">06 · Shops with a soul</span><h2>The joy of the unexpected shop window.</h2><p>From Can Forteza Rey, continue to Colmado La Montaña.</p><p>We love including traditional shops in our walks. They tell a different story of a city — one shaped by familiar counters, carefully arranged goods and the simple pleasure of stepping into a place that has its own personality.</p><p>A little further on, look out for the umbrella shop before continuing towards Plaça de Cort.</p><p>Pause by the Town Hall and take in the square. This is Palma at its most effortless: historic architecture, small businesses and the rhythms of everyday life sharing the same few streets.</p><p>Then follow your curiosity towards a particularly charming coffee stop.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Colmado%20La%20Monta%C3%B1a%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step" id="step-07">
+    <div class="wrap pg-step-in">
+      <div class="pg-media"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-sphere.jpg?v=32d723e6" alt="Cafe Sphere and the Mini Prints machine"></div><figcaption>Cafe Sphere and the Mini Prints machine</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">07 · Coffee, with a surprise</span><h2>A souvenir chosen by chance.</h2><p>Stop at Cafe Sphere Palma for a specialty coffee.</p><p>Nearby, seek out the Mini Prints Mallorca machine, a little dispenser offering miniature illustrated cards inspired by the island. Insert a euro, turn the mechanism and discover which of the six designs comes out.</p><p>You cannot choose your card. That is rather the point.</p><p>The illustrations have the delicate charm of tiny hand-painted souvenirs, and the element of surprise makes the experience unexpectedly delightful.</p><p>Slip your card into your wallet, tuck it inside a book or save it to send to someone when you return home.</p><p>Sometimes the best souvenirs are the ones you did not know you were looking for.</p><p class="pg-note">The machine cost €1 per card when we visited; availability and price may change.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Cafe%20Sphere%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step flip" id="step-08">
+    <div class="wrap pg-step-in">
+      <div class="pg-media"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-santa-clara.jpg?v=d9eb945a" alt="The Convent of Santa Clara"></div><figcaption>The Convent of Santa Clara</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">08 · A quieter kind of Palma</span><h2>Follow the streets towards Santa Clara.</h2><p>As you continue towards the Convent of Santa Clara, the mood begins to change.</p><p>The streets grow quieter. Old stone walls and discreet doorways replace the animated shopfronts of the commercial centre. It is a lovely part of Palma to explore without hurrying.</p><p>The convent is known for sweets made by its religious community. If they are available when you visit, consider taking a little something with you.</p><p>There is a special charm in discovering traditions that are still woven into the life of the city.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Convent%20de%20Santa%20Clara%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step" id="step-09">
+    <div class="wrap pg-step-in">
+      <div class="pg-media two"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-arab-baths.jpg?v=d064ac7b" alt="The Arab Baths"></div><figcaption>The Arab Baths</figcaption></figure><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-arab-baths-garden.jpg?v=b935f114" alt="The garden of the Arab Baths"></div><figcaption>The garden of the Arab Baths</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">09 · A hidden piece of history</span><h2>Step into another century.</h2><p>Continue to the Arab Baths.</p><p>If you have time and they are open, step inside. The surviving architecture and tranquil garden offer an evocative glimpse into a much older Palma.</p><p>After the decorative exuberance of the Modernist buildings, the simplicity of this space feels particularly striking.</p><p>Stay for a little while, or simply continue through the surrounding streets. Either way, the next part of the walk is about to change the scale of everything you have seen.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Banys%20%C3%80rabs%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step flip" id="step-10">
+    <div class="wrap pg-step-in">
+      <div class="pg-media"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-parc-de-la-mar.jpg?v=b1ab9de9" alt="The Cathedral from Parc de la Mar"></div><figcaption>The Cathedral from Parc de la Mar</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">10 · The big reveal</span><h2>And then, the Cathedral.</h2><p>Walk towards Parc de la Mar.</p><p>After hours spent wandering through intimate streets and looking closely at tiny details, Palma offers you the grandest possible view.</p><p>The Cathedral rises above the old city walls, monumental and unmistakable. From the park, there is room to appreciate its full presence against the sky.</p><p>This is the moment to put the phone away for a minute.</p><p>Find a place to sit, enjoy the panorama and allow the city to make its impression without asking anything of you.</p><p>Some views deserve your complete attention.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Parc%20de%20la%20Mar%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div><span class="pg-script" aria-hidden="true">Some views deserve your complete attention</span></div>
+    </div>
+  </article>
+  <article class="pg-step" id="step-11">
+    <div class="wrap pg-step-in">
+      <div class="pg-media two"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-born.jpg?v=91bc25b5" alt="Passeig del Born"></div><figcaption>Passeig del Born</figcaption></figure><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-born-window.jpg?v=0040078c" alt="A window on the Born"></div><figcaption>A window on the Born</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">11 · The elegant way back</span><h2>From gardens to grand avenues.</h2><p>From Parc de la Mar, wander through the gardens towards Plaça de la Reina.</p><p>The route leads you naturally towards Passeig del Born, where Palma exchanges its secluded old-town atmosphere for something altogether more polished.</p><p>Here, tree-lined surroundings and elegant buildings meet the windows of international luxury houses. Louis Vuitton, Loewe and other familiar names lend the avenue a cosmopolitan air.</p><p>Enjoy the contrast. It is another part of the city’s personality.</p><p>But do not return to the hotel just yet. There is one final detour we would hate you to miss.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Passeig%20del%20Born%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step flip" id="step-12">
+    <div class="wrap pg-step-in">
+      <div class="pg-media two"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-la-pajarita.jpg?v=887b4863" alt="La Pajarita"></div><figcaption>La Pajarita</figcaption></figure><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-la-industrial.jpg?v=7ad5a828" alt="La Industrial"></div><figcaption>La Industrial</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">12 · One last discovery</span><h2>Leave the avenue behind.</h2><p>Turn into the smaller streets to the right of the Born and make your way towards the Church of Sant Nicolau.</p><p>This final stretch brings us back to one of our favourite aspects of Palma: its traditional shops.</p><p>First, seek out La Pajarita, a delicatessen whose shopfront invites you to pause and look inside.</p><p>Then continue to La Industrial, a toy shop that offers a lovely contrast to the luxury boutiques you have just left behind.</p><p>There is something irresistible about a proper toy-shop window. Even if you are travelling without children, it is worth stopping for a moment.</p><p>These last two discoveries are a fitting end to the walk. They remind us that Palma’s character does not belong exclusively to its monuments. It lives in the businesses, details and everyday places that give the streets their identity.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=La%20Pajarita%2C%20Palma" target="_blank" rel="noopener">On the map →</a></div></div>
+    </div>
+  </article>
+  <article class="pg-step" id="step-13">
+    <div class="wrap pg-step-in">
+      <div class="pg-media"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/pw-way-home.jpg?v=ebf1f653" alt="Back towards Carrer de Sant Jaume"></div><figcaption>Back towards Carrer de Sant Jaume</figcaption></figure></div>
+      <div class="pg-text"><span class="eyebrow">13 · Home, with a story</span><h2>The best walks come full circle.</h2><p>From La Industrial, turn back towards Carrer de Sant Jaume and make your way to Glòria.</p><p>You have travelled through several different versions of Palma without ever needing a car: a secret passage, theatrical Modernist façades, working bakeries, traditional shops, a quiet convent, ancient baths, the Cathedral and the elegant Born.</p><p>Perhaps you have a miniature postcard in your pocket. Perhaps you are still thinking about that strange face beneath a balcony. Perhaps you have discovered a street you would like to return to tomorrow.</p><p>Step through the doors of Glòria and enjoy the pleasure of arriving somewhere familiar.</p></div>
+    </div>
+  </article>
+</section>
+
+<section class="section pg-evening">
+  <div class="wrap pg-evening-in">
     <div>
-      <span class="eyebrow">Glòria for the Day</span>
-      <h2>Make Glòria part<br>of your day.</h2>
-      <p class="muted">You don't need an overnight stay to enjoy some of the experiences of the house. Begin with breakfast at El Patio, take time to slow down beneath Glòria, stay for lunch or simply choose a moment that feels like yours.</p>
-      <div class="stack-cta"><a class="btn btn-dark" href="#collection">Discover experiences →</a></div>
+      <span class="eyebrow" style="color:rgba(243,237,226,.75)">Your evening at Glòria</span>
+      <p class="pg-evening-p">After a day of discovering Palma, return to Glòria and unwind in the spa. Later, enjoy a cocktail at the bar before settling in for dinner at El Patio de Glòria, accompanied by the gentle sound of live piano.</p>
+      <p class="pg-evening-end">A lovely way to end the day, without leaving the house.</p>
+      <div class="stack-cta pg-ctas"><a class="btn btn-ghost-light" href="wellness.html">Wellness</a><a class="btn btn-ghost-light" href="el-patio.html">El Patio</a></div>
     </div>
-    <div class="day-strip">
-      <div><div class="imgframe" style="aspect-ratio:3/4"><img loading="lazy" decoding="async" src="img/exp-day-morning.jpg?v=a72f02fd" alt="Morning at Glòria"></div><div class="cap" style="font-family:var(--sans);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px">Morning <span style="font-family:var(--serif);text-transform:none;letter-spacing:0;font-style:italic">at Glòria</span></div></div>
-      <div><div class="imgframe" style="aspect-ratio:3/4"><img loading="lazy" decoding="async" src="img/exp-day-wellness.jpg?v=93bd7336" alt="Wellness beneath Glòria"></div><div class="cap" style="font-family:var(--sans);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px">Wellness <span style="font-family:var(--serif);text-transform:none;letter-spacing:0;font-style:italic">beneath Glòria</span></div></div>
-      <div><div class="imgframe" style="aspect-ratio:3/4"><img loading="lazy" decoding="async" src="img/exp-day-patio.jpg?v=5a2ae379" alt="El Patio"></div><div class="cap" style="font-family:var(--sans);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:10px">El Patio <span style="font-family:var(--serif);text-transform:none;letter-spacing:0;font-style:italic">lunch or evening</span></div></div>
-    </div>
+    <blockquote class="pg-quote"><p>There is no need to see everything in one day.</p><p>Palma will have more stories for you tomorrow.</p></blockquote>
   </div>
 </section>
 
-<!-- 04 CLOSING -->
-<section class="section moment-sec">
-  <span class="brand-orn orn-tr orn-dark" aria-hidden="true"><svg viewBox="0 0 154.0 51.3" fill="none" stroke="currentColor" stroke-width=".6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><g transform="translate(25.7 25.7) rotate(45) translate(-18.15 -18.15)"><path d="M5.28 33.89 L17.91 46.52 L30.54 33.89 L17.91 21.26z" stroke-width="0.47"/><path d="M-0.24 0.2h36.21v36.21h-36.21z" stroke-width="0.47"/><path d="M2.56 2.99h30.62v30.62h-30.62z" stroke-width="0.47"/><path d="M25.53 31.65C26.87 31.65 27.99 30.37 28.24 28.67M28.24 28.67C29.94 28.43 31.22 27.3 31.22 25.96M31.22 25.96C31.22 24.61 29.94 23.49 28.24 23.24M28.24 23.24C27.99 21.55 26.87 20.27 25.53 20.27M25.53 20.27C24.18 20.27 23.06 21.55 22.81 23.24M22.81 23.24C21.12 23.49 19.84 24.61 19.84 25.96M19.84 25.96C19.84 27.3 21.12 28.43 22.81 28.67M22.81 28.67C23.06 30.37 24.18 31.65 25.53 31.65" stroke-width="0.47"/><path d="M25.53 33.61C21.3 33.61 17.87 30.19 17.87 25.96M17.87 25.96C17.87 21.73 21.3 18.3 25.53 18.3M25.53 18.3C29.75 18.3 33.18 21.73 33.18 25.96M33.18 25.96C33.18 30.19 29.75 33.61 25.53 33.61" stroke-width="0.47"/><path d="M25.53 16.34C26.87 16.34 27.99 15.06 28.24 13.36M28.24 13.36C29.94 13.12 31.22 11.99 31.22 10.65M31.22 10.65C31.22 9.3 29.94 8.18 28.24 7.93M28.24 7.93C27.99 6.24 26.87 4.96 25.53 4.96M25.53 4.96C24.18 4.96 23.06 6.24 22.81 7.93M22.81 7.93C21.12 8.18 19.84 9.3 19.84 10.65M19.84 10.65C19.84 11.99 21.12 13.12 22.81 13.36M22.81 13.36C23.06 15.06 24.18 16.34 25.53 16.34" stroke-width="0.47"/><path d="M25.53 18.3C21.3 18.3 17.87 14.88 17.87 10.65M17.87 10.65C17.87 6.42 21.3 2.99 25.53 2.99M25.53 2.99C29.75 2.99 33.18 6.42 33.18 10.65M33.18 10.65C33.18 14.88 29.75 18.3 25.53 18.3" stroke-width="0.47"/><path d="M10.22 31.65C11.56 31.65 12.68 30.37 12.93 28.67M12.93 28.67C14.63 28.43 15.91 27.3 15.91 25.96M15.91 25.96C15.91 24.61 14.63 23.49 12.93 23.24M12.93 23.24C12.68 21.55 11.56 20.27 10.22 20.27M10.22 20.27C8.87 20.27 7.75 21.55 7.5 23.24M7.5 23.24C5.81 23.49 4.53 24.61 4.53 25.96M4.53 25.96C4.53 27.3 5.81 28.43 7.5 28.67M7.5 28.67C7.75 30.37 8.87 31.65 10.22 31.65" stroke-width="0.47"/><path d="M10.22 33.61C5.99 33.61 2.56 30.19 2.56 25.96M2.56 25.96C2.56 21.73 5.99 18.3 10.22 18.3M10.22 18.3C14.44 18.3 17.87 21.73 17.87 25.96M17.87 25.96C17.87 30.19 14.44 33.61 10.22 33.61" stroke-width="0.47"/><path d="M10.22 16.34C11.56 16.34 12.68 15.06 12.93 13.36M12.93 13.36C14.63 13.12 15.91 11.99 15.91 10.65M15.91 10.65C15.91 9.3 14.63 8.18 12.93 7.93M12.93 7.93C12.68 6.24 11.56 4.96 10.22 4.96M10.22 4.96C8.87 4.96 7.75 6.24 7.5 7.93M7.5 7.93C5.81 8.18 4.53 9.3 4.53 10.65M4.53 10.65C4.53 11.99 5.81 13.12 7.5 13.36M7.5 13.36C7.75 15.06 8.87 16.34 10.22 16.34" stroke-width="0.47"/><path d="M10.22 18.3C5.99 18.3 2.56 14.88 2.56 10.65M2.56 10.65C2.56 6.42 5.99 2.99 10.22 2.99M10.22 2.99C14.44 2.99 17.87 6.42 17.87 10.65M17.87 10.65C17.87 14.88 14.44 18.3 10.22 18.3" stroke-width="0.47"/></g><g transform="translate(77.0 25.7) rotate(45) translate(-18.15 -18.15)"><path d="M-0.31 0.35h36.21v36.21h-36.21z" stroke-width="0.47"/><path d="M18.75 4.23L21.81 4.23M21.81 4.23L21.81 16.8" stroke-width="0.47"/><path d="M13.79 16.8L13.79 4.22M13.79 4.22L16.84 4.22" stroke-width="0.47"/><path d="M3.56 17.51L3.56 14.45M3.56 14.45L16.12 14.45" stroke-width="0.47"/><path d="M21.81 16.8L30.7 25.69M30.7 25.69L28.54 27.85M28.54 27.85L28.54 27.85M28.54 27.85L30.49 31.15M30.49 31.15L27.19 29.2M27.19 29.2L27.19 29.2M27.19 29.2L25.03 31.36M25.03 31.36L16.13 22.47M16.13 22.47L3.56 22.47M3.56 22.47L3.56 19.41" stroke-width="0.47"/><path d="M4.91 25.68L13.79 16.8" stroke-width="0.47"/><path d="M32.03 19.41L32.03 22.47M32.03 22.47L19.46 22.47M19.46 22.47L10.58 31.34" stroke-width="0.47"/><path d="M10.58 5.58L19.46 14.45M19.46 14.45L32.03 14.45M32.03 14.45L32.03 17.51" stroke-width="0.47"/><path d="M13.79 20.12L4.92 11.26" stroke-width="0.47"/><path d="M16.84 32.7L13.79 32.7M13.79 32.7L13.79 20.12" stroke-width="0.47"/><path d="M16.12 14.46L25.03 5.56M25.03 5.56L27.19 7.72M27.19 7.72L27.19 7.72M27.19 7.72L30.48 5.77M30.48 5.77L28.54 9.07M28.54 9.07L28.54 9.07M28.54 9.07L30.7 11.23M30.7 11.23L21.81 20.12M21.81 20.12L21.81 32.7M21.81 32.7L18.75 32.7" stroke-width="0.47"/><path d="M32.03 19.41L35.74 18.46M35.74 18.46L32.03 17.51" stroke-width="0.47"/><path d="M3.56 17.51L-0.15 18.46M-0.15 18.46L3.56 19.41" stroke-width="0.47"/><path d="M18.75 4.23L17.79 0.52M17.79 0.52L16.84 4.23" stroke-width="0.47"/><path d="M16.84 32.7L17.79 36.4M17.79 36.4L18.75 32.7" stroke-width="0.47"/><path d="M35.89 5.97L33.76 3.85M33.76 3.85L30.47 5.79M30.47 5.79L32.42 2.5M32.42 2.5L32.42 2.5M32.42 2.5L30.28 0.36" stroke-width="0.47"/><path d="M35.88 30.96L33.76 33.08M33.76 33.08L33.76 33.08M33.76 33.08L30.47 31.13M30.47 31.13L32.42 34.43M32.42 34.43L30.3 36.54" stroke-width="0.47"/><path d="M-0.31 30.92L1.85 33.08M1.85 33.08L1.85 33.08M1.85 33.08L5.15 31.13M5.15 31.13L3.2 34.43M3.2 34.43L3.2 34.43M3.2 34.43L5.31 36.53" stroke-width="0.47"/><path d="M-0.31 6.01L1.85 3.85M1.85 3.85L1.85 3.85M1.85 3.85L5.15 5.79M5.15 5.79L3.2 2.5M3.2 2.5L3.2 2.5M3.2 2.5L5.33 0.37" stroke-width="0.47"/><path d="M4.92 11.23L7.08 9.07M7.08 9.07L7.08 9.07M7.08 9.07L5.13 5.77M5.13 5.77L8.43 7.72M8.43 7.72L8.43 7.72M8.43 7.72L10.55 5.6" stroke-width="0.47"/><path d="M10.57 31.33L8.43 29.2M8.43 29.2L8.43 29.2M8.43 29.2L5.14 31.15M5.14 31.15L7.08 27.85M7.08 27.85L7.08 27.85M7.08 27.85L4.92 25.69" stroke-width="0.47"/></g><g transform="translate(128.3 25.7) rotate(45) translate(-18.15 -18.15)"><path d="M0.1 0.12h36.19v36.19h-36.19z" stroke-width="0.47"/><path d="M24.21 0.12h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M24.21 12.17h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M24.21 24.23h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M12.16 0.12h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M12.16 12.17h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M12.16 24.23h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M0.08 0.12h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M0.08 12.17h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M0.08 24.23h12.08v12.08h-12.08z" stroke-width="0.47"/><path d="M12.16 12.17L5.92 18.21M5.92 18.21L0.08 12.17M0.08 12.17L12.16 0.12M12.16 0.12L18.2 6.16M18.2 6.16L12.16 12.17" stroke-width="0.47"/><path d="M5.92 18.21L12.15 24.23M12.15 24.23L0.08 24.23M0.08 24.23L5.92 18.21" stroke-width="0.47"/><path d="M12.16 24.23L18.2 30.47M18.2 30.47L12.16 36.31M12.16 36.31L0.08 24.23" stroke-width="0.47"/><path d="M24.23 24.23L18.19 30.47M18.19 30.47L24.23 36.31M24.23 36.31L36.29 24.23M36.29 24.23L30.25 18.21M30.25 18.21L24.23 24.23" stroke-width="0.47"/><path d="M24.23 12.17L18.19 6.16M18.19 6.16L24.23 0.12M24.23 0.12L36.29 12.17M36.29 12.17L30.25 18.21M30.25 18.21L24.23 12.17" stroke-width="0.47"/><path d="M-0.44 5.71 L-13.07 18.34 L-0.44 30.97 L12.19 18.34z" stroke-width="0.47"/></g></svg></span><!--/orn-->
-  <div class="wrap two-col">
-    <div>
-    <span class="eyebrow">Experiences at Glòria</span>
-    <h2>Choose your moment.</h2>
-    <p class="muted">Morning, afternoon or evening. Find your own way to spend a little time at Glòria.</p>
-    <p class="serif-lead moment-quote">Some places stay with you a little longer.</p>
-    <div class="stack-cta"><a class="btn btn-ghost-light" href="#collection">Explore all experiences →</a></div>
-    </div>
-    <div class="imgframe"><img loading="lazy" decoding="async" src="img/exp-moment-monogram.jpg?v=3baf7139" alt="The Glòria monogram in brass on stone"></div>
+<section class="section pg-noteblock">
+  <div class="wrap pg-note-in">
+    <div><span class="eyebrow">A note from Glòria</span><h2>The art of wandering</h2></div>
+    <div><p class="muted">We completed this circular walk in approximately three hours without going inside the buildings or stopping to shop. We recommend allowing at least half a day if you would like to visit the Gran Hotel or Arab Baths, browse the shops or linger over coffee.</p><p class="muted">Some passages, shops and historic sites have limited opening hours. Check before visiting if a particular stop is important to you — and leave a little room for the unexpected.</p></div>
   </div>
+  <div class="wrap pg-next"><span class="eyebrow">Staying longer?</span><a class="link-arrow" href="palma-48-hours.html">48 hours in Palma →</a><a class="link-arrow" href="palma.html">Palma by Glòria →</a></div>
 </section>
 
 <!-- FOOTER -->
