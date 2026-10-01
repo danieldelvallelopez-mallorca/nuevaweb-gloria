@@ -111,3 +111,6 @@
 .p48-over .muted{max-width:56ch}
 .p48-aside > .pg-note{font-size:1.15rem;line-height:1.6;margin-top:clamp(40px,6vw,90px)}
 .pg-note-in .muted{max-width:62ch}
+/* tarjetas de día: lista y botón "Explore" a la misma altura en los dos días */
+.p48-day-text{display:flex;flex-direction:column;align-items:flex-start}
+.p48-day-text .p48-meta{margin-top:auto;padding-top:20px}
