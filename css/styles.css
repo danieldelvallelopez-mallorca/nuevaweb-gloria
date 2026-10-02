@@ -1551,7 +1551,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 /* 29-09: portada de Palma = foto de la azotea (antes en la home); la home "Above the rooftops" = la de la torre */
 .phero .bg[src*="home-above"]{object-position:40% 45%}
 @media (max-width:700px){ .phero .bg[src*="home-above"]{object-position:30% 45%} }
-.wellness-split .pane .bg[src*="palma-sunset"]{object-position:38% 30%}
+.wellness-split .pane .bg[src*="palma-rooftops-cathedral-sant-jaume-bell-tower"]{object-position:38% 30%}
 @media (max-width:700px){ .wellness-split .pane.light-pane::before{background:linear-gradient(180deg,rgba(243,237,226,.9) 0%,rgba(243,237,226,.84) 65%,rgba(243,237,226,.6) 100%)} }
 /* 29-09: Wellness home — "Beneath" con el texto a la derecha; "Above" con el texto a la izquierda (tapa las antenas) */
 @media (min-width:701px){
@@ -1559,7 +1559,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .wellness-split .pane.dark-pane::before{background:linear-gradient(270deg,rgba(22,16,10,.78) 0%,rgba(22,16,10,.5) 40%,rgba(22,16,10,.08) 75%)}
   .wellness-split .pane.light-pane .inner{align-items:flex-start}
   .wellness-split .pane.light-pane::before{background:linear-gradient(90deg,rgba(243,237,226,.94) 0%,rgba(243,237,226,.8) 32%,rgba(243,237,226,.1) 62%,rgba(243,237,226,0) 80%)}
-  .wellness-split .pane .bg[src*="palma-sunset"]{object-position:62% 30%}
+  .wellness-split .pane .bg[src*="palma-rooftops-cathedral-sant-jaume-bell-tower"]{object-position:62% 30%}
 }
 /* 29-09: home · "Palma, at your doorstep." — bloque de texto a la derecha (texto alineado a la izquierda dentro del bloque) */
 @media (min-width:901px){
@@ -1568,7 +1568,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 /* Palma · héroe con vídeo aéreo de la catedral (resolución original) */
 .page-hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .phero video.bg{object-position:50% 50%}
-@media (prefers-reduced-motion:reduce){ .phero video.bg{display:none} .phero{background:#2b2118 url("../img/palma-cathedral-poster.jpg") center/cover} }
+@media (prefers-reduced-motion:reduce){ .phero video.bg{display:none} .phero{background:#2b2118 url("../img/palma-cathedral-aerial-view.jpg") center/cover} }
 /* Separadores de baldosas del manual de marca (gráficos complementarios): 5 formas, una por página */
 .tr-band{display:flex;justify-content:center;padding-block:clamp(26px,3.2vw,44px);color:var(--muted);background:var(--cream)}
 .tile-rule{display:flex;align-items:center;color:inherit}
@@ -1586,7 +1586,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 @media (max-width:560px){ .tile-rule::before,.tile-rule::after{width:clamp(28px,9vw,60px)} .tr-five .d.sm{display:none} }
 /* Wellness · "Take your time": vídeo del aljibe (dron, estabilizado y etalonado cálido) */
 .imgframe video.wl-take-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
-@media (prefers-reduced-motion:reduce){ .imgframe video.wl-take-video{display:none} .wl-take .imgframe{background:#2b2118 url("../img/wellness-take-your-time-poster.jpg") center/cover} }
+@media (prefers-reduced-motion:reduce){ .imgframe video.wl-take-video{display:none} .wl-take .imgframe{background:#2b2118 url("../img/cistern-pool-spa-hotel-gloria-poster.jpg") center/cover} }
 /* The House · "History, still alive": la foto de baldosas ocupa todo el alto, como las de al lado; el texto va sobre la foto */
 @media (min-width:901px){
   .hist-grid .hg-mid{position:relative;justify-content:flex-end}
