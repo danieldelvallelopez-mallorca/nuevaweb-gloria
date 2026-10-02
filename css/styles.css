@@ -1569,3 +1569,18 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .page-hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .phero video.bg{object-position:50% 50%}
 @media (prefers-reduced-motion:reduce){ .phero video.bg{display:none} .phero{background:#2b2118 url("../img/palma-cathedral-poster.jpg") center/cover} }
+/* Separadores de baldosas del manual de marca (gráficos complementarios): 5 formas, una por página */
+.tr-band{display:flex;justify-content:center;padding-block:clamp(26px,3.2vw,44px);color:var(--muted);background:var(--cream)}
+.tile-rule{display:flex;align-items:center;color:inherit}
+.tile-rule::before,.tile-rule::after{content:"";height:1px;width:clamp(48px,10vw,150px);background:currentColor;opacity:.55}
+.tile-rule .d{display:flex;align-items:center;justify-content:center;width:46px;height:46px;margin:0 -5px}
+.tile-rule .d svg{width:30px;height:30px;transform:rotate(45deg);stroke-width:1;overflow:visible}
+.tile-rule .d.lg{width:56px;height:56px}.tile-rule .d.lg svg{width:37px;height:37px}
+.tile-rule .d.sm{width:34px;height:34px}.tile-rule .d.sm svg{width:21px;height:21px}
+.tr-solo::before,.tr-solo::after{width:clamp(80px,18vw,260px)}
+.tr-solo .d.lg{margin:0 10px}
+.tr-pair .d{margin:0 -3px}
+.tr-five .d{margin:0 -3px}
+.tr-dots .dot{width:6px;height:6px;border:1px solid currentColor;transform:rotate(45deg);margin:0 12px;opacity:.8}
+.tr-dots::before,.tr-dots::after{width:clamp(56px,12vw,170px)}
+@media (max-width:560px){ .tile-rule::before,.tile-rule::after{width:clamp(28px,9vw,60px)} .tr-five .d.sm{display:none} }
