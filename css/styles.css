@@ -1584,3 +1584,6 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .tr-dots .dot{width:6px;height:6px;border:1px solid currentColor;transform:rotate(45deg);margin:0 12px;opacity:.8}
 .tr-dots::before,.tr-dots::after{width:clamp(56px,12vw,170px)}
 @media (max-width:560px){ .tile-rule::before,.tile-rule::after{width:clamp(28px,9vw,60px)} .tr-five .d.sm{display:none} }
+/* Wellness · "Take your time": vídeo del aljibe (dron, estabilizado y etalonado cálido) */
+.imgframe video.wl-take-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+@media (prefers-reduced-motion:reduce){ .imgframe video.wl-take-video{display:none} .wl-take .imgframe{background:#2b2118 url("../img/wellness-take-your-time-poster.jpg") center/cover} }
