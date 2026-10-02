@@ -1610,3 +1610,12 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .hist-grid.hist-5 .hg-mid .hg-cap{position:relative;z-index:1;color:var(--cream);margin:0 0 12px 12px}
   .hist-grid.hist-5 .hg-mid .imgframe::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,12,0) 45%,rgba(30,20,12,.62) 100%)}
 }
+/* The House · "Look closely" y "History, still alive": todas las fotos cuadradas 1:1 */
+.hx-grid.g5 .imgframe{aspect-ratio:1/1!important;height:auto!important}
+.hist-grid.hist-5{grid-template-columns:repeat(5,minmax(0,1fr))!important;height:auto!important;align-items:start}
+.hist-grid.hist-5 > .imgframe,.hist-grid.hist-5 .hg-mid{aspect-ratio:1/1!important;height:auto!important}
+@media (max-width:900px){
+  .hist-grid.hist-5{grid-template-columns:1fr 1fr!important}
+  .hist-grid.hist-5 > :first-child{grid-column:1/-1;aspect-ratio:1/1!important}
+}
+@media (max-width:900px){ .hist-grid.hist-5 > .imgframe:not(:first-child),.hist-grid.hist-5 > .hg-mid{aspect-ratio:1/1!important} }
