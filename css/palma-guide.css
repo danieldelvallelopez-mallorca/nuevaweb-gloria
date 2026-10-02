@@ -132,3 +132,50 @@
 .sh-foot .pg-note{margin:0}
 @media (max-width:1000px){ .sh-grid{grid-template-columns:repeat(2,minmax(0,1fr))} .sh-head{grid-template-columns:1fr} }
 @media (max-width:480px){ .sh-grid{gap:22px 12px} .sh-card p{font-size:.88rem} }
+
+/* ---------- mapas de las rutas (maqueta: lista | mapa | foto + cita) ---------- */
+.pg-map{width:100%;height:100%;min-height:420px;background:#ece6db;border:1px solid var(--line);z-index:0}
+.pg-map .leaflet-tile-pane{filter:grayscale(1) sepia(.28) contrast(.86) brightness(1.06)}
+.pg-map .leaflet-control-attribution{font-size:9px;background:rgba(248,243,234,.8)}
+.pg-pin span{display:flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;background:#534134;color:#F3EDE2;
+  font:600 11px/1 var(--sans);box-shadow:0 0 0 3px rgba(243,237,226,.9),0 4px 10px -4px rgba(43,33,24,.6);transition:transform .2s}
+.pg-pin.on span{transform:scale(1.25);background:#2B2118}
+.pg-home span{display:flex;height:26px;align-items:center;justify-content:center;background:#F8F3EA;border:1px solid #534134;color:#534134;
+  font:600 10px/1 var(--sans);letter-spacing:.22em;padding-left:.22em;box-shadow:0 4px 12px -6px rgba(43,33,24,.6)}
+.leaflet-tooltip{font-family:var(--sans);font-size:11px;color:var(--ink);border-radius:0;border-color:var(--line)}
+.p48-list li[data-stop]{cursor:default}
+.p48-list li[data-stop]:hover b{color:var(--brown)}
+
+.p48-over{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr) minmax(0,.62fr)!important;align-items:stretch!important;gap:clamp(18px,2.6vw,40px)!important}
+.p48-col-list .pg-ctas{align-items:center;gap:14px 24px;margin-top:6px}
+.p48-col-map{display:flex}
+.p48-col-map .pg-map{min-height:520px}
+.p48-aside{display:flex;flex-direction:column}
+.p48-aside .pg-fig .imgframe{aspect-ratio:3/4.4}
+.p48-aside > .pg-note{margin-top:0}
+.p48-quote{margin:auto 0 0;padding-top:24px;font-family:var(--serif);font-style:italic;font-size:clamp(1.3rem,1.9vw,1.6rem);line-height:1.3;color:var(--ink);text-align:center}
+.p48-quote::after{content:"";display:block;width:40px;height:1px;background:var(--muted);margin:16px auto 0}
+.p48-meta li{gap:12px}
+.p48-meta li::before{display:none}
+.p48-meta svg{flex:none;color:var(--ink)}
+
+.pg-maprow{padding-block:0 clamp(30px,3.4vw,48px)}
+.pg-maprow-in{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(20px,3vw,48px);align-items:stretch}
+.pg-maplist{margin:0;gap:10px}
+.pg-maplist small{font-size:.85rem}
+.pg-mapbox{display:flex;flex-direction:column}
+.pg-mapbox .pg-map{flex:1;min-height:560px}
+.pg-mapcap{font-family:var(--sans);font-size:.62rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:10px 0 0}
+
+@media (max-width:1000px){
+  .p48-over{grid-template-columns:1fr 1fr!important}
+  .p48-aside{grid-column:1/-1;flex-direction:row;gap:24px;align-items:center}
+  .p48-aside .pg-fig{flex:0 0 40%}
+  .p48-quote{margin:0;text-align:left}
+}
+@media (max-width:760px){
+  .p48-over,.pg-maprow-in{grid-template-columns:1fr!important}
+  .p48-col-map .pg-map,.pg-mapbox .pg-map{min-height:380px}
+  .p48-aside{flex-direction:column;align-items:stretch}
+  .pg-maprow-in .pg-mapbox{order:-1}
+}
