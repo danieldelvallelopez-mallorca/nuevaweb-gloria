@@ -146,3 +146,9 @@ body.legal-body{overflow-x:clip}
   .legal-facts div{grid-template-columns:1fr;gap:2px}
   .legal-cta .btn{width:100%;justify-content:center}
 }
+
+/* segunda versión del documento (EN): mismo aspecto que el h1, pero h2 para que haya una sola h1 por página */
+.legal-doc h2.lg-h1{
+  font-family:var(--serif);font-size:clamp(2.4rem,5.6vw,3.8rem);line-height:1.02;
+  letter-spacing:-.015em;text-wrap:balance;margin:0 0 20px;color:var(--brown-2);
+}
