@@ -1619,3 +1619,9 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .hist-grid.hist-5 > :first-child{grid-column:1/-1;aspect-ratio:1/1!important}
 }
 @media (max-width:900px){ .hist-grid.hist-5 > .imgframe:not(:first-child),.hist-grid.hist-5 > .hg-mid{aspect-ratio:1/1!important} }
+/* The House · filas de detalles: mismo tamaño en las dos tiras, separación blanca de 8px y fotos centradas respecto al texto */
+.hx-row:has(.hist-5){align-items:center}
+.hist-grid.hist-5{gap:8px!important}
+.hx-grid.g5{height:auto!important;grid-template-rows:auto auto auto!important}
+.hx-grid.g5 .imgframe{width:100%;min-width:0}
+@media (max-width:900px){ .hx-grid.g5{grid-auto-flow:row!important;grid-template-rows:none!important} }
