@@ -1598,3 +1598,15 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 /* Cabecera sobre fondo claro: "Book" marrón con letra crema (sobre foto sigue claro y transparente) */
 .site-header:not(.on-hero) .header-right .btn{background:var(--brown);color:var(--cream);border-color:var(--brown)}
 .site-header:not(.on-hero) .header-right .btn:hover{background:var(--brown-2);border-color:var(--brown-2)}
+/* The House · "History, still alive": tira de 5 detalles de la casa, misma altura */
+.hist-grid.hist-5{grid-template-columns:1.75fr 1fr 1fr .8fr .9fr;height:clamp(250px,21vw,330px)}
+.hist-grid.hist-5 > .imgframe{height:100%;aspect-ratio:auto!important}
+@media (max-width:900px){
+  .hist-grid.hist-5{grid-template-columns:1fr 1fr;height:auto}
+  .hist-grid.hist-5 > :first-child{grid-column:1/-1;aspect-ratio:16/10!important}
+  .hist-grid.hist-5 > .imgframe:not(:first-child),.hist-grid.hist-5 .hg-mid{aspect-ratio:3/4!important;height:auto}
+  .hist-grid.hist-5 .hg-mid{position:relative;display:flex;justify-content:flex-end}
+  .hist-grid.hist-5 .hg-mid .imgframe{position:absolute!important;inset:0;height:100%!important;aspect-ratio:auto!important}
+  .hist-grid.hist-5 .hg-mid .hg-cap{position:relative;z-index:1;color:var(--cream);margin:0 0 12px 12px}
+  .hist-grid.hist-5 .hg-mid .imgframe::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,20,12,0) 45%,rgba(30,20,12,.62) 100%)}
+}
