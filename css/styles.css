@@ -1595,3 +1595,6 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
   .hist-grid .hg-mid .hg-cap{position:relative;z-index:1;color:var(--cream);margin:0 0 16px 18px;text-shadow:0 1px 10px rgba(20,14,9,.5)}
 }
 .barri-credit{position:absolute;right:6px;bottom:6px;font-family:var(--sans);font-size:.5rem;letter-spacing:.05em;color:#F3EDE2;background:rgba(30,20,12,.45);padding:2px 6px}
+/* Cabecera sobre fondo claro: "Book" marrón con letra crema (sobre foto sigue claro y transparente) */
+.site-header:not(.on-hero) .header-right .btn{background:var(--brown);color:var(--cream);border-color:var(--brown)}
+.site-header:not(.on-hero) .header-right .btn:hover{background:var(--brown-2);border-color:var(--brown-2)}
