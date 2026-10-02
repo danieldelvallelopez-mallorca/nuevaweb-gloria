@@ -179,3 +179,10 @@
   .p48-aside{flex-direction:column;align-items:stretch}
   .pg-maprow-in .pg-mapbox{order:-1}
 }
+/* foto lateral de cada día centrada en su espacio cuando baja a fila propia (tablet/móvil) */
+@media (max-width:1000px){
+  .p48-aside{flex-direction:column!important;align-items:center!important;text-align:center;gap:22px}
+  .p48-aside .pg-fig{flex:none;width:100%;max-width:440px}
+  .p48-aside .pg-fig figcaption{text-align:center}
+  .p48-quote{text-align:center;margin:0 auto}
+}
