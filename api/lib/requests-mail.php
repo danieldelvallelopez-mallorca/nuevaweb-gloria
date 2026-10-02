@@ -7,7 +7,7 @@ require_once __DIR__ . '/careers-mail.php';
 const REQUESTS_SIGNATURE = [
     'hotel'   => 'Hotel Glòria de Sant Jaume',
     'address' => 'Carrer Sant Jaume, 18 · 07012 Palma de Mallorca',
-    'phone'   => '+34 971 92 18 91',
+    'phone'   => '+34 971 71 79 97',
     'email'   => 'reservas@gloriasantjaume.com',
     'privacy' => 'info@gloriasantjaume.com',
     'web'     => 'gloriasantjaume.com',

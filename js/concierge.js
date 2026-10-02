@@ -11,7 +11,7 @@
   var CONFIG = {
     aiEndpoint: "",                 // p. ej. "api/concierge.php" cuando el servidor tenga la clave de IA
     whatsapp: "34620518344",        // WhatsApp del hotel / El Patio (+34 620 51 83 44), el mismo de elpatiodegloria.com
-    phoneRooms: "+34971921891", phoneRoomsLabel: "+34 971 92 18 91",
+    phoneRooms: "+34971717997", phoneRoomsLabel: "+34 971 71 79 97",
     phoneHotel: "+34971717997", phoneHotelLabel: "+34 971 71 79 97",
     email: "reservas@gloriasantjaume.com",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=Hotel+Gl%C3%B2ria+de+Sant+Jaume+Palma",

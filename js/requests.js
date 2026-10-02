@@ -56,7 +56,7 @@
   };
   var PHONE_RE = /^[0-9+() .\/\-]{6,40}$/;       // mismas reglas que api/request.php y la tabla `requests`
   var EMAIL_RE = /^[^\s@?&=<>"']+@[^\s@?&=<>"']+\.[^\s@?&=<>"']+$/;
-  var PHONE_LABEL = "+34 971 92 18 91";
+  var PHONE_LABEL = "+34 971 71 79 97";
   var ERRORS = {
     fields: "Please fill in the required fields.",
     contact: "Please give us a phone number or an email so we can confirm.",
