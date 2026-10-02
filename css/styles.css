@@ -1625,3 +1625,15 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 .hx-grid.g5{height:auto!important;grid-template-rows:auto auto auto!important}
 .hx-grid.g5 .imgframe{width:100%;min-width:0}
 @media (max-width:900px){ .hx-grid.g5{grid-auto-flow:row!important;grid-template-rows:none!important} }
+/* Pie · contacto ordenado: 2 columnas con iconos alineados + redes */
+#contact{display:block!important}
+#contact .ct-grid{display:grid;grid-template-columns:auto auto;justify-content:start;gap:12px 40px}
+#contact .contact-row{display:flex!important;align-items:flex-start;gap:10px;margin:0!important;white-space:normal!important}
+#contact .ci{flex:none;margin-top:3px;color:var(--teal)}
+#contact .ct-h{margin:22px 0 10px!important}
+#contact .ct-social{display:flex;gap:22px;flex-wrap:wrap}
+#contact .ct-social a{display:inline-flex;align-items:center;gap:8px;color:inherit;text-decoration:none;border-bottom:1px solid transparent;font-size:.9rem}
+#contact .ct-social a:hover{border-color:var(--teal)}
+@media (max-width:560px){ #contact .ct-grid{grid-template-columns:1fr} }
+#contact .contact-row,#contact .contact-row span,#contact .contact-row a,#contact .ct-social a{font-size:.9rem!important;line-height:1.5!important}
+@media (max-width:560px){ #contact .ct-grid{gap:8px} }

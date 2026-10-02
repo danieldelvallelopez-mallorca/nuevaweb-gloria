@@ -62,7 +62,7 @@ function action_link(string $action, string $site): string {
         'music'  => "\n\n" . $site . '/el-patio.html#music',
         'spa'    => "\n\n" . $site . '/docs/spa-menu-2026.pdf',
         'where'  => "\n\nhttps://maps.google.com/?q=Hotel+Gl%C3%B2ria+de+Sant+Jaume+Palma",
-        'human'  => "\n\nTel. +34 971 92 18 91 · reservas@gloriasantjaume.com",
+        'human'  => "\n\nTel. +34 971 71 79 97 · reservas@gloriasantjaume.com",
     ];
     return $links[$action] ?? '';
 }
@@ -73,8 +73,8 @@ function answer(string $user, string $text, string $channel, string $site): stri
     $h[] = ['role' => 'user', 'content' => mb_substr($text, 0, 600)];
     $res = gloria_ask(gloria_clean_history($h), 'auto', date('Y-m-d'), $channel);
     if (!$res) {
-        return "Glòria de Sant Jaume · Palma\n\nES · Reservar habitación: $site/rooms.html · Mesa en El Patio: https://elpatiodegloria.com/reservas.html · Tel. +34 971 92 18 91\n"
-             . "EN · Book a room: $site/rooms.html · Table at El Patio: https://elpatiodegloria.com/reservas.html · Tel. +34 971 92 18 91";
+        return "Glòria de Sant Jaume · Palma\n\nES · Reservar habitación: $site/rooms.html · Mesa en El Patio: https://elpatiodegloria.com/reservas.html · Tel. +34 971 71 79 97\n"
+             . "EN · Book a room: $site/rooms.html · Table at El Patio: https://elpatiodegloria.com/reservas.html · Tel. +34 971 71 79 97";
     }
     $h[] = ['role' => 'assistant', 'content' => $res['reply']];
     history_save($user, $h);
