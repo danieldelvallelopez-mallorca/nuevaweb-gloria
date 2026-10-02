@@ -15,7 +15,8 @@
 <link rel="stylesheet" href="css/styles.css?v=65">
 <link rel="stylesheet" href="css/palma-guide.css?v=3">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap">
-<link rel="stylesheet" href="css/palma-guide.css?v=3">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="css/palma-guide.css?v=4">
 <link rel="stylesheet" href="css/concierge.css?v=3">
 <link rel="stylesheet" href="css/requests.css?v=3">
 <link rel="stylesheet" href="css/web2.css?v=3">
@@ -42,7 +43,7 @@
 
 <!-- HERO -->
 <section class="page-hero phero p48-hero">
-  <img fetchpriority="high" class="bg" src="img/p48-cathedral.jpg?v=8f6dca30" alt="La Seu and the palms of Parc de la Mar">
+  <img fetchpriority="high" class="bg" src="img/p48-cathedral.jpg" alt="La Seu and the palms of Parc de la Mar">
   <div class="hero-in">
     <span class="eyebrow" style="color:rgba(243,237,226,.85)">Palma by Glòria · City guide</span>
     <h1>48 hours in Palma.</h1>
@@ -60,20 +61,20 @@
         <span class="eyebrow pg-dash">Day one</span>
         <h2>The historic heart of Palma</h2>
         <p class="muted">Hidden passages, Modernist architecture, traditional pastries and centuries of history, all within a walk from Glòria.</p>
-        <ul class="p48-meta"><li>8 stops</li><li>Begins and ends at Glòria</li><li>Route in Google Maps</li></ul>
+        <ul class="p48-meta"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="M10 21l2-6 3 3v3M9 12l1-4 4 1 2 4M10 8l-3 3"/></svg><span>8 stops</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>A relaxed pace</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg><span>Includes map and directions</span></li></ul>
         <a class="btn btn-dark" href="#day-one">Explore day one →</a>
       </div>
-      <figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/p48-arab-baths.jpg?v=326d5872" alt="Banys Àrabs"></div><figcaption>Banys Àrabs</figcaption></figure>
+      <figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/p48-arab-baths.jpg" alt="Banys Àrabs"></div><figcaption>Banys Àrabs</figcaption></figure>
     </div>
     <div class="p48-day">
       <div class="p48-day-text">
         <span class="eyebrow pg-dash">Day two</span>
         <h2>Markets, design &amp; contemporary art</h2>
         <p class="muted">Local flavours in the morning, independent shops and historic interiors along the way, and a different perspective on Palma through its art.</p>
-        <ul class="p48-meta"><li>7 stops</li><li>Begins and ends at Glòria</li><li>Route in Google Maps</li></ul>
+        <ul class="p48-meta"><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13" cy="4" r="2"/><path d="M10 21l2-6 3 3v3M9 12l1-4 4 1 2 4M10 8l-3 3"/></svg><span>7 stops</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>A flexible itinerary</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg><span>Includes map and directions</span></li></ul>
         <a class="btn btn-dark" href="#day-two">Explore day two →</a>
       </div>
-      <figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/p48-mural.jpg?v=3ced179c" alt="Street art in the old town"></div><figcaption>Street art in the old town</figcaption></figure>
+      <figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/p48-mural.jpg" alt="Street art in the old town"></div><figcaption>Street art in the old town</figcaption></figure>
     </div>
   </div>
 </section>
@@ -81,16 +82,16 @@
 <section class="section p48-walk" id="day-one">
   <div class="wrap">
     <div class="p48-over">
-      <div>
+      <div class="p48-col-list">
         <span class="eyebrow pg-dash">Day one</span>
         <h2>The historic heart of Palma</h2>
-        <p class="muted">Hidden passages, Modernist architecture, traditional pastries and centuries of history, all within a walk from Glòria.</p>
-        <ol class="p48-list"><li><span class="num">1</span><span><b>Begin at Glòria</b><small>Start where you feel at home.</small></span></li><li><span class="num">2</span><span><b>The hidden passage &amp; CaixaForum</b><small>Take the narrow way.</small></span></li><li><span class="num">3</span><span><b>Fornet de la Soca</b><small>A bakery with a story.</small></span></li><li><span class="num">4</span><span><b>Modernist details &amp; Plaça Major</b><small>Remember to look up.</small></span></li><li><span class="num">5</span><span><b>Can Joan de s’Aigo</b><small>Something sweet, the Mallorcan way.</small></span></li><li><span class="num">6</span><span><b>Cort, Santa Eulàlia &amp; Sant Francesc</b><small>Follow the streets with a story.</small></span></li><li><span class="num">7</span><span><b>Banys Àrabs, La Seu &amp; Almudaina</b><small>Centuries within a few streets.</small></span></li><li><span class="num">8</span><span><b>S’Hort del Rei, Passeig del Born &amp; Glòria</b><small>The perfect way back.</small></span></li></ol>
-        <a class="btn btn-dark" href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;destination=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;waypoints=CaixaForum%20Palma%7CFornet%20de%20la%20Soca%2C%20Palma%7CCan%20Forteza%20Rey%2C%20Palma%7CCan%20Joan%20de%20s%27Aigo%2C%20Carrer%20de%20Can%20San%C3%A7%2C%20Palma%7CPla%C3%A7a%20de%20Cort%2C%20Palma%7CBanys%20%C3%80rabs%2C%20Palma%7CCatedral%20de%20Mallorca%7CS%27Hort%20del%20Rei%2C%20Palma%7CPasseig%20del%20Born%2C%20Palma&amp;travelmode=walking" target="_blank" rel="noopener">Open the route in Google Maps →</a>
+        <ol class="p48-list" data-route-list="d1"><li data-stop="1"><span class="num">1</span><span><b>Begin at Glòria</b><small>Start where you feel at home.</small></span></li><li data-stop="2"><span class="num">2</span><span><b>The hidden passage &amp; CaixaForum</b><small>Take the narrow way.</small></span></li><li data-stop="3"><span class="num">3</span><span><b>Fornet de la Soca</b><small>A bakery with a story.</small></span></li><li data-stop="4"><span class="num">4</span><span><b>Modernist details &amp; Plaça Major</b><small>Remember to look up.</small></span></li><li data-stop="5"><span class="num">5</span><span><b>Can Joan de s’Aigo</b><small>Something sweet, the Mallorcan way.</small></span></li><li data-stop="6"><span class="num">6</span><span><b>Cort, Santa Eulàlia &amp; Sant Francesc</b><small>Follow the streets with a story.</small></span></li><li data-stop="7"><span class="num">7</span><span><b>Banys Àrabs, La Seu &amp; Almudaina</b><small>Centuries within a few streets.</small></span></li><li data-stop="8"><span class="num">8</span><span><b>S’Hort del Rei, Passeig del Born &amp; Glòria</b><small>The perfect way back.</small></span></li></ol>
+        <div class="pg-ctas"><a class="btn btn-dark" href="#day-one-stops">View full itinerary ↓</a><a class="link-arrow" href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;destination=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;waypoints=CaixaForum%20Palma%7CFornet%20de%20la%20Soca%2C%20Palma%7CCan%20Forteza%20Rey%2C%20Palma%7CCan%20Joan%20de%20s%27Aigo%2C%20Carrer%20de%20Can%20San%C3%A7%2C%20Palma%7CPla%C3%A7a%20de%20Cort%2C%20Palma%7CBanys%20%C3%80rabs%2C%20Palma%7CCatedral%20de%20Mallorca%7CS%27Hort%20del%20Rei%2C%20Palma%7CPasseig%20del%20Born%2C%20Palma&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps →</a></div>
       </div>
-      <div class="p48-aside"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/p48-arab-garden.jpg?v=6f2079da" alt="The garden of the Banys Àrabs"></div><figcaption>The garden of the Banys Àrabs</figcaption></figure></div>
+      <div class="p48-col-map"><div class="pg-map" data-route="d1" role="img" aria-label="Map of Day one"></div></div>
+      <div class="p48-aside"><figure class="pg-fig"><div class="imgframe"><img loading="lazy" decoding="async" src="img/p48-arab-garden.jpg" alt="The garden of the Banys Àrabs"></div><figcaption>The garden of the Banys Àrabs</figcaption></figure><blockquote class="p48-quote">“Every street in Palma has a story.”</blockquote></div>
     </div>
-    <div class="p48-stops">
+    <div class="p48-stops" id="day-one-stops">
       <div class="p48-stop"><span class="num">01</span><span class="eyebrow">Begin at Glòria</span><h3>Start where you feel at home.</h3><p>Begin with breakfast at El Patio de Glòria. When you are ready to explore, step outside onto Carrer de Sant Jaume. Some of Palma’s most fascinating streets are just moments from the hotel. Today, there is no need for a car, and no reason to rush.</p><div class="pg-links"><a class="link-arrow" href="the-house.html">Discover the house →</a></div></div>
       <div class="p48-stop"><span class="num">02</span><span class="eyebrow">The hidden passage &amp; CaixaForum</span><h3>Take the narrow way.</h3><p>Just around the corner from Glòria, discover Carrer de la Sagristia de Sant Jaume, a tiny passage tucked alongside the church. If its gates are open, slip through and continue towards CaixaForum Palma. Housed in the former Gran Hotel, the building is a striking example of Palma’s Modernist architecture. Pause to admire its decorative façade and step inside if an exhibition catches your eye.</p><div class="pg-links"><a class="link-arrow" href="https://caixaforum.org/es/palma" target="_blank" rel="noopener">Discover the exhibitions →</a></div></div>
       <div class="p48-stop"><span class="num">03</span><span class="eyebrow">Fornet de la Soca</span><h3>A bakery with a story.</h3><p>Across Plaça de Weyler, the historic Forn des Teatre is impossible to overlook. Admire its beautiful wooden shopfront, then step into Fornet de la Soca to discover traditional Mallorcan baking and local specialities.</p><div class="pg-links"><a class="link-arrow" href="https://www.fornetdelasoca.com/" target="_blank" rel="noopener">Discover Fornet de la Soca →</a></div></div>
@@ -108,16 +109,16 @@
 <section class="section p48-walk" id="day-two">
   <div class="wrap">
     <div class="p48-over">
-      <div>
+      <div class="p48-col-list">
         <span class="eyebrow pg-dash">Day two</span>
         <h2>Markets, design &amp; contemporary art</h2>
-        <p class="muted">Local flavours in the morning, independent shops and historic interiors along the way, and a different perspective on Palma through its art.</p>
-        <ol class="p48-list"><li><span class="num">1</span><span><b>Mercat de l’Olivar</b><small>Discover Palma through its flavours.</small></span></li><li><span class="num">2</span><span><b>La Rambla &amp; Can Balaguer</b><small>A quieter side of the city.</small></span></li><li><span class="num">3</span><span><b>Avinguda Jaume III</b><small>A little time for shopping.</small></span></li><li><span class="num">4</span><span><b>Rialto Living &amp; Sant Feliu</b><small>Where design meets Palma.</small></span></li><li><span class="num">5</span><span><b>La Llotja</b><small>An architectural masterpiece.</small></span></li><li><span class="num">6</span><span><b>Es Baluard</b><small>A different perspective on Palma.</small></span></li><li><span class="num">7</span><span><b>Back to Glòria</b><small>Make the rest of the day yours.</small></span></li></ol>
-        <a class="btn btn-dark" href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;destination=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;waypoints=Mercat%20de%20l%27Olivar%2C%20Palma%7CCan%20Balaguer%2C%20Palma%7CForn%20Fondo%2C%20Carrer%20de%20la%20Uni%C3%B3%2C%20Palma%7CAvinguda%20Jaume%20III%2C%20Palma%7CRialto%20Living%2C%20Carrer%20de%20Sant%20Feliu%2C%20Palma%7CLa%20Llotja%2C%20Palma%7CEs%20Baluard%20Museu%20d%27Art%20Contemporani%2C%20Palma&amp;travelmode=walking" target="_blank" rel="noopener">Open the route in Google Maps →</a>
+        <ol class="p48-list" data-route-list="d2"><li data-stop="1"><span class="num">1</span><span><b>Mercat de l’Olivar</b><small>Discover Palma through its flavours.</small></span></li><li data-stop="2"><span class="num">2</span><span><b>La Rambla &amp; Can Balaguer</b><small>A quieter side of the city.</small></span></li><li data-stop="3"><span class="num">3</span><span><b>Avinguda Jaume III</b><small>A little time for shopping.</small></span></li><li data-stop="4"><span class="num">4</span><span><b>Rialto Living &amp; Sant Feliu</b><small>Where design meets Palma.</small></span></li><li data-stop="5"><span class="num">5</span><span><b>La Llotja</b><small>An architectural masterpiece.</small></span></li><li data-stop="6"><span class="num">6</span><span><b>Es Baluard</b><small>A different perspective on Palma.</small></span></li><li data-stop="7"><span class="num">7</span><span><b>Back to Glòria</b><small>Make the rest of the day yours.</small></span></li></ol>
+        <div class="pg-ctas"><a class="btn btn-dark" href="#day-two-stops">View full itinerary ↓</a><a class="link-arrow" href="https://www.google.com/maps/dir/?api=1&amp;origin=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;destination=Hotel%20Gl%C3%B2ria%20de%20Sant%20Jaume%2C%20Carrer%20de%20Sant%20Jaume%2018%2C%20Palma&amp;waypoints=Mercat%20de%20l%27Olivar%2C%20Palma%7CCan%20Balaguer%2C%20Palma%7CForn%20Fondo%2C%20Carrer%20de%20la%20Uni%C3%B3%2C%20Palma%7CAvinguda%20Jaume%20III%2C%20Palma%7CRialto%20Living%2C%20Carrer%20de%20Sant%20Feliu%2C%20Palma%7CLa%20Llotja%2C%20Palma%7CEs%20Baluard%20Museu%20d%27Art%20Contemporani%2C%20Palma&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps →</a></div>
       </div>
+      <div class="p48-col-map"><div class="pg-map" data-route="d2" role="img" aria-label="Map of Day two"></div></div>
       <div class="p48-aside"><p class="pg-note">Check the market’s opening days before setting off. If your second day falls on a day when it is closed, consider swapping the two walks.</p></div>
     </div>
-    <div class="p48-stops">
+    <div class="p48-stops" id="day-two-stops">
       <div class="p48-stop"><span class="num">01</span><span class="eyebrow">Mercat de l’Olivar</span><h3>Discover Palma through its flavours.</h3><p>Start your second day at Glòria and make your way towards Mercat de l’Olivar. Wander between stalls of fresh produce, fish, cheeses and local specialities, and take a moment to observe the rhythm of everyday Palma. Stop for a bite if you feel like it, or simply enjoy exploring before continuing your walk.</p><div class="pg-links"><a class="link-arrow" href="https://www.mercatolivar.com/" target="_blank" rel="noopener">Visit the market website →</a></div></div>
       <div class="p48-stop pg-box"><span class="eyebrow">The art of keeping traditions alive</span><p>Beyond Palma’s familiar shopping streets, discover the independent businesses that have helped shape the city’s character. Take a detour towards Carrer del Sindicat to browse the hats at Casa Julià, then continue to Mimbrería Vidal for woven baskets and natural fibres. Both are optional stops that celebrate traditional craftsmanship. Return towards La Rambla to continue the walk.</p><div class="pg-links"><a class="link-arrow" href="palma.html#shops">Palma’s oldest shops →</a></div></div>
       <div class="p48-stop"><span class="num">02</span><span class="eyebrow">La Rambla &amp; Can Balaguer</span><h3>A quieter side of the city.</h3><p>Leave the market and traditional shopping streets behind and wander towards La Rambla, a tree-lined promenade with a different rhythm from the narrow streets of the old town. Continue to Can Balaguer, a historic house where architecture, interiors and cultural life offer a glimpse into another side of Palma. Step inside if it is open, or simply enjoy the walk through the surrounding streets.</p><div class="pg-links"><a class="link-arrow" href="https://www.google.com/maps/search/?api=1&amp;query=Can%20Balaguer%2C%20Carrer%20de%20la%20Uni%C3%B3%203%2C%20Palma" target="_blank" rel="noopener">Discover Can Balaguer →</a></div></div>
@@ -136,7 +137,7 @@
 </section>
 
 <section class="page-hero pclose" style="margin-top:0;padding-top:0">
-  <img loading="lazy" decoding="async" class="bg" src="img/p48-santa-clara.jpg?v=4ab9d816" alt="The bell tower of Santa Clara">
+  <img loading="lazy" decoding="async" class="bg" src="img/p48-santa-clara.jpg" alt="The bell tower of Santa Clara">
   <div class="hero-in">
     <span class="eyebrow" style="color:rgba(243,237,226,.85)">Palma by Glòria</span>
     <h2 style="color:var(--cream);font-size:clamp(2.2rem,5vw,3.4rem)">The city is yours to discover.</h2>
@@ -183,11 +184,14 @@
 
 <a class="sticky-book btn btn-dark" href="index.html#book" data-book>Check availability</a>
 
-<script src="js/i18n-data.js?v=19sh"></script>
+<script src="js/i18n-data.js?v=20map"></script>
 <script src="js/i18n.js?v=4"></script>
 <script src="js/consent.js?v=4"></script>
 <script src="js/site.js?v=21d"></script>
 <script src="js/concierge.js?v=5" defer></script>
 <script src="js/requests.js?v=6" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="js/palma-routes.js?v=1"></script>
+<script src="js/palma-map.js?v=1"></script>
 </body>
 </html>
