@@ -1565,3 +1565,7 @@ html,body{overflow-x:clip}                       /* el menú móvil fuera de pan
 @media (min-width:901px){
   .hm-palma .wrap > .eyebrow,.hm-palma .wrap > h2,.hm-palma .wrap > p.muted{display:block;width:min(560px,100%);max-width:none!important;margin-left:auto;margin-right:0}
 }
+/* Palma · héroe con vídeo aéreo de la catedral (resolución original) */
+.page-hero video.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.phero video.bg{object-position:50% 50%}
+@media (prefers-reduced-motion:reduce){ .phero video.bg{display:none} .phero{background:#2b2118 url("../img/palma-cathedral-poster.jpg") center/cover} }
