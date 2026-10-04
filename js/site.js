@@ -230,13 +230,14 @@ try{ if(/[?&]oscuro(=|&|$)/.test(location.search)) document.documentElement.clas
     var portrait = window.innerWidth < 900 && window.innerHeight > window.innerWidth;
     if(portrait) v.poster = "img/hero-poster-v.jpg?v=9";
     if(reduce || conn.saveData) return;                    // se queda el póster fijo
-    var px = Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1);
     var slow = /(^|-)2g$/.test(conn.effectiveType || "");
     if(portrait){
       // móvil en vertical: vídeo rodado en vertical (sin recortes)
       v.src = "video/hero-v-" + (slow ? 720 : 1080) + ".mp4?v=9";
     }else{
-      var size = slow ? 720 : (px >= 2600 && window.innerWidth >= 900) ? 2160 : 1080;
+      // Sin 4K: pesaba 36,5 MB y lo recibía cualquier pantalla retina grande (casi todos los Mac,
+      // el iPad Pro). Eran 27 MB más por visita para un fondo oscurecido donde no se distingue.
+      var size = slow ? 720 : 1080;
       v.src = "video/hero-" + size + ".mp4?v=4";
     }
     v.muted = true;
