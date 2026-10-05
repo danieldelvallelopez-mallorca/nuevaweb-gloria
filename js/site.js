@@ -234,10 +234,10 @@ try{ if(/[?&]oscuro(=|&|$)/.test(location.search)) document.documentElement.clas
     var slow = /(^|-)2g$/.test(conn.effectiveType || "");
     if(portrait){
       // móvil en vertical: vídeo rodado en vertical (sin recortes)
-      v.src = "video/hero-v-" + (slow ? 720 : px >= 2400 ? 1440 : 1080) + ".mp4?v=10";
+      v.src = "video/hero-v-" + (slow ? 720 : px >= 2400 ? 1440 : 1080) + ".mp4?v=11";
     }else{
       var size = slow ? 720 : (px >= 2600 && window.innerWidth >= 900) ? 2160 : 1080;
-      v.src = "video/hero-" + size + ".mp4?v=5";
+      v.src = "video/hero-" + size + ".mp4?v=6";
     }
     v.muted = true;
     var play = function(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); };
