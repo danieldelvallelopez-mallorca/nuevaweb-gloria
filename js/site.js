@@ -234,7 +234,7 @@ try{ if(/[?&]oscuro(=|&|$)/.test(location.search)) document.documentElement.clas
     var slow = /(^|-)2g$/.test(conn.effectiveType || "");
     if(portrait){
       // móvil en vertical: vídeo rodado en vertical (sin recortes)
-      v.src = "video/hero-v-" + (slow ? 720 : px >= 2400 ? 1440 : 1080) + ".mp4?v=11";
+      v.src = "video/hero-v-" + (slow ? 720 : px >= 2400 ? 1440 : 1080) + ".mp4?v=12";
     }else{
       var size = slow ? 720 : (px >= 2600 && window.innerWidth >= 900) ? 2160 : 1080;
       v.src = "video/hero-" + size + ".mp4?v=6";
