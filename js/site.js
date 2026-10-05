@@ -228,16 +228,16 @@ try{ if(/[?&]oscuro(=|&|$)/.test(location.search)) document.documentElement.clas
     var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     var conn = navigator.connection || {};
     var portrait = window.innerWidth < 900 && window.innerHeight > window.innerWidth;
-    if(portrait) v.poster = "img/hero-poster-v.jpg?v=9";
+    if(portrait){ var pl = document.querySelector('link[href^="img/hero-poster-v"]'); v.poster = pl ? pl.getAttribute("href") : "img/hero-poster-v.jpg"; } // mismo ?v= que el preload
     if(reduce || conn.saveData) return;                    // se queda el póster fijo
     var px = Math.max(screen.width, screen.height) * (window.devicePixelRatio || 1);
     var slow = /(^|-)2g$/.test(conn.effectiveType || "");
     if(portrait){
       // móvil en vertical: vídeo rodado en vertical (sin recortes)
-      v.src = "video/hero-v-" + (slow ? 720 : 1080) + ".mp4?v=9";
+      v.src = "video/hero-v-" + (slow ? 720 : px >= 2400 ? 1440 : 1080) + ".mp4?v=10";
     }else{
       var size = slow ? 720 : (px >= 2600 && window.innerWidth >= 900) ? 2160 : 1080;
-      v.src = "video/hero-" + size + ".mp4?v=4";
+      v.src = "video/hero-" + size + ".mp4?v=5";
     }
     v.muted = true;
     var play = function(){ var p = v.play(); if(p && p.catch) p.catch(function(){}); };
